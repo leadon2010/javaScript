@@ -14,15 +14,21 @@
 	</table>
 
 	<script>
+		var element = document.getElementById("div1");
+
 		var param = document.createElement("p");
 		var node = document.createTextNode("This is new.");
 		param.appendChild(node);
-		var element = document.getElementById("div1");
 		element.appendChild(param);
 		var hparm = document.createElement("h1");
 		var hnode = document.createTextNode("This is h1");
 		hparm.appendChild(hnode);
+
 		element.appendChild(hparm);
+
+		//element.replaceChild(hparm, param);
+
+		element.removeChild(hparm);
 
 		var tdparm = document.createElement("td");
 		var tdtext = document.createTextNode("three");
@@ -32,7 +38,8 @@
 		var tdparm1 = document.createElement("td");
 		var tdtext1 = document.createTextNode("four");
 		tdparm1.appendChild(tdtext1);
-		document.getElementsByTagName("tr")[0].appendChild(tdparm1);
+		document.getElementsByTagName("tr")[0].insertBefore(tdparm1, document
+				.getElementsByTagName("td")[1]);
 	</script>
 
 </body>
