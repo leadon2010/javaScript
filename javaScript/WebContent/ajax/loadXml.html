@@ -10,9 +10,9 @@
 			if (this.readyState == 4 && this.status == 200) {
 				xmlDoc = this.responseXML;
 				txt = "";
-				x = xmlDoc.getElementsByTagName("CD");
+				x = xmlDoc.getElementsByTagName("ARTIST");
 				for (i = 0; i < x.length; i++) {
-					txt = txt + x[i].firstChild.firstChild.innerHTML + "::"
+					txt = txt + x[i].firstChild.nodeValue + "::"
 							+ x[i].lastChild.nodeValue + "<br>";
 				}
 				document.getElementById("demo").innerHTML = txt;
