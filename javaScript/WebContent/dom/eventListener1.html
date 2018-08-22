@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-	<h2>JavaScript addEventListener()</h2>
-
-	<p>This example uses the addEventListener() method to attach a
-		click event to a button.</p>
-
 	<button id="myBtn">Try it</button>
-
 	<p id="demo"></p>
-
+	<p id="demo1"></p>
 	<script>
 	document.getElementById("myBtn").addEventListener("click", displayDate);
-	document.getElementById("myBtn").addEventListener("click", otherFunction);
-
-		function displayDate() {
-			document.getElementById("demo").innerHTML = Date();
+	document.getElementById("myBtn").addEventListener("click", addDate);
+		var nDate = new Date();
+		var sDate = nDate.getDate();
+		function displayDate(){
+			var tday = new Date();
+			var year = tday.getFullYear();
+			var month = tday.getMonth()+1;
+			var day = tday.getDate();
+			var now = year+"³â"+month+"¿ù"+day+"ÀÏ";
+			
+			document.getElementById('demo').innerHTML = now;
 		}
-		function otherFunction(){
-			document.getElementById("demo").innerHTML += " +++  other function called.";
+		
+		function addDate(){
+			var aaa = document.getElementById('demo').innerHTML;
+			document.getElementById('demo1').innerHTML=aaa;
 		}
 	</script>
-
 </body>
 </html>
