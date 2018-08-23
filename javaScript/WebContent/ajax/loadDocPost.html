@@ -10,7 +10,6 @@
 
 	<script>
 		function loadDoc() {
-			var str = "fname=Donuld&lname=Duck";
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -25,9 +24,10 @@
 
 			};
 			//console.log(xhttp.onreadystatechange);
-			xhttp.open("POST", "objectTest.jsp", true);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.send(str);
+			xhttp.open("POST", "objectTest.jsp", true);//true일 경우 비동기방식, id, name parameter.
+			xhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xhttp.send("fname=Donuld&lname=Duck");//웹서버에 요청전송
 		}
 	</script>
 

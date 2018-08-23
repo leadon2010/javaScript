@@ -4,7 +4,8 @@
 
 	<div id="demo">
 		<h2>The XMLHttpRequest Object</h2>
-		<button type="button" onclick="loadDoc()">Change Content</button><br>
+		<button type="button" onclick="loadDoc()">Change Content</button>
+		<br>
 	</div>
 
 	<script>
@@ -23,8 +24,8 @@
 
 			};
 			//console.log(xhttp.onreadystatechange);
-			xhttp.open("GET", "AddrBookDAO.class", true);
-			xhttp.send();
+			xhttp.open("GET", "objectTest.jsp?fname=Donuld&lname=Duck", true);//true일 경우 비동기방식, id, name parameter.
+			xhttp.send();//웹서버에 요청전송
 		}
 	</script>
 
