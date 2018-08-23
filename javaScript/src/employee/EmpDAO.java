@@ -20,7 +20,7 @@ public class EmpDAO {
 		String sql = "select first_name, last_name, salary from employees where first_name like '%'||'" + name + "'||'%'";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			System.out.println(sql + " kkkkkkkkkkkkkkkk");
+			System.out.println(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				emp = new Employee();
