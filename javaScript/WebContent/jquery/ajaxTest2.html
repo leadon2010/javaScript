@@ -11,11 +11,13 @@
 			url : "deptControl.jsp?action=listjson",
 			success : function(result) {
 				var datas = JSON.parse(result);
+				var datajson = JSON.stringify(datas);
+				console.log(datajson);
 				var resulttag;
 				console.log(datas);
 				resulttag += "<table border='1'>";
 				for(i=0;i<datas.length;i++){
-					resulttag += "<tr><td>"+datas[i].departmentName+"</td><td>"+datas[i].departmentId+"</td>";
+					resulttag += "<tr><td>"+datas[i].departmentName+"</td><td>"+datas[i].departmentId+"</td><td>"+datas[i].locationId+"</td></tr>";
 				}
 				resulttag += "</table>";
 				$('div').html(resulttag);
@@ -26,7 +28,7 @@
 			$("table tr").filter(function(){
 				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
 			});
-		});		
+		});
 	});
 </script>
 </head>
