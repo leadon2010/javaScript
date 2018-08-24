@@ -15,16 +15,5 @@ pageEncoding="UTF-8"%>
 	</script>
 </head>
 <body>
-	<h3>부서등록</h3>
-	<form>
-		<input type="text" name="department_id" /> 
-		<input type="text" name="department_name" /> 
-		<input type="text" name="manager_id" /> 
-		<input type="text" name="manager_id" /> 
-		<input type="button" value="등록" onclick="deptIns()" />
-	</form>
-
-	<h3>부서목록</h3>
-	<div id="result"></div>
 </body>
 </html>
