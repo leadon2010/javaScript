@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="employee.Employee"%>
+<%@page import="net.sf.json.JSONArray" %>
 <jsp:useBean id="emp" class="employee.Employee" />
 <jsp:setProperty name="emp" property="*" />
 <jsp:useBean id="dao" class="employee.EmpDAO"></jsp:useBean>
