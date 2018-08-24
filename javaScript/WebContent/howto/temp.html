@@ -1,22 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("button").click(function(){
+				$.ajax({url: "demo_test.txt", success: function(result){
+					$("#div1").html(result);
+				}});
+			});
+		});
+	</script>
 </head>
 <body>
-	<h3>부서등록</h3>
-	<form>
-		<input type="text" name="department_id" /> 
-		<input type="text" name="department_name" /> 
-		<input type="text" name="manager_id" /> 
-		<input type="text" name="manager_id" /> 
-		<input type="button" value="등록" onclick="deptIns()" />
-	</form>
 
-	<h3>부서목록</h3>
-	<div id="result"></div>
+	<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+	<button>Get External Content</button>
+
 </body>
 </html>
