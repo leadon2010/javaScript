@@ -9,6 +9,8 @@
 <title>상품상세조회</title>
 </head>
 <body>
+	<h3>상품상세정보</h3>
+	<h4><a href="productControl.jsp?action=list">상품전체목록</a></h4>
 	<table>
 		<tr>
 			<th>상품번호</th>

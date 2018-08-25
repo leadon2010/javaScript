@@ -13,6 +13,13 @@
 <script>
 	function linkon(str){
 		window.location.href = "productControl.jsp?action=getOne&productId=" + str;
+	};
+	function checkon(str){
+		var res = confirm("수정하시겠습니까?");
+		if(res)
+			window.location.href = "productControl.jsp?action=updateForm&productId" + str;
+		else
+			window.location.href = "productControl.jsp?action=list";
 	}
 </script>	
 </head>
@@ -30,8 +37,8 @@
 		</tr>
 		<c:forEach items="${datas}" var="i">
 			<tr>
-				<td><a href="javascript:linkon(${i.getProductId()})">${i.getProductId()}</a></td>
-				<td>${i.getProductName() }</td>
+				<td><a href="javascript:checkon(${i.getProductId()})">${i.getProductId()}</a></td>
+				<td><a href="javascript:linkon(${i.getProductId()})">${i.getProductName()}</a></td>
 				<td>${i.getProductPrice() }</td>
 				<td>${i.productImg }</td>
 			</tr>
