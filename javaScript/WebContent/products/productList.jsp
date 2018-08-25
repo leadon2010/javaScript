@@ -17,7 +17,7 @@
 	function checkon(str){
 		var res = confirm("수정하시겠습니까?");
 		if(res)
-			window.location.href = "productControl.jsp?action=updateForm&productId" + str;
+			window.location.href = "productControl.jsp?action=updateForm&productId=" + str;
 		else
 			window.location.href = "productControl.jsp?action=list";
 	}

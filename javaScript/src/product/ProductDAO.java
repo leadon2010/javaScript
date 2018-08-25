@@ -14,6 +14,30 @@ public class ProductDAO {
 	ResultSet rs = null;
 	PreparedStatement pstmt;
 
+	// 4.update
+	public void updateProd(Product prod) {
+		String sql = "update products set product_name=?, product_price=?, product_img=?, product_cont=? where product_id=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, prod.getProductName());
+			pstmt.setInt(2, prod.getProductPrice());
+			pstmt.setString(3, prod.getProductImg());
+			pstmt.setString(4, prod.getProductCont());
+			pstmt.setInt(5, prod.getProductId());
+			int r = pstmt.executeUpdate();
+			System.out.println(r + " updated.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
 	// 3.insert
 	public void insertProd(Product prod) {
 		String sql = "insert into products (product_id, product_name, product_price, product_cont, product_img) "

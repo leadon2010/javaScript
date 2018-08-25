@@ -4,6 +4,9 @@
 <jsp:useBean id="prod" class="product.Product"></jsp:useBean>
 <jsp:setProperty property="*" name="prod" />
 <%
+	request.setCharacterEncoding("utf-8");
+%>
+<%
 	String action = request.getParameter("action");
 
 	if (action.equals("") || action == null) {
@@ -20,7 +23,7 @@
 
 	} else if (action.equals("update")) {
 		System.out.println("update");
-		request.setAttribute("pr", prodDAO.getProdcutOne(prod.getProductId()));
+		prodDAO.updateProd(prod);
 		response.sendRedirect("productControl.jsp?action=list");
 
 	} else if (action.equals("getOne")) {
