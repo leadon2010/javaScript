@@ -39,7 +39,7 @@
 	<h4>
 		<a href="productControl.jsp?action=list">상품목록보기</a>
 	</h4>
-	<form name="frm1" method="post" action="productControl.jsp">
+	<form name="form1" method="post" action="productControl.jsp">
 		<input type="hidden" name="action" value="insert">
 		<table border="1" style="width: 800px">
 			<tr>

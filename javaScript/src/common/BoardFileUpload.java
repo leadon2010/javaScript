@@ -56,7 +56,7 @@ public class BoardFileUpload extends HttpServlet {
 		}
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
-		out.println("opener.form1.image.value= '" + filename + "';");
+		out.println("opener.form1.productImg.value= '" + filename + "';");
 		out.println("window.close();");
 		out.println("</script>");
 	}

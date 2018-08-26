@@ -6,4 +6,5 @@ SELECT NVL(MAX(product_id)
 FROM   products;
 
 SELECT *
-FROM   products;
+FROM   products
+ORDER  BY 1 DESC;
