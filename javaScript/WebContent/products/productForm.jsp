@@ -52,7 +52,8 @@
 			</tr>
 			<tr>
 				<th>상품이미지</th>
-				<td><input type="text" name="productImg" /></td>
+				<td><input type="text" name="productImg" />
+					<input type="button" value="파일첨부" onclick="file_open()"></td>
 			</tr>
 			<tr>
 				<th>상품설명</th>
