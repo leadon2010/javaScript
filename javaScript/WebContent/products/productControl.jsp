@@ -40,7 +40,7 @@
 		request.getRequestDispatcher("productList.jsp").forward(request, response);
 
 	} else if (action.equals("likeit")) {
-		int likeitcnt = prodDAO.addLikeit(1);
+		int likeitcnt = prodDAO.addLikeit(prod.getProductId());
 		System.out.println("likeit" + likeitcnt);
 		out.print("{\"likeit\":" + likeitcnt + "}");
 

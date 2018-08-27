@@ -9,6 +9,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="addrbook.css" type="text/css" media="screen" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	function likeit(str){
+		//alert(str);
+		window.location.href = "productControl.jsp?action=likeit&productId="+str;
+	}
+</script>
 <title>상품상세조회</title>
 </head>
 <body>
@@ -29,7 +36,7 @@
 		</tr>
 		<tr>
 			<th>상품이미지</th>
-			<td>${pr.productImg} / ${pr.productLikeit}</td>
+			<td>${pr.productImg} / <a href="javascript:likeit(${pr.productId})">${pr.likeit}</a></td>
 		</tr>
 		<tr>
 			<th>상품설명</th>
