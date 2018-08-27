@@ -13,13 +13,10 @@
 <script>
 	$(document).ready(function(){
 		$("#likeit").click(function(){
-			console.log("fff");
 			$.ajax({
 				url:"productControl.jsp?action=likeit&productId=${pr.productId}",
 				success:function(result){
-					console.log(result);
 					var datas = JSON.parse(result);
-					console.log(datas.likeit);
 					$("#likeit").html(datas.likeit);
 				}
 			});
