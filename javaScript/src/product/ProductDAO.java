@@ -72,8 +72,8 @@ public class ProductDAO {
 
 	// 3.insert
 	public void insertProd(Product prod) {
-		String sql = "insert into products (product_id, product_name, product_price, product_cont, product_img) "
-				+ " values((select nvl(max(product_id),0)+1 from products), ?, ?, ?, ?) ";
+		String sql = "insert into products (product_id, product_name, product_price, product_cont, product_img, likeit) "
+				+ " values((select nvl(max(product_id),0)+1 from products), ?, ?, ?, ?, 0) ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prod.getProductName());
