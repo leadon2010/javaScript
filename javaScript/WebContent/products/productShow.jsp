@@ -12,15 +12,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
-		$("a").click(function(){
+		$("#likeit").click(function(){
+			console.log("fff");
 			$.ajax({
-				url:"productControl.jsp?action=likeit&productId="+str,
+				url:"productControl.jsp?action=likeit&productId=${pr.productId}",
 				success:function(result){
-					
+					console.log(result);
+					var datas = JSON.parse(result);
+					console.log(datas.likeit);
+					$("#likeit").html(datas.likeit);
 				}
-			})
+			});
 		});
-	})
+	});
 	function likeit(str){
 		//alert(str);
 		//window.location.href = "productControl.jsp?action=likeit&productId="+str;
@@ -46,7 +50,7 @@
 		</tr>
 		<tr>
 			<th>상품이미지</th>
-			<td>${pr.productImg} / <a href="javascript:likeit(${pr.productId})">${pr.likeit}</a></td>
+			<td>${pr.productImg} / <a href="javascript:likeit(1)" id="likeit">${pr.likeit}</a></td>
 		</tr>
 		<tr>
 			<th>상품설명</th>

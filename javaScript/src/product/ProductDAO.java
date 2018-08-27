@@ -98,7 +98,7 @@ public class ProductDAO {
 	public Product getProdcutOne(int prod_id) {
 		Product prod = null;
 
-		String sql = "select product_id, product_name, product_price, product_cont, product_img from products where product_id=?";
+		String sql = "select product_id, product_name, product_price, product_cont, product_img, likeit from products where product_id=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, prod_id);
@@ -110,6 +110,7 @@ public class ProductDAO {
 				prod.setProductPrice(rs.getInt("product_price"));
 				prod.setProductCont(rs.getString("product_cont"));
 				prod.setProductImg(rs.getString("product_img"));
+				prod.setLikeit(rs.getInt("likeit"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
