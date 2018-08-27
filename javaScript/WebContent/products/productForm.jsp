@@ -57,7 +57,7 @@
 			</tr>
 			<tr>
 				<th>상품설명</th>
-				<td><textarea name="productCont"> </textarea> /></td>
+				<td><textarea name="productCont"> </textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2">
