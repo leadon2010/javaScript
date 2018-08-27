@@ -131,7 +131,7 @@ public class ProductDAO {
 		Product prod = null;
 		List<Product> list = new ArrayList<>();
 
-		String sql = "select product_id, product_name, product_price, product_cont, product_img from products order by 1 desc";
+		String sql = "select product_id, product_name, product_price, product_cont, product_img, likeit from products order by 1 desc";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -142,6 +142,7 @@ public class ProductDAO {
 				prod.setProductPrice(rs.getInt("product_price"));
 				prod.setProductCont(rs.getString("product_cont"));
 				prod.setProductImg(rs.getString("product_img"));
+				prod.setLikeit(rs.getInt("likeit"));
 				list.add(prod);
 			}
 		} catch (SQLException e) {

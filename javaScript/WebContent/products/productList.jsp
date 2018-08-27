@@ -30,14 +30,14 @@
 	</h4>
 	<table border="1">
 		<tr>
-			<th>상품번호</th>
+			<th>상품번호/좋아요</th>
 			<th>상품명</th>
 			<th>상품가격</th>
 			<th>상품이미지</th>
 		</tr>
 		<c:forEach items="${datas}" var="i">
 			<tr>
-				<td><a href="javascript:checkon(${i.getProductId()})">${i.getProductId()}</a></td>
+				<td><a href="javascript:checkon(${i.getProductId()})">${i.getProductId()}</a> / ${i.likeit}</td>
 				<td><a href="javascript:linkon(${i.getProductId()})">${i.getProductName()}</a></td>
 				<td>${i.getProductPrice() }</td>
 				<td>${i.productImg }</td>
