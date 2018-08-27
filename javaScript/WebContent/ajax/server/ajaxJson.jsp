@@ -15,12 +15,13 @@
 	function callback(){
 		if(xhttp.readyState == 4 && xhttp.status == 200){
 			var datas = JSON.parse(xhttp.responseText);
+			console.log(datas);
 			var p = document.getElementById('demo');
-			p.innerHTML += "<table border = '1' id = 'list'>";
+			p.innerHTML += "<ul>";
 			for(i=0; i<datas.length;i++){
-				p.innerHTML += "<tr><td>" + datas[i].departmentId + "</td><td>" + datas[i].departmentName + "</td></tr>";
+				p.innerHTML += "<li>" + datas[i].departmentId + " " + datas[i].departmentName + "</li>";
 			}
-			p.innerHTML += "</table>";
+			p.innerHTML += "</ul>";
 		}
 	}
 	
@@ -29,6 +30,11 @@
 </head>
 <body>
 	<h3>부서목록</h3>
-	<div id="demo"></div>
+	<div id="demo">
+		<table id=>
+			<tr><td>111</td></tr>
+			<tr><td>222</td></tr>
+		</table>
+	</div>
 </body>
 </html>
