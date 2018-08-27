@@ -11,8 +11,40 @@ import common.DbCon;
 
 public class ProductDAO {
 	Connection conn = DbCon.connect();
+	Connection conn1 = DbCon.connect();
 	ResultSet rs = null;
 	PreparedStatement pstmt;
+	PreparedStatement pstmt1;
+
+	public int addLikeit(int prod_id) {
+		String sql = "update products set likeit=likeit+1 where product_id=?";
+		String gsql = "select nvl(likeit,0) likeit from products where product_id=?";
+		int likeit = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, prod_id);
+			int r = pstmt.executeUpdate();
+			System.out.println(r + " 좋아요 추가.");
+
+			pstmt1 = conn1.prepareStatement(gsql);
+			pstmt1.setInt(1, prod_id);
+			rs = pstmt1.executeQuery();
+			if (rs.next()) {
+				likeit = rs.getInt("likeit");
+				System.out.println("systout : " + likeit);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return likeit;
+	}
 
 	// 4.update
 	public void updateProd(Product prod) {

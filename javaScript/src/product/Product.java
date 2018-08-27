@@ -6,6 +6,7 @@ public class Product {
 	private int productPrice;
 	private String productCont;
 	private String productImg;
+	private int likeit;
 
 	public int getProductId() {
 		return productId;
@@ -47,10 +48,18 @@ public class Product {
 		this.productImg = productImg;
 	}
 
+	public int getLikeit() {
+		return likeit;
+	}
+
+	public void setLikeit(int likeit) {
+		this.likeit = likeit;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice
-				+ ", productCont=" + productCont + ", productImg=" + productImg + "]";
+				+ ", productCont=" + productCont + ", productImg=" + productImg + ", likeit=" + likeit + "]";
 	}
 
 }

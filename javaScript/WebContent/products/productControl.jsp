@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.Set"%>
 <jsp:useBean id="prodDAO" class="product.ProductDAO"></jsp:useBean>
 <jsp:useBean id="prod" class="product.Product"></jsp:useBean>
 <jsp:setProperty property="*" name="prod" />
@@ -35,6 +38,11 @@
 		System.out.println("list");
 		request.setAttribute("datas", prodDAO.getProductList());
 		request.getRequestDispatcher("productList.jsp").forward(request, response);
+
+	} else if (action.equals("likeit")) {
+		int likeitcnt = prodDAO.addLikeit(1);
+		System.out.println("likeit" + likeitcnt);
+		out.print("{\"likeit\":" + likeitcnt + "}");
 
 	} else {
 		out.print("알 수 없는 action입니다.<br>");
