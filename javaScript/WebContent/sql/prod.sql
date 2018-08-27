@@ -16,7 +16,8 @@ create table PRODUCTS
   product_name  VARCHAR2(100),
   product_price NUMBER,
   product_cont  VARCHAR2(3000),
-  product_img   VARCHAR2(100)
+  product_img   VARCHAR2(100),
+  likeit        NUMBER
 )
 tablespace USERS
   pctfree 10
