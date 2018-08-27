@@ -14,6 +14,8 @@
 </head>
 <body>
 	<%
+		request.setCharacterEncoding("utf-8");
+
 		String up_url = request.getContextPath() + "/upload"; // 기본 업로드 URL
 		//String up_url = "C:\\dev\\workspace\\git\\javaScript\\javaScript\\WebContent\\upload";
 		System.out.println(up_url);
