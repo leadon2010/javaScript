@@ -11,9 +11,19 @@
 <link rel="stylesheet" href="addrbook.css" type="text/css" media="screen" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+	$(document).ready(function(){
+		$("a").click(function(){
+			$.ajax({
+				url:"productControl.jsp?action=likeit&productId="+str,
+				success:function(result){
+					
+				}
+			})
+		});
+	})
 	function likeit(str){
 		//alert(str);
-		window.location.href = "productControl.jsp?action=likeit&productId="+str;
+		//window.location.href = "productControl.jsp?action=likeit&productId="+str;
 	}
 </script>
 <title>상품상세조회</title>
