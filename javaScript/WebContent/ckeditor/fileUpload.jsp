@@ -15,8 +15,10 @@
 <body>
 	<%
 		String up_url = request.getContextPath() + "/upload"; // 기본 업로드 URL
-		out.print(up_url);
+		//String up_url = "C:\\dev\\workspace\\git\\javaScript\\javaScript\\WebContent\\upload";
+		System.out.println(up_url);
 		String up_dir = "/upload"; // 기본 업로드 폴더
+		//String up_dir = "C:\\dev\\workspace\\git\\javaScript\\javaScript\\WebContent\\upload";
 		String save_url = "";
 		String save_dir = "";
 		// 업로드 DIALOG 에서 전송된 값
