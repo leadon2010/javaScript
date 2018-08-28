@@ -16,7 +16,9 @@
 			$.ajax({
 				url:"productControl.jsp?action=likeit&productId=${pr.productId}",
 				success:function(result){
+					console.log(result);
 					var datas = JSON.parse(result);
+					console.log(datas);
 					$("#likeit").html(datas.likeit);
 				}
 			});
