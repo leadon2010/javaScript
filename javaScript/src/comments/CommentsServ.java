@@ -49,13 +49,11 @@ public class CommentsServ extends HttpServlet {
 			} catch (Exception e) {
 				StringBuffer sb = new StringBuffer();
 				msg = new HashMap<String, String>() {
-					{
-						put("msg", e.getMessage());
-					}
+					{ put("msg", e.getMessage()); }
 				};
 				out.print(toXML("error", msg));
 			}
-		} else if (cmd.equals("insert")) { // ?깅줉
+		} else if (cmd.equals("insert")) { //
 			try {
 				//
 				Comments bean = new Comments();
@@ -67,9 +65,7 @@ public class CommentsServ extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				msg = new HashMap<String, String>() {
-					{
-						put("msg", e.getMessage());
-					}
+					{ put("msg", e.getMessage()); }
 				};
 				out.print(toXML("error", msg));
 			}
