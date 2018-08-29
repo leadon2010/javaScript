@@ -7,6 +7,11 @@
 		$("#btn").click(function() {
 			getAirLine($("#txt1").val());
 		});
+
+		$("#txt1").keyup(function(e) {
+			if (e.keyCode == 13)
+				getAirLine($("#txt1").val());
+		});
 	});
 	function getAirLine(str) {
 		$.ajax({
@@ -16,17 +21,17 @@
 					var datas = JSON.parse(result);
 					var innerHtml = "<table border='1'><th>No</th><th>airline.name</th><th>departure.iataCode</th>"
 							+ "<th>departure.scheduledTime</th><th>departure.gate</th><th>departure.terminal</th>"
-							+ "<th>arrival.iataCode</th><th>arrival.scheduledTime</th><th>flight.number</th><th>flight.iataNumber</th></tr>";
+							+ "<th>arrival.iataCode</th><th>arrival.scheduledTime</th><th>flight.number</th>"
+							+ "<th>flight.iataNumber</th></tr>";
 					for (var i = 0; i < datas.length; i++) {
-						innerHtml += "<tr><td>" + i + "</td><td>"
-								+ datas[i].airline.name + "</td><td>"
-								+ datas[i].departure.iataCode + "</td><td>"
-								+ datas[i].departure.scheduledTime
+						innerHtml += "<tr><td>" + i
+						        + "</td><td>" + datas[i].airline.name
+						        + "</td><td>" + datas[i].departure.iataCode
+						        + "</td><td>" + datas[i].departure.scheduledTime
 								+ "</td><td>" + datas[i].departure.gate
 								+ "</td><td>" + datas[i].departure.terminal
 								+ "</td><td>" + datas[i].arrival.iataCode
-								+ "</td><td>"
-								+ datas[i].arrival.scheduledTime
+								+ "</td><td>" + datas[i].arrival.scheduledTime
 								+ "</td><td>" + datas[i].flight.number
 								+ "</td><td>" + datas[i].flight.iataNumber
 								+ "</td></tr>";
@@ -47,7 +52,6 @@
 	<p>
 		iataCode for Departure: <input id="txt1" value="TAE" />
 		<button id="btn">Get</button>
-		<!-- onkeyup="showHint(this.value)"> -->
 	</p>
 
 	<div id="txtHint"></div>
