@@ -92,9 +92,9 @@ public class CommentsDAO extends common.DAO {
 		try {
 			connect();
 			conn.setAutoCommit(false); // 트랜잭션 처리
-			String sql = "delete COMMENTS where id=222 ";
+			String sql = "delete COMMENTS where id=? ";
 			pstmtCommentInsert = conn.prepareStatement(sql);
-			// pstmtCommentInsert.setString(1, bean.getId());
+			pstmtCommentInsert.setString(1, bean.getId());
 			pstmtCommentInsert.executeUpdate();
 			conn.commit(); // 커밋
 			HashMap<String, Object> map = new HashMap<String, Object>();
