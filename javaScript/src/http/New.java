@@ -1,21 +1,22 @@
 package http;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.http.HttpResponse;
-
+import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 /**
  * Servlet implementation class New
  */
-@WebServlet("/New")
+@WebServlet("/new.do")
 public class New extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -35,13 +36,15 @@ public class New extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		PrintWriter out = response.getWriter();
 		try {
-			HttpResponse res = (HttpResponse) Unirest.get(
+			HttpResponse<String> resp = Unirest.get(
 					"https://flightlookup-airporttimetable-rest.p.mashape.com/AirportTimeTable/BOS/depart/12/17/2012/?Airline=AA&Count=1&Hops=NONSTOP&SortOrder=1")
-					.header("X-Mashape-Key", "s0xA4G2l48mshrHV05GKywycvUZkp1NTeYGjsnntNGHnXmBjaX")
-					.header("Accept", "text/plain").asString();
-			
-			System.out.println(res.toString());
+					.header("X-Mashape-Key", "uRLpeFOXzLmshZtUbTKUs38xVbIop1u9l3ijsndGW5IWKT24UY")
+					.header("accept", "text/plain")
+					.asString();
+
+			//out.println(resp.toString());
 		} catch (UnirestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

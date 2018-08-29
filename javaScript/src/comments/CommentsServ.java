@@ -32,6 +32,7 @@ public class CommentsServ extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String cmd = request.getParameter("cmd");
 		HashMap<String, String> msg;
+
 		if (cmd == null) {
 			StringBuffer sb = new StringBuffer();
 			sb.append("<result>");
@@ -41,6 +42,7 @@ public class CommentsServ extends HttpServlet {
 			sb.append("]]></data>");
 			sb.append("</result>");
 			out.print(sb.toString());
+
 		} else if (cmd.equals("selectAll")) { //
 			try {
 				String no = request.getParameter("no"); // 게시글번호
@@ -49,10 +51,13 @@ public class CommentsServ extends HttpServlet {
 			} catch (Exception e) {
 				StringBuffer sb = new StringBuffer();
 				msg = new HashMap<String, String>() {
-					{ put("msg", e.getMessage()); }
+					{
+						put("msg", e.getMessage());
+					}
 				};
 				out.print(toXML("error", msg));
 			}
+
 		} else if (cmd.equals("insert")) { //
 			try {
 				//
@@ -65,7 +70,9 @@ public class CommentsServ extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				msg = new HashMap<String, String>() {
-					{ put("msg", e.getMessage()); }
+					{
+						put("msg", e.getMessage());
+					}
 				};
 				out.print(toXML("error", msg));
 			}
@@ -82,7 +89,9 @@ public class CommentsServ extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				msg = new HashMap<String, String>() {
-					{ put("msg", e.getMessage()); }
+					{
+						put("msg", e.getMessage());
+					}
 				};
 				out.print(toXML("error", msg));
 			}
@@ -97,7 +106,9 @@ public class CommentsServ extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				HashMap map = new HashMap() {
-					{ put("msg", e.getMessage()); }
+					{
+						put("msg", e.getMessage());
+					}
 				};
 				out.print(toXML("error", map));
 			}
