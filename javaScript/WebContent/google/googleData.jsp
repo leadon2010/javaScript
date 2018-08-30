@@ -12,7 +12,6 @@
 
 	//out.print(JSONArray.fromObject(list).toString());
 	//for (Map<String, Object> map : list) {
-		out.print("title"+list.iterator()
-		.toString());
+	out.print("title" + list.iterator().toString());
 	//}
 %>
