@@ -5,21 +5,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import common.DbCon;
 
 public class EmpDAO {
+	PreparedStatement pstmt = null;
 
 	public List<Employee> getEmpList(String name) {
-		DbCon con = new DbCon();
-		Connection conn = con.connect();
+		Connection conn = DbCon.connect();
 		Employee emp;
 		List<Employee> list = new ArrayList<>();
 
-		String sql = "select first_name, last_name, salary from employees where first_name like '%'||'" + name + "'||'%'";
+		String sql = "select first_name, last_name, salary from employees where first_name like '%'||'" + name
+				+ "'||'%'";
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			System.out.println(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -33,5 +36,27 @@ public class EmpDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	public List<Map<String, Object>> getEmpPerDept() {
+		Connection conn = DbCon.connect();
+		Map<String, Object> map;
+		List<Map<String, Object>> list = new ArrayList<>();
+		String sql = "SELECT d.department_name ,COUNT(*) cnt FROM employees e JOIN departments d ON e.department_id = d.department_id "
+				+ "WHERE  e.department_id IS NOT NULL GROUP  BY d.department_name";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				map = new HashMap<String, Object>();
+				map.put(rs.getString("department_name"), rs.getInt("cnt"));
+				list.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+
 	}
 }
