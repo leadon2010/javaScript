@@ -15,10 +15,9 @@
 	});
 	function getAirLine(str) {
 		$.ajax({
-				url : "http://aviation-edge.com/api/public/timetable?key=91d2fc-100a8e-b99352-1e7a4c-f93561&iataCode="
-						+ str + "&type=departure",
-				success : function(result) {
-					var datas = JSON.parse(result);
+				url : "https://api.flightstats.com/flex/schedules/rest/v1/json/from/GMP/to/HND/departing/2018/09/30?appId=6d442315&appKey=301aa216b58dee04e31de0f4d5733590",
+				success : function(datas) {
+					//var datas = JSON.parse(result);
 					console.log(datas);
 					var innerHtml = "<table border='1'><th>No</th><th>airline.name</th><th>departure.iataCode</th>"
 							+ "<th>departure.scheduledTime</th><th>departure.gate</th><th>departure.terminal</th>"
