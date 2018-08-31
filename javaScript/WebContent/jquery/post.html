@@ -6,7 +6,7 @@
 <script>
 	$(document).ready(function(){
 		$("button").click(function(){
-			$.post("post.jsp", { name: "Donald Duck", city: "DuckCity" }, function(data, status){
+			$.post("post.jsp", {name:"Donald Duck", city:"Duck City"}, function(data, status){
 				document.getElementById('demo').innerHTML = "data: " + data + "<br>status: " + status;
 			});
 		});

@@ -7,7 +7,7 @@
 	$(document).ready(function(){
 		$("button").click(function(){
 			$.get("get.jsp", function(data, status){
-				document.getElementById('demo').innerHTML = "data: " + data + "<br>status: " + status;
+				document.getElementById("demo").innerHTML = "data: " + data + "<br>status: "+ status;
 			});
 		});
 	});
@@ -15,7 +15,8 @@
 </head>
 <body>
 
-	<button>Send an HTTP GET request to a page and get the result back</button>
+	<button>Send an HTTP GET request to a page and get the result
+		back</button>
 	<p id="demo">here:</p>
 </body>
 </html>

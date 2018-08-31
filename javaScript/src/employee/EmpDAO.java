@@ -14,6 +14,31 @@ import common.DbCon;
 public class EmpDAO {
 	PreparedStatement pstmt = null;
 
+	public List<Employee> getEmplsList() {
+		Connection conn = DbCon.connect();
+		List<Employee> list = new ArrayList<>();
+		Employee emp;
+		String sql = "select first_name from employees order by 1";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				emp = new Employee();
+				emp.setFirstName(rs.getString("first_name"));
+				list.add(emp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+
 	public List<Employee> getEmpList(String name) {
 		Connection conn = DbCon.connect();
 		Employee emp;
@@ -34,6 +59,12 @@ public class EmpDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return list;
 	}
@@ -54,6 +85,12 @@ public class EmpDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return list;
