@@ -18,13 +18,17 @@ public class EmpDAO {
 		Connection conn = DbCon.connect();
 		List<Employee> list = new ArrayList<>();
 		Employee emp;
-		String sql = "select first_name from employees order by 1";
+		String sql = "select * from employees order by 1";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				emp = new Employee();
 				emp.setFirstName(rs.getString("first_name"));
+				emp.setLastName(rs.getString("last_name"));
+				emp.setEmployeeId(rs.getInt("employee_id"));
+				emp.setSalary(rs.getInt("salary"));
+				emp.setHireDate(rs.getString("hire_date"));
 				list.add(emp);
 			}
 		} catch (SQLException e) {
