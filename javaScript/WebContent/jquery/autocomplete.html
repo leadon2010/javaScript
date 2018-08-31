@@ -3,64 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <title>autoComplete</title>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script>
-$(function() {
-	  
-    $( "#emp" ).autocomplete({
-        source: function( request, response ) {
-            $.ajax({
-                url: 'autoComplete.jsp',
-                dataType: "json",
-                success: function( data ) {
-                    response( $.map( data.empls, function( item ) {
-                        if (item.firstName.toLowerCase().indexOf($("#emp").val().toLowerCase()) >= 0)
-                        {
-                            return {
-                                label: item.firstName.toLowerCase().replace($( "#emp" ).val().toLowerCase(),"<span style='font-weight:bold;color:Blue;'>" + $( "#emp" ).val().toLowerCase() + "</span>"),
-                                value: item.firstName,
-                                cityCd:item.cityCd,
-                                nationCd:item.nationCd
-                            }
-                        }
-                    }));
-                }
-            });
-        },
-        minLength: 3,
-        select: function( event, ui ) {
-                cityValue(ui.item.value);
-        },
-        open: function() {
-            $( this ).autocomplete("widget").width("323px");
-            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-        },
-        close: function() {
-            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-        },
-        error: function(xhr, ajaxOptions, thrownError){ alert(thrownError);  alert(xhr.responseText); }
-    })
-    .data('uiAutocomplete')._renderItem = function( ul, item ) {
-        return $( "<li style='cursor:hand; cursor:pointer;'></li>" )
-            .data( "item.autocomplete", item )
-            .append("<a onclick=\"cityValue('" + item.value + "');\">"  + unescape(item.label) + "</a>")
-        .appendTo( ul );
-    };
-});
-  
-function cityValue(message) {
-    $("<div>").text(message).prependTo("#cityResult");
-    $("#cityResult").scrollTop(0);
-}
+	$(document).ready(function() {
+		var dataSet = [];
+		$.ajax({
+			url : "autoComplete.jsp",
+			success : function(result) {
+				var datas = JSON.parse(result);
+				for (i = 0; i < datas.length; i++) {
+					dataSet.push(datas[i].firstName);
+				}
+			}
+		});
+		$("#emp").autocomplete({
+			source : dataSet
+		});
+	});
 </script>
 </head>
 <body>
-<div class="test">
-	<label for="emp">Emp</label>
-	<input id="emp" />
-</div>
+	<div class="test">
+		<label for="emp">Emp</label> <input id="emp" />
+	</div>
 </body>
 </html>

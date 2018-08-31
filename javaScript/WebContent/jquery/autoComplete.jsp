@@ -7,5 +7,6 @@
 <%
 	EmpDAO dao = new EmpDAO();
 	List<Employee> list = dao.getEmplsList();
-	out.print("{\"empls\":" + JSONArray.fromObject(list).toString() + "}");
+	//out.print("{\"empls\":" + JSONArray.fromObject(list).toString() + "}");
+	out.print(JSONArray.fromObject(list).toString());
 %>
