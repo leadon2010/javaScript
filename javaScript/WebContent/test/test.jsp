@@ -4,21 +4,26 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-    $(document).ready(function() {
-        $(document).ajaxSuccess(function() {
-            alert("AJAX request successfully completed");
+        $(document).ready(function () {
+            $("p").on({
+                mouseenter: function () {
+                    $(this).css("background-color", "lightgray");
+                },
+                mouseleave: function () {
+                    $(this).css("background-color", "lightblue");
+                },
+                click: function () {
+                    $(this).css("background-color", "yellow");
+                }
+            });
         });
-        $("button").click(function() {
-            $("div").load("demo_ajax_load.txt");
-        });
-    });
     </script>
 </head>
 
 <body>
-    <div>
-        <h2>Let AJAX change this text</h2></div>
-    <button>Change Content</button>
+
+    <p>Click or move the mouse pointer over this paragraph.</p>
+
 </body>
 
 </html>
