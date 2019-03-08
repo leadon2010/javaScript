@@ -48,8 +48,7 @@ public class EmpDAO {
 		Employee emp;
 		List<Employee> list = new ArrayList<>();
 
-		String sql = "select first_name, last_name, salary from employees where first_name like '%'||'" + name
-				+ "'||'%'";
+		String sql = "select first_name, last_name, salary from employees where first_name like '%'||'" + name + "'||'%'";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			System.out.println(sql);

@@ -23,18 +23,18 @@ public class DAO {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			// 2. DB 연결
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String url = "jdbc:oracle:thin:@192.168.0.100:1521:orcl";
 			conn = DriverManager.getConnection(url, "hr", "hr");
-			
-			//connection pool에서 connection을 할당
-			/*Context initContext = new InitialContext();
-			Context envContext = (Context)initContext.lookup("java:/comp/env");
-			DataSource ds = (DataSource)envContext.lookup("jdbc/oracle");
-			conn = ds.getConnection();
-			if(conn != null) {
-				System.out.println("연결 성공");
-			}*/
-			
+
+			// connection pool에서 connection을 할당
+//			Context initContext = new InitialContext();
+//			Context envContext = (Context) initContext.lookup("java:/comp/env");
+//			DataSource ds = (DataSource) envContext.lookup("jdbc/oracle");
+//			conn = ds.getConnection();
+//			if (conn != null) {
+//				System.out.println("연결 성공");
+//			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
