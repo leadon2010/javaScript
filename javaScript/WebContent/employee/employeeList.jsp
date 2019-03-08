@@ -5,6 +5,24 @@
 <html>
 
 <head>
+	<style>
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		td,
+		th {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #dddddd;
+		}
+	</style>
 	<meta charset="UTF-8">
 	<title>Emplist</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,9 +33,10 @@
 				success: function (result) {
 					var data = JSON.parse(result);
 					console.log(data);
-					var $tag = "<table border=1>";
+					var $tag = "<table border=1><caption>:::: Employee Lists ::::</caption>";
+					$tag += "<tr><th>index</th><th>Name</th><th>Salary</th></tr>";
 					for (var i = 0; i < data.result.length; i++) {
-						$tag += "<tr><td>" + data.result[i].firstName + "</td><td>" + data.result[i].salary + "</td></tr>";
+						$tag += "<tr><td>" + (i + 1) + "</td><td>" + data.result[i].firstName + "</td><td>" + data.result[i].salary + "</td></tr>";
 					}
 					$tag += "</table>";
 					$("#show").html($tag);
