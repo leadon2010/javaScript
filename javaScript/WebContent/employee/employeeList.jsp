@@ -15,12 +15,12 @@
 				success: function (result) {
 					var data = JSON.parse(result);
 					console.log(data);
-					var $tag = "<ul>";
+					var $tag = "<table border=1>";
 					for (var i = 0; i < data.result.length; i++) {
-						$tag += "<li>" + data.result[i].firstName;
+						$tag += "<tr><td>" + data.result[i].firstName + "</td><td>" + data.result[i].salary + "</td></tr>";
 					}
-					$tag += "</ul>";
-					document.getElementById("show").innerHTML = $tag;
+					$tag += "</table>";
+					$("#show").html($tag);
 				}
 			})
 		});
