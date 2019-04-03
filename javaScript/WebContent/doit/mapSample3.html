@@ -2,32 +2,39 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>map demo</title>
-  <style>
-    p {
-      color: red;
-    }
+    <meta charset="utf-8">
+    <title>map demo</title>
+    <style>
+        div {
+    width: 40px;
+    float: left;
+  }
+  input {
+    clear: left;
+  }
   </style>
-  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 <body>
 
-  <p><b>Values: </b></p>
-  <form>
-    <input type="text" name="name" value="John">
-    <input type="text" name="password" value="password">
-    <input type="text" name="url" value="https://johnresig.com/">
-  </form>
+    <input type="button" value="equalize div heights">
+    <div style="background: red; height: 40px; "></div>
+    <div style="background: green; height: 70px;"></div>
+    <div style="background: blue; height: 50px; "></div>
 
-  <script>
-    $("p").append($("input").map(function () {
-      return $(this).val();
-    })
-      .get()
-      .join(", "));
-  </script>
+    <script>
+        $.fn.equalizeHeights = function () {
+            var maxHeight = this.map(function (i, e) {
+                return $(e).height();
+            }).get();
+            return this.height(Math.max.apply(this, maxHeight));
+        };
+
+        $("input").click(function () {
+            $("div").equalizeHeights();
+        });
+    </script>
 
 </body>
 
