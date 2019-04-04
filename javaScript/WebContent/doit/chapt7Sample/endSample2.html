@@ -49,8 +49,11 @@
   </div>
 
   <script>
-    jQuery.fn.showTags = function (n) {
-      var tags = this.map(function () {
+  console.log("start")
+    jQuery.fn.showTag = function (n) {
+	  console.log("what is n: ", n);
+      var tags = this.map(function (i) {
+    	  console.log("map"+i, this.tagName)
         return this.tagName;
       })
         .get()
@@ -58,14 +61,16 @@
       $("b:eq( " + n + " )").text(tags);
       return this;
     };
-
+    //console.log(jQuery.fn.showTags);
+    console.log("end")
+//console.log($("p").showTags(0).find("span"))
     $("p")
-      .showTags(0)
+      .showTag(0)
       .find("span")
-      .showTags(1)
+      .showTag(1)
       .css("background", "yellow")
       .end()
-      .showTags(2)
+      .showTag(2)
       .css("font-style", "italic");
   </script>
 
