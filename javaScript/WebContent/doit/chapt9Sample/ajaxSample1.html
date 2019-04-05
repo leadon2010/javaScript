@@ -8,7 +8,8 @@
       $("button").click(function () {
         $.ajax({
           url: "demo_test.json",
-          success: function (result) {
+          success: function (results) {
+              console.log(results);
             $("#div1").html(result);
           }
         });

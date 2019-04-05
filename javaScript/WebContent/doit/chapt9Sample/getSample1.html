@@ -6,8 +6,10 @@
 $(document).ready(function(){
   $("button").click(function(){
     $.get("demo_test.json", function(data, status){
+        console.log(data);
       //alert("Data: " + data + "\nStatus: " + status);
-      var result = JSON.parse(data);
+      //var result = JSON.parse(data);
+      var result = data;
       console.log(result);
       var $tag = "<ul>";
       for(var i=0; i<result.datas.length;i++){
