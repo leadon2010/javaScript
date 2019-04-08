@@ -5,10 +5,12 @@
 <script>
 $(document).ready(function(){
   $("#btn1").click(function(){
-    alert("Text: " + $("#test").text());
+    //alert("Text: " + $("#test").text());
+    $("#show1").text("Text: " + $("#test").text());
   });
   $("#btn2").click(function(){
-    alert("HTML: " + $("#test").html());
+    //alert("HTML: " + $("#test").html());
+    $("#show2").text("Text: " + $("#test").html());
   });
 });
 </script>
@@ -20,5 +22,7 @@ $(document).ready(function(){
 <button id="btn1">Show Text</button>
 <button id="btn2">Show HTML</button>
 
+<div id="show1"></div>
+<div id="show2"></div>
 </body>
 </html>
