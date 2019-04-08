@@ -10,10 +10,18 @@ $(function( ) {
 		$("#box_1")
 		.css({"background-color":"yellow"});
 	});
-	
 	$("#box_2").on("mouseleave", function(){
 		$("#box_2")
 		.css({"background-color":"pink"});
+	});
+
+    $("#box_1 p").on("mouseover", function(){
+		$("#box_1")
+		.css({"background-color":"purple"});
+	});
+	$("#box_2 p").on("mouseenter", function(){
+		$("#box_2")
+		.css({"background-color":"blue"});
 	});
 });
 </script>

@@ -8,7 +8,9 @@
 $(function(){
 	$(document).on("keydown", keyEventFnc);
 	function keyEventFnc(e) {
-	var direct = "";
+    var direct = "";
+    $("#result").text(e.keyCode);
+    $("#result1").text(e.which);
 
 	switch(e.keyCode){
 		case 37: direct = "LEFT";
@@ -27,6 +29,8 @@ $(function(){
 </script>
 </head>
 <body>
-	<p><input type="text" name="user_id" id="user_id"></p>
+    <p><input type="text" name="user_id" id="user_id"></p>
+    <div id="result"></div>
+    <div id="result1"></div>
 </body>
 </html>
