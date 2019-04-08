@@ -6,7 +6,7 @@
 $(document).ready(function(){
   $("input").keydown(function(event){ 
     $("#div").html("Key: " + event.which);
-    $("#cnt").html("Cnt: " + document.getElementsByTagName("div").length) ;
+    $("#cnt").html("Cnt: " + document.getElementsByTagName("div").childNodes) ;
   });
 });
 </script>
