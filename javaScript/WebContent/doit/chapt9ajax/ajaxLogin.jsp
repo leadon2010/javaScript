@@ -20,8 +20,9 @@
                     type: "post",
                     success: function (result) {
                         if (result) {
-                            console.log(result);
+                            //console.log(result);
                             var $text = JSON.parse(result);
+                            console.log($text);
                             if ($text.username != "")
                                 $(".login_wrap").html("<p>Welcome to " + $text.username + "</p>");
                             else
