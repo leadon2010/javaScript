@@ -28,11 +28,17 @@ public class EmpServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		String action = request.getParameter("action");
 
 		if (action == null) {
+
+		} else if (action.equals("del")) {
+			String empid = request.getParameter("employeeid");
+			System.out.println(empid);
+			EmpDAO dao = new EmpDAO();
+			dao.delEmployee(empid);
 
 		} else if (action.equals("list")) {
 			List<Employee> list = new ArrayList<Employee>();

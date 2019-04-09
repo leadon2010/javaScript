@@ -14,6 +14,24 @@ import common.DbCon;
 public class EmpDAO {
 	PreparedStatement pstmt = null;
 
+	public void delEmployee(String id) {
+		Connection conn = DbCon.connect();
+		try {
+			pstmt = conn.prepareStatement("delete from employees_temp where employee_id = " + id);
+			int r = pstmt.executeUpdate();
+			System.out.println(r + " 건이 삭제되었습니다.");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public List<Employee> getEmplsList() {
 		Connection conn = DbCon.connect();
 		List<Employee> list = new ArrayList<>();
@@ -48,7 +66,8 @@ public class EmpDAO {
 		Employee emp;
 		List<Employee> list = new ArrayList<>();
 
-		String sql = "select first_name, last_name, salary from employees where first_name like '%'||'" + name + "'||'%'";
+		String sql = "select first_name, last_name, salary from employees where first_name like '%'||'" + name
+				+ "'||'%'";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			System.out.println(sql);
