@@ -16,22 +16,23 @@
           var $tableTag = $("<table border='1' />");
           for (var i = 0; i < results.result.length; i++) {
             var $trTag = $("<tr />").attr("id", results.result[i].employeeid);
-            $trTag.append($("<td />").text(results.result[i].employeeid), $("<td />").text(results.result[i].firstName), $("<td />").html("<button onclick='del(" + results.result[i].employeeid + ")' >Click</button>"));
+            $trTag.append($("<td />").text(results.result[i].employeeid), $("<td />").text(results.result[i].firstName), $("<td />").html("<button onclick='del(" + results.result[i].employeeid + ")' >Del</button>"));
             $tableTag.append($trTag);
           }
           $("#div1").append($tableTag);
         }
       });
     });
+
     function del(id) {
       console.log(id);
       $("#" + id).remove();
       $.ajax({
-    	  url:"<%=request.getContextPath()%>/EmpServlet?action=del",
-    	  data:{employeeid:id},
-    	  success: function(){
-    		  console.log("success");
-    	  }
+        url: "<%=request.getContextPath()%>/EmpServlet?action=del",
+        data: { employeeid: id },
+        success: function () {
+          console.log("success");
+        }
       });
     }
   </script>

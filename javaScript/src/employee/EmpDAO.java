@@ -14,6 +14,33 @@ import common.DbCon;
 public class EmpDAO {
 	PreparedStatement pstmt = null;
 
+	public String getUserInfo(String id, String pw) {
+		Connection conn = DbCon.connect();
+		String sql = "select * from member_hr where user_id = ? and user_pw = ?";
+		String returnInfo = "";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				returnInfo += rs.getString("first_name") + ", ";
+				returnInfo += rs.getString("last_name");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(returnInfo);
+		return returnInfo;
+
+	}
+
 	public void delEmployee(String id) {
 		Connection conn = DbCon.connect();
 		try {
