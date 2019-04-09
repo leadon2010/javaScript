@@ -7,15 +7,16 @@
     $(document).ready(function () {
       $("button").click(function () {
         $.ajax({
-          url: "demo_test.json",
+          url: "demo_test.jsp",
+          dataType: "json",
           success: function (results) {
             console.log(results);
             var $tags = "<ul>";
-            for(var i=0 ; i<results.datas.length ; i++){
-                $tags += "<li>" + results.datas[i].firstName + ",  " + results.datas[i].age + "</li>";
+            for (var i = 0; i < results.datas.length; i++) {
+              $tags += "<li>" + results.datas[i].firstName + ",  " + results.datas[i].lastName + ",  " + results.datas[i].age + "</li>";
             }
             //$("#div1").text(result);
-            $("#div1").append($tags+"</ul>");
+            $("#div1").append($tags + "</ul>");
           }
         });
       });
