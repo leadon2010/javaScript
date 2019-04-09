@@ -1,14 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@page import="java.io.PrintWriter" %>
+	pageEncoding="UTF-8"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="employee.EmpDAO"%>
+<%@page import="employee.Employee"%>
+<%@page import="java.util.List"%>
 <%
 	String name = request.getParameter("name");
 	String city = request.getParameter("city");
-	
-	//out.println("name : " + name + ", city : " + city);
-	out.println("{\"datas\":[{\"firstName\":\"firstname1\",\"lastName\":\"last1\",\"age\":\"30\"},");
-	out.println("{\"firstName\":\"firstname2\",\"lastName\":\"last2\",\"age\":\"40\"},");
-	out.println("{\"firstName\":\"firstname3\",\"lastName\":\"last3\",\"age\":\"50\"},");
-	out.println("{\"firstName\":\"firstname4\",\"lastName\":\"last4\",\"age\":\"60\"},");
-	out.println("{\"firstName\":\"firstname5\",\"lastName\":\"last5\",\"age\":\"70\"}]}");
+
+	JSONObject jsonObj = new JSONObject();
+	JSONArray jsonAry = new JSONArray();
+	EmpDAO dao = new EmpDAO();
+	List<Employee> list = dao.getEmplsList();
+
+	for (Employee emp : list) {
+		jsonObj = new JSONObject();
+		jsonObj.put("firstName", emp.getFirstName());
+		jsonObj.put("lastName", emp.getLastName());
+		jsonObj.put("age", emp.getSalary());
+		jsonAry.add(jsonObj);
+	}
+	JSONObject retObj = new JSONObject();
+	retObj.put("datas", jsonAry);
+	retObj.toString();
 %>
