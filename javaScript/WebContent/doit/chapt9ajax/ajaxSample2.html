@@ -7,13 +7,13 @@
     $(document).ready(function () {
       $("button").click(function () {
         $.ajax({
-          url: "demo_test3.jsp",
+          url: "/EmpServlet?action=list",
           dataType: "json",
           success: function (results) {
             console.log(results);
             var $tags = "<ul>";
             for (var i = 0; i < results.datas.length; i++) {
-              $tags += "<li>" + results.datas[i].firstName + ",  " + results.datas[i].lastName + ",  " + results.datas[i].age + "</li>";
+              $tags += "<li>" + results.result[i].employeeid + ",  " + results.result[i].firstName + ",  " + results.result[i].salary + "</li>";
             }
             //$("#div1").text(result);
             $("#div1").append($tags + "</ul>");

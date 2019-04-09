@@ -24,5 +24,5 @@
 	}
 	JSONObject retObj = new JSONObject();
 	retObj.put("datas", jsonAry);
-	retObj.toString();
+	out.println(retObj.toString());
 %>
