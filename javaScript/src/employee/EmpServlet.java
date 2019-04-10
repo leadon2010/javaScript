@@ -38,7 +38,8 @@ public class EmpServlet extends HttpServlet {
 			String empid = request.getParameter("employeeid");
 			System.out.println(empid);
 			EmpDAO dao = new EmpDAO();
-			dao.delEmployee(empid);
+			String returnStr = dao.delEmployee(empid);
+			response.getWriter().append(returnStr);
 
 		} else if (action.equals("list")) {
 			List<Employee> list = new ArrayList<Employee>();

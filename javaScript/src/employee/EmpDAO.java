@@ -41,11 +41,12 @@ public class EmpDAO {
 
 	}
 
-	public void delEmployee(String id) {
+	public String delEmployee(String id) {
 		Connection conn = DbCon.connect();
+		int r = 0;
 		try {
 			pstmt = conn.prepareStatement("delete from employee_temp where employee_id = " + id);
-			int r = pstmt.executeUpdate();
+			r = pstmt.executeUpdate();
 			System.out.println(r + " 건이 삭제되었습니다.");
 
 		} catch (SQLException e) {
@@ -57,6 +58,10 @@ public class EmpDAO {
 				e.printStackTrace();
 			}
 		}
+		if (r > 0)
+			return "success";
+		else
+			return "error";
 	}
 
 	public List<Employee> getEmplsList() {

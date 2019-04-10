@@ -29,9 +29,11 @@
       $("#" + id).remove();
       $.ajax({
         url: "<%=request.getContextPath()%>/EmpServlet?action=del",
+        dataType:"json",
         data: { employeeid: id },
-        success: function () {
-          console.log("success");
+        success: function (result) {
+          console.log("return");
+          console.log(result);
         }
       });
     }
