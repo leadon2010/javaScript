@@ -39,7 +39,8 @@ public class EmpServlet extends HttpServlet {
 			System.out.println(empid);
 			EmpDAO dao = new EmpDAO();
 			String returnStr = dao.delEmployee(empid);
-			response.getWriter().append(returnStr);
+			System.out.println(returnStr);
+			response.getWriter().println(returnStr);
 
 		} else if (action.equals("list")) {
 			List<Employee> list = new ArrayList<Employee>();
