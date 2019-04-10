@@ -44,7 +44,7 @@ public class EmpDAO {
 	public void delEmployee(String id) {
 		Connection conn = DbCon.connect();
 		try {
-			pstmt = conn.prepareStatement("delete from employees_temp where employee_id = " + id);
+			pstmt = conn.prepareStatement("delete from employee_temp where employee_id = " + id);
 			int r = pstmt.executeUpdate();
 			System.out.println(r + " 건이 삭제되었습니다.");
 
@@ -63,7 +63,7 @@ public class EmpDAO {
 		Connection conn = DbCon.connect();
 		List<Employee> list = new ArrayList<>();
 		Employee emp;
-		String sql = "select * from employees_temp order by employee_id desc";
+		String sql = "select * from employee_temp order by employee_id desc";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();

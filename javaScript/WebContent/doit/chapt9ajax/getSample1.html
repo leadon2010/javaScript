@@ -6,15 +6,16 @@
   <script>
     $(document).ready(function () {
       $("button").click(function () {
-        $.get("demo_test.json", function (data, status) {
+        $.get("demo_test1.jsp", function (data, status) {
           console.log(data);
-          //alert("Data: " + data + "\nStatus: " + status);
-          //var result = JSON.parse(data);
-          var result = data;
+          var result = JSON.parse(data);
           console.log(result);
+          var jsonData = JSON.stringify(result);
+          console.log(jsonData);
+
           var $tag = "<ul>";
           for (var i = 0; i < result.datas.length; i++) {
-            console.log(result.datas[i].firstName);
+            //console.log(result.datas[i].firstName);
             $tag += "<li>" + result.datas[i].firstName + "-" + result.datas[i].lastName + "</li>";
           }
           $tag += "</ul>";

@@ -55,7 +55,7 @@ public class EmpServlet extends HttpServlet {
 				jsonAry.add(jsonObj);
 			}
 			JSONObject json = new JSONObject();
-			json.put("result", jsonAry);
+			json.put("datas", jsonAry);
 			PrintWriter pw = response.getWriter();
 			pw.println(json.toString());
 		}
