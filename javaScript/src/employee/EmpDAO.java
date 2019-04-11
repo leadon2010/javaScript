@@ -16,7 +16,7 @@ public class EmpDAO {
 
 	public String getUserInfo(String id, String pw) {
 		Connection conn = DbCon.connect();
-		String sql = "select * from member_hr where user_id = ? and user_pw = ?";
+		String sql = "select * from member where userid = ? and userpw = ?";
 		String returnInfo = "";
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -24,8 +24,7 @@ public class EmpDAO {
 			pstmt.setString(2, pw);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				returnInfo += rs.getString("first_name") + ", ";
-				returnInfo += rs.getString("last_name");
+				returnInfo += rs.getString("username");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -37,6 +36,8 @@ public class EmpDAO {
 			}
 		}
 		System.out.println(returnInfo);
+		if (returnInfo.equals(""))
+			returnInfo = "no";
 		return returnInfo;
 
 	}
