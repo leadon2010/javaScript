@@ -14,6 +14,28 @@ import common.DbCon;
 public class EmpDAO {
 	PreparedStatement pstmt = null;
 
+	public List<String> getNamesList() {
+		Connection conn = DbCon.connect();
+		List<String> nameList = new ArrayList<>();
+		String sql = "select first_name from employees where rownum < 20";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				nameList.add(rs.getString("first_name"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return nameList;
+	}
+
 	public String getUserInfo(String id, String pw) {
 		Connection conn = DbCon.connect();
 		String sql = "select * from member where userid = ? and userpw = ?";

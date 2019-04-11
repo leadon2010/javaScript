@@ -1,28 +1,41 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
+
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $("input").keydown(function(event){ 
-    $("#div").html("Key: " + event.which);
-    $("#cnt").html("Cnt: " + document.getElementsByTagName("div").childNodes) ;
-    
-  });
-});
-</script>
+  <style>
+    #div1 {
+      width: 350px;
+      height: 70px;
+      padding: 10px;
+      border: 1px solid #aaaaaa;
+    }
+  </style>
+  <script>
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      console.log(ev.target.id);
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      ev.target.appendChild(document.getElementById(data));
+    }
+  </script>
 </head>
 
 <body>
 
-Enter your name: <input type="text">
+  <p>Drag the W3Schools image into the rectangle:</p>
 
-<p>When you type in the field above, the div element below will display the key number.</p>
-<p>When you type in the field above, the div element below will display the key number.</p>
-<p>When you type in the field above, the div element below will display the key number.</p>
-
-<div id="div" >sss</div>
-<div id="cnt" >ddd</div>
+  <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+  <br>
+  <img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
 
 </body>
+
 </html>
