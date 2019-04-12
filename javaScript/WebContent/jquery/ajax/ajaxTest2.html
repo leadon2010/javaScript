@@ -12,9 +12,9 @@
 			success : function(result) {
 				var datas = JSON.parse(result);
 				var datajson = JSON.stringify(datas);
-				console.log(datajson);
+				//console.log(datajson);
 				var resulttag;
-				console.log(datas);
+				//console.log(datas);
 				resulttag += "<table border='1'>";
 				for(i=0;i<datas.length;i++){
 					resulttag += "<tr><td>"+datas[i].departmentName+"</td><td>"+datas[i].departmentId+"</td><td>"+datas[i].locationId+"</td></tr>";
@@ -25,9 +25,17 @@
 		});
 		$("#myInput").on("keyup", function(){
 			var value = $(this).val().toLowerCase();
-			$("table tr").filter(function(){
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-			});
+			$("table tr").filter(function(i, o){
+                //console.log($(this).toggle($(this).text().toLowerCase().indexOf(value)))
+                //$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                return ($(this).text().toLowerCase().indexOf(value) > -1)
+            }).css("display", "block").end()
+            .filter(function(i, o){
+                //console.log($(this).toggle($(this).text().toLowerCase().indexOf(value)))
+                //$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                return ($(this).text().toLowerCase().indexOf(value) = -1)
+            }).css("display", "none")
+            ;
 		});
 	});
 </script>

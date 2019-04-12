@@ -13,6 +13,28 @@ import common.DbCon;
 
 public class EmpDAO {
 	PreparedStatement pstmt = null;
+	
+	public List<String> getEmailList() {
+		Connection conn = DbCon.connect();
+		String str = "select email from employees";
+		List<String> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(str);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getString("email"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 
 	public List<String> getNamesList() {
 		Connection conn = DbCon.connect();
