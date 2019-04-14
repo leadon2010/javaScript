@@ -4,11 +4,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
 		$(function () {
 			$("#plus").on("click", function (e) {
-				console.log();
 				$("#rejects").append($("#subjects :selected"));
 				$("#rejects").children().each(function() {
 					$(this).attr("class", "rjt");
@@ -30,15 +29,13 @@
 	<form>
 		<select name="subjects" id="subjects" size="10"  >
 			<option >취미1-1</option>
-			<option >취미2-1</option>
-			<option >취미3-1</option>
-			<option >취미4-1</option>
-			<option >취미5-1</option>
+			<option >취미1-2</option>
+			<option >취미1-3</option>
+			<option >취미1-4</option>
+			<option >취미1-5</option>
 		</select>
-
 		<button type="button" id="plus" >+</button>
 		<button type="button" id="minus" >-</button>
-
 		<select name="rejects" id="rejects" size="10"  >
 			<option >취미2-1</option>
 			<option >취미2-2</option>
@@ -47,7 +44,6 @@
 			<option >취미2-5</option>
 		</select>
 	</form>
-
 </body>
 
 </html>

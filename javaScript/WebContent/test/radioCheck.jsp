@@ -22,8 +22,8 @@
 <body>
 	<form>
 		<input type="radio" name="gender" value="male" +'0' checked> Male<br>
-		<input type="radio" name="gender" value="male" +'1'> Female<br>
-		<input type="radio" name="gender" value="male" +'2'> Other<br>
+		<input type="radio" name="gender" value="female" +'1'> Female<br>
+		<input type="radio" name="gender" value="other" +'2'> Other<br>
 		<br> <input type="button" onclick="checkR()" value="check"></input>
 	</form>
 </body>
