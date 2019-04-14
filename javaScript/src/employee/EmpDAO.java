@@ -13,7 +13,64 @@ import common.DbCon;
 
 public class EmpDAO {
 	PreparedStatement pstmt = null;
-	
+
+	public List<Map<String, Object>> getSampleData() {
+		Connection conn = DbCon.connect();
+		Map<String, Object> map = new HashMap<>();
+		List<Map<String, Object>> list = new ArrayList<>();
+		String str = "select * from ajaxsample";
+		try {
+			pstmt = conn.prepareStatement(str);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				System.out.println(rs.getString("full_name"));
+				map = new HashMap<>();
+				map.put("fullName", rs.getString("full_name"));
+				map.put("position", rs.getString("position"));
+				map.put("office", rs.getString("office"));
+				map.put("extn", rs.getString("extn"));
+				map.put("startDate", rs.getString("start_date"));
+				map.put("salary", rs.getString("salary"));
+				list.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+
+	public void insertSample(String a, String b, String c, String d, String e, String f) {
+		Connection conn = DbCon.connect();
+		String str = "insert into ajaxsample values(?,?,?,?,?,?)";
+		try {
+			int r = 0;
+			pstmt = conn.prepareStatement(str);
+			pstmt.setString(++r, a);
+			pstmt.setString(++r, b);
+			pstmt.setString(++r, c);
+			pstmt.setString(++r, d);
+			pstmt.setString(++r, e);
+			pstmt.setString(++r, f);
+
+			int cnt = pstmt.executeUpdate();
+			System.out.println(cnt + " row inserted.");
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+
 	public List<String> getEmailList() {
 		Connection conn = DbCon.connect();
 		String str = "select email from employees";
@@ -21,7 +78,7 @@ public class EmpDAO {
 		try {
 			pstmt = conn.prepareStatement(str);
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				list.add(rs.getString("email"));
 			}
 		} catch (SQLException e) {
