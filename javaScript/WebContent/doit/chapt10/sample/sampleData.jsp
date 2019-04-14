@@ -12,14 +12,6 @@
 	JSONObject jsonObj = new JSONObject();
 	for (Map<String, Object> map : list) {
 		JSONArray jsonData = new JSONArray();
-		//jsonObj.put("fullName", map.get("fullName"));
-		//jsonObj.put("position", map.get("position"));
-		//jsonObj.put("office", map.get("office"));
-		//jsonObj.put("extn", map.get("extn"));
-		//jsonObj.put("startDate", map.get("startDate"));
-		//jsonObj.put("salary", map.get("salary"));
-
-		//jsonObj.putAll(map);
 		jsonData.add(map.get("fullName"));
 		jsonData.add(map.get("position"));
 		jsonData.add(map.get("office"));
