@@ -29,11 +29,9 @@
 			//console.log("event", colors[++j]);
 			var value = $(this).val().toLowerCase();
 			$("table tr").filter(function(i,o){
-                //console.log($(this).toggle($(this).text()));
                 //$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                 // return ($(o).text().toLowerCase().indexOf(value) < -1);
                 return ($(this).text().toLowerCase().indexOf(value) > -1);
-                //return true;
             }).css("background-color", colors[++j]);
 			//}).css("display", "none");
 		});
