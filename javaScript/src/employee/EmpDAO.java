@@ -13,6 +13,36 @@ import common.DbCon;
 
 public class EmpDAO {
 	PreparedStatement pstmt = null;
+	
+	public List<Map<String, Object>> getData(){
+		Connection conn = DbCon.connect();
+		String str = "select * from ajaxsample";
+		Map<String, Object> map;
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		try {
+			pstmt = conn.prepareStatement(str);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				map = new HashMap<String, Object>();
+				map.put("fullName", rs.getString("full_name"));
+				map.put("position", rs.getString("position"));
+				map.put("office", rs.getString("office"));
+				map.put("extn", rs.getString("extn"));
+				map.put("startDate", rs.getString("start_date"));
+				map.put("salary", rs.getString("salary"));
+				list.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 
 	public List<Map<String, Object>> getSampleData() {
 		Connection conn = DbCon.connect();
