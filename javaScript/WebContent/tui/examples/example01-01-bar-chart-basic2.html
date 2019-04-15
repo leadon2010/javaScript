@@ -40,18 +40,6 @@
 <script src='../dist/tui-chart.js'></script>
 <script class='code-js' id='code-js'>
 var container = document.getElementById('chart-area');
-var dat1 = [];
-var dat2 = [];
-$.ajax({
-        url: "chartData.json",
-        success: function(result){
-            console.log(result);
-            for(i in result.data){
-            dat1.push(result.data[i].debit)
-            dat2.push(result.data[i].budget)
-            }
-
-
 var data1 = [5000, 3000, 5000, 7000, 6000, 4000];
 var data2 = [8000, 1000, 7000, 2000, 5000, 3000];
 var data = {
@@ -95,8 +83,6 @@ var theme = {
         ]
     }
 };
-                    }
-            })
 
 // For apply theme
 
