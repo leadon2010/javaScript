@@ -39,15 +39,17 @@
 <script type='text/javascript' src='https://uicdn.toast.com/tui.chart/latest/raphael.js'></script>
 <script src='../dist/tui-chart.js'></script>
 <script class='code-js' id='code-js'>
+
 $.ajax({
-        url: "chartData.json",
-        success: function(result){
-            var dat1 = [];
-            var dat2 = [];
-            for(i in result.data){
-            dat1.push(result.data[i].debit)
-            dat2.push(result.data[i].budget)
-            }
+    url: "chartData.json",
+    success: function(result){
+        var dat1 = [];
+        var dat2 = [];
+        for(i in result.data){
+        dat1.push(result.data[i].debit);
+        dat2.push(result.data[i].budget);
+        }
+//////////////////// in ajax ///////////////////////
 
 var container = document.getElementById('chart-area');
 
@@ -58,11 +60,11 @@ var data = {
     series: [
         {
             name: 'Budget',
-            data: [5000, 3000, 5000, 7000, 6000, 4000]
+            data: dat1//[5000, 3000, 5000, 7000, 6000, 4000]
         },
         {
             name: 'Income',
-            data: [8000, 1000, 7000, 2000, 5000, 3000]
+            data: dat2//[8000, 1000, 7000, 2000, 5000, 3000]
         }
     ]
 };
@@ -101,7 +103,9 @@ var theme = {
 // options.theme = 'myTheme';
 
 tui.chart.barChart(container, data, options);
-                    }
+
+//////////////////// in ajax ///////////////////////
+                }
             })
 </script>
 

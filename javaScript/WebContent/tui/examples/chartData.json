@@ -1,8 +1,8 @@
 {
-    "data":[{"debit":10, "budget":20},
-            {"debit":20, "budget":30},
-            {"debit":30, "budget":60},
-            {"debit":40, "budget":90},
-            {"debit":50, "budget":20},
-            {"debit":60, "budget":70}]
+    "data":[{"debit":5500, "budget":8500},
+            {"debit":3500, "budget":1500},
+            {"debit":5500, "budget":7500},
+            {"debit":7500, "budget":2500},
+            {"debit":6500, "budget":5500},
+            {"debit":4500, "budget":3500}]
 }
