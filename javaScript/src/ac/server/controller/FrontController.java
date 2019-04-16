@@ -41,6 +41,7 @@ import ac.server.category.TraKindselectController;
 import ac.server.category.TraininginsertController;
 import ac.server.category.TrakinddeleteController;
 import ac.server.category.TrakindupdateController;
+
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 
@@ -52,35 +53,35 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init(ServletConfig sc) throws ServletException {
 		list = new HashMap<String, Controller>();
-		list.put("/MainNotice.do", new ServerMainController());//메인페이지
-		
-		list.put("/RecruitSelect.do", new RecruitController());//교육관리 - 모집중과정 페이지
-		list.put("/ProcessSelect.do", new ProcessController());//교육관리 - 진행중과정  페이지
-		list.put("/EndProcessSelect.do", new EndProcessController());//교육관리 - 종료(수료) 페이지
-		
-		list.put("/TrakindSelect.do", new TraKindselectController());//교육과정관리 - 훈련분야구분 페이지
-		list.put("/TrainingInsert.do", new TraininginsertController());//교육과정관리 - 훈련분야구분 - 훈련분류등록
-		list.put("/CourseKindInsert.do", new CoursekindinsertController());//교육과정관리 - 훈련분야구분 - 교육분류등록
-		list.put("/TrakindUpdate.do", new TrakindupdateController());//교육과정관리 - 훈련분야구분 - 훈련/교육분류등록
-		list.put("/TrainingDelete.do", new TrakinddeleteController());//교육과정관리 - 훈련분야구분 - 훈련/교육분류삭제
-		list.put("/ManagetIns.do", new ManagerInsController());//교육과정관리 - 교육과정입력 페이지		
+		list.put("/MainNotice.do", new ServerMainController());// 메인페이지
+
+		list.put("/RecruitSelect.do", new RecruitController());// 교육관리 - 모집중과정 페이지
+		list.put("/ProcessSelect.do", new ProcessController());// 교육관리 - 진행중과정 페이지
+		list.put("/EndProcessSelect.do", new EndProcessController());// 교육관리 - 종료(수료) 페이지
+
+		list.put("/TrakindSelect.do", new TraKindselectController());// 교육과정관리 - 훈련분야구분 페이지
+		list.put("/TrainingInsert.do", new TraininginsertController());// 교육과정관리 - 훈련분야구분 - 훈련분류등록
+		list.put("/CourseKindInsert.do", new CoursekindinsertController());// 교육과정관리 - 훈련분야구분 - 교육분류등록
+		list.put("/TrakindUpdate.do", new TrakindupdateController());// 교육과정관리 - 훈련분야구분 - 훈련/교육분류등록
+		list.put("/TrainingDelete.do", new TrakinddeleteController());// 교육과정관리 - 훈련분야구분 - 훈련/교육분류삭제
+		list.put("/ManagetIns.do", new ManagerInsController());// 교육과정관리 - 교육과정입력 페이지
 		list.put("/ManagerInsInsert.do", new ManagerInsinsertController());//
-		list.put("/ManagerSearch.do", new ManagerSearchController());//교육과정관리 - 교육과정관리 페이지
+		list.put("/ManagerSearch.do", new ManagerSearchController());// 교육과정관리 - 교육과정관리 페이지
 		list.put("/CourseUpdate.do", new CourseUpdateController());
 		list.put("/CourseUpdateform.do", new CourseUpdateformController());
-		
-		list.put("/StudentList.do",new StudentListController());
-		list.put("/ProfList.do",new ProfListController());
-		list.put("/StudentDelete.do",new StudentDeleteController());
-		list.put("/ProfDelete.do",new ProfDeleteController());
-		list.put("/StudentInsert.do",new StudentInsertController());
-		list.put("/ProfInsert.do",new ProfInsertController());
-		list.put("/LoginCheck.do",new LoginController());
-		list.put("/Login.do",new LoginController());
-		list.put("/Logout.do",new LogoutController());
-		list.put("/StudentUpdate.do",new StudentUpdateController());
-		list.put("/StudentUpdateform.do",new StudentUpdateFormController());
-		
+
+		list.put("/StudentList.do", new StudentListController());
+		list.put("/ProfList.do", new ProfListController());
+		list.put("/StudentDelete.do", new StudentDeleteController());
+		list.put("/ProfDelete.do", new ProfDeleteController());
+		list.put("/StudentInsert.do", new StudentInsertController());
+		list.put("/ProfInsert.do", new ProfInsertController());
+		list.put("/LoginCheck.do", new LoginController());
+		list.put("/Login.do", new LoginController());
+		list.put("/Logout.do", new LogoutController());
+		list.put("/StudentUpdate.do", new StudentUpdateController());
+		list.put("/StudentUpdateform.do", new StudentUpdateFormController());
+
 		list.put("/PostList.do", new PostListController());
 		list.put("/PostInsert.do", new PostInsertController());
 		list.put("/PostInsertTemp.do", new PostInsertTempController());
@@ -96,13 +97,12 @@ public class FrontController extends HttpServlet {
 		list.put("/MenuInsert.do", new MenuInsertController());
 		list.put("/MenuUpdate.do", new MenuUpdateController());
 		list.put("/MenuSelect.do", new MenuSelectController());
-		list.put("/StudentSearch.do",new StudentSearchController());
-		list.put("/ProfSearch.do",new ProfSearchController());
-		list.put("/AttitudeList.do",new AttitudeListController());
-		list.put("/ProfUpdate.do",new ProfUpdateController());
-		list.put("/ProfUpdateform.do",new ProfUpdateFormController());
+		list.put("/StudentSearch.do", new StudentSearchController());
+		list.put("/ProfSearch.do", new ProfSearchController());
+		list.put("/AttitudeList.do", new AttitudeListController());
+		list.put("/ProfUpdate.do", new ProfUpdateController());
+		list.put("/ProfUpdateform.do", new ProfUpdateFormController());
 	}
-	
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -123,20 +123,18 @@ public class FrontController extends HttpServlet {
 		try {
 			view = subController.execute(request, response);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (view != null) {
 			if (view.startsWith("redirect:")) {
 				response.sendRedirect(view.substring(9));
-			} else if(view.startsWith("ajax:")) {
+			} else if (view.startsWith("ajax:")) {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				out.print(view.substring(5));
-			}
-			else {
+			} else {
 				HttpUtil.forward(request, response, view);
-			} 
+			}
 		}
 	}
 }
