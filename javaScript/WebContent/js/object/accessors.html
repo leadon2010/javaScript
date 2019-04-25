@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <script>
+        var person = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 30,
+            set setage(args) {
+                this.age = args;
+            },
+            get getage() {
+                return this.age;
+            },
+            myage: function () {
+                return this.age;
+            }
+        }
+
+        console.log(person.age);
+        person.setage = 40;
+        console.log(person.getage);
+        console.log(person.myage());
+    </script>
+</body>
+
+</html>

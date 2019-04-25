@@ -6,14 +6,19 @@
 </head>
 <body>
 	<div id="show"></div>
+	<div id="show1"></div>
 	<script>
 		var txt = "";
 		var person = {firstName: "John", lastName: "Doe", age: 25};
-		for(i in person){
+		for(i in person) {
 			console.log(i);
 			txt += person[i] + ", ";
-		}
-		document.getElementById("show").innerText = txt;
+        }
+        person.fullName = function() {
+            return this.firstName + " " + this.lastName;
+        }
+        document.getElementById("show").innerText = txt;
+        document.getElementById("show1").innerText = person.fullName();
 	</script>
 </body>
 </html>
