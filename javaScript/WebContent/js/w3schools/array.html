@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <div id="show"></div>
+    <script>
+        function myFunction() {
+            return  3 + 5;
+        }
+
+        var cars = ['Saab', 'Volvo', 'BMW', 'Benz'];
+        for (var i = 0; i < cars.length;)
+            console.log(cars[i++]);
+
+        var flowers = new Array('sunflower', 'rose', 'lily', 'tulip');
+        var j = 0;
+        for (; j < flowers.length;) {
+            console.log(flowers[j++]);
+        }
+        flowers[0] = "moonflower";
+        for (var j = 0; j < flowers.length;) {
+            console.log(flowers[j++]);
+        }
+
+        var myArray = new Array();
+        myArray[0] = Date.now;
+        myArray[1] = myFunction;
+        myArray[2] = cars;
+        for(var k = 0; k < myArray.length; k++){
+            console.log(myArray[k]);
+        }
+        myArray[3] = cars.sort();
+
+        for(var k = 0; k < myArray.length; k++){
+            console.log(myArray[k]);
+        }
+
+        flowers.forEach(function(v,i) {
+            console.log(flowers[i])
+        });
+        console.log("end::::::::::::::::::::::::")
+
+    </script>
+</body>
+
+</html>
