@@ -16,7 +16,21 @@
         }
         console.log(window.myFunction1(3, 5)); // window.myFunction1(3, 5);
 
+        // keyword this in function(). 
+        var x = function myFunction2() {
+            return this;
+        };
+        console.log(x());
 
+        // keyword this in method().
+        var myObject = {
+            firstName: "John",
+            lastName: "Doe",
+            fullName: function () {
+                return this.firstName + " " + this.lastName;
+            }
+        }
+        console.log(myObject.fullName());
     </script>
 </body>
 
