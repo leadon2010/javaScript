@@ -11,21 +11,33 @@
 
     <p>Counting with a local variable...</p>
 
-    <button type="button" onclick="myFunction()">Count!</button>
+    <button type="button" onclick="clickAdd()">Count!</button>
 
     <p id="demo">0</p>
-    <p id="demo1">0</p>
 
     <script>
-        var counter = 0;
+
         function myFunction() {
-            console.log(counter);
-            document.getElementById("demo1").innerHTML = counter;
-            return ++counter;
+            var counter = 0;
+            var innerFunc = function () {
+                return ++counter;
+            }
+            return innerFunc;
         }
         var ret = myFunction();
-        console.log("ret", ret);
-        document.getElementById("demo").innerHTML = myFunction();
+
+        function myFunc() {
+            document.getElementById("demo").innerHTML = ret();
+        }
+
+        var add = (function () {
+            var counter = 0;
+            return function () { ++counter; return counter; }
+        })();
+
+        function clickAdd() {
+            document.getElementById("demo").innerHTML = add();
+        }
 
     </script>
 </body>
