@@ -7,6 +7,8 @@
 </head>
 
 <body>
+    <div id="show"></div>
+
     <script>
         // Invoking when call upon a function, start a function, execute a function
 
@@ -28,9 +30,21 @@
             lastName: "Doe",
             fullName: function () {
                 return this.firstName + " " + this.lastName;
+            },
+            myObj: function () {
+                return this;
             }
         }
-        console.log(myObject.fullName());
+        console.log(myObject.myObj());
+
+        // invoking in function constructor.
+        function myFunction2(arg1, arg2) {
+            this.firstName = arg1;
+            this.lastName = arg2;
+        }
+        var y = new myFunction2("John", "Doe");
+        document.getElementById("show").innerHTML = y.firstName;
+        console.log(y)
     </script>
 </body>
 
