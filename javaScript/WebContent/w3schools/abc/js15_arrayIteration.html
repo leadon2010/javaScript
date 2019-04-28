@@ -26,7 +26,7 @@
         function myFunc(value, index, array) {
             return value * 2;
         }
-        console.log(numbers2);
+        console.log("numbers2: " + numbers2);
 
         // Array.filter()
         var numbers3 = [45, 4, 9, 16, 25];
@@ -35,29 +35,58 @@
         function myFilter(value, index, array) {
             return value > 18;
         }
-        console.log(over18);
+        console.log("over18: " + over18);
 
         // Array.reduce()
-        var sum = numbers.reduce(myReduce);
+        var numbers4 = [45, 4, 9, 16, 25];
+        var sum = numbers4.reduce(myReduce, 100);
         function myReduce(total, value, index, array) {
+            console.log(value);
             return total + value;
         }
-
+        console.log("sum : " + sum);
 
         // Array.reduceRight()
+        var sum1 = numbers4.reduceRight(myReduce);
+        console.log("sum1: " + sum1);
 
         // Array.every()
+        var allOver18 = numbers4.every(myEvery);
+        function myEvery(value, index, array) {
+            return value > 18;
+        }
+        console.log("allOver18: " + allOver18);
 
         // Array.some()
+        var someOver18 = numbers4.some(myEvery);
+        console.log("someOver18: " + someOver18);
 
         // Array.indexOf()
+        var fruits = ["Apple", "Orange", "Apple", "Mango", "Banana"];
+        var a = fruits.indexOf("Mango");
+        console.log("indexOf: " + a);
 
         // Array.lastIndexOf()
+        var fruits = ["Apple", "Orange", "Apple", "Mango", "Banana"];
+        var b = fruits.lastIndexOf("Mango");
+        console.log("lastIndexOf: " + b);
+
 
         // Array.find()
+        var numbers5 = [5, 4, 9, 16, 25];
+        var c = numbers5.find(myFind);
+        function myFind(value, index, array) {
+            return value > 18;
+        }
+        console.log("myFind: " + c);
 
         // Array.findIndex()
-
+        var numbers6 = [5, 4, 9, 16, 25];
+        var d = numbers6.findIndex(myIndex);
+        function myIndex(value, index, array) {
+            return value > 18;
+        }
+        console.log("myIndex: " + d);
 
     </script>
 </body>
