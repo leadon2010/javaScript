@@ -20,6 +20,7 @@
 		var node = document.createTextNode("This is new.");
 		param.appendChild(node);
 		element.appendChild(param);
+		
 		var hparm = document.createElement("h1");
 		var hnode = document.createTextNode("This is h1");
 		hparm.appendChild(hnode);
@@ -28,7 +29,7 @@
 
 		//element.replaceChild(hparm, param);
 
-		element.removeChild(hparm);
+		//element.removeChild(hparm);
 
 		var tdparm = document.createElement("td");
 		var tdtext = document.createTextNode("three");
@@ -38,8 +39,8 @@
 		var tdparm1 = document.createElement("td");
 		var tdtext1 = document.createTextNode("four");
 		tdparm1.appendChild(tdtext1);
-		document.getElementsByTagName("tr")[0].insertBefore(tdparm1, document
-				.getElementsByTagName("td")[1]);
+
+		document.getElementsByTagName("tr")[0].insertBefore(tdparm1, document.getElementsByTagName("td")[0]);
 	</script>
 
 </body>
