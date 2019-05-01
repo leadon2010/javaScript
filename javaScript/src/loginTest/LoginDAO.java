@@ -36,7 +36,7 @@ public class LoginDAO {
 		Connection conn = DbCon.connect();
 		String retCode = "NG";
 		try {
-			cstmt = conn.prepareCall("{call create_row(?,?,?,?)}");
+			cstmt = conn.prepareCall("{call pkg_encrypt_decrypt.create_row(?,?,?,?)}");
 			cstmt.setString(1, id);
 			cstmt.setString(2, pw);
 			cstmt.setString(3, name);
