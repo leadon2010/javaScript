@@ -42,7 +42,7 @@
 					var datas = JSON.parse(result);
 					var $table = $("<table>").attr({ "border": "1", "id": "memberlist" });
 					$table.append($("<th>").text("ID"), $("<th>").text("Name"), $("<th>").text("Phone"),
-						$("<th>").text("Address"), $("<th>").text("Show"));
+						$("<th>").text("Address"), $("<th>").text("Opt."));
 					for (x in datas) {
 						var $tr = $("<tr>").append($("<td>").text(datas[x].id),
 							$("<td>").text(datas[x].name),
@@ -80,21 +80,23 @@
 <body>
 	<form id="frm">
 		<input type="hidden" name="action" value="insert">
-		<table id="list" border=1>
+		<h1>멤버 등록</h1>
+		<table id="list" border = 1>
 			<tr>
 				<th>ID</th>
 				<th>Passwd</th>
 				<th>Name</th>
 				<th>Phone</th>
 				<th>Address</th>
+				<th>Opt.</th>
 			</tr>
 			<tr>
 				<td><input type="text" name="id" id="id" value="1234"></td>
-				<td><input type="text" name="pw" id="pw" value="1234"></td>
+				<td><input type="password" name="pw" id="pw" value="1234"></td>
 				<td><input type="text" name="uname" id="uname" value="good"></td>
 				<td><input type="text" name="phone" id="phone" value="1111-1111"></td>
 				<td><input type="text" name="address" id="address" value="Daejeon, Korea"></td>
-				<td><button type="button" id="btn">Send</button></td>
+				<td colspan=2><button type="button" id="btn">Send</button></td>
 			</tr>
 		</table>
 	</form>
