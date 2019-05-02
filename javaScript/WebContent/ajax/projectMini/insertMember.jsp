@@ -96,7 +96,7 @@
 				<td><input type="text" name="uname" id="uname" value="good"></td>
 				<td><input type="text" name="phone" id="phone" value="1111-1111"></td>
 				<td><input type="text" name="address" id="address" value="Daejeon, Korea"></td>
-				<td colspan=2><button type="button" id="btn">Send</button></td>
+				<td><button type="button" id="btn">Send</button></td>
 			</tr>
 		</table>
 	</form>
