@@ -9,7 +9,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script>
 		$(function () {
-			//getData();
+			getData();
 			$("#btn").on("click", function () {
 				var sendData = $("#frm").serialize();
 				console.log(sendData);
@@ -18,7 +18,7 @@
 					type: "post",
 					data: sendData,
 					success: function () {
-						console.log("sc")
+						console.log("sc");
 					}
 				})
 			})
@@ -27,9 +27,19 @@
 			$.ajax({
 				url: "<%=request.getContextPath()%>/MiniControl",
 				type: "get",
-				data: $("#frm").serialize(),
-				success: function () {
-					console.log("success");
+				data: { "action": "select" },
+				success: function (result) {
+					console.log(result);
+					var datas = JSON.parse(result);
+					var $ul = $("<ul>");
+					var $li = "";
+					for (x in datas) {
+						$li = $("<li>").text(datas[x].address);
+						$ul.append($li);
+						console.log($("<li>").text(datas[x].address));
+					}
+					
+					$("#result").append($ul);
 				}
 			})
 		}
@@ -57,6 +67,8 @@
 			</tr>
 		</table>
 	</form>
+
+	<div id="result"><h1>Member List</h1></div>
 </body>
 
 </html>

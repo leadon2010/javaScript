@@ -2,13 +2,44 @@ package ajax.projectMini;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import common.DbCon;
 
 public class MemberDAO {
 	Connection conn = DbCon.connect();
 	PreparedStatement pstmt;
+
+	public List<Member> getMemberList() {
+		String sql = "select * from mini_member";
+		List<Member> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Member mem = new Member();
+				mem.setId(rs.getString("id"));
+				mem.setPw(rs.getString("pw"));
+				mem.setName(rs.getString("name"));
+				mem.setPhone(rs.getString("phone"));
+				mem.setAddress(rs.getString("address"));
+				list.add(mem);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 
 	public void insertMember(Member memb) {
 		String sql = "insert into mini_member(id, pw, name, phone, address) values(?,?,?,?,?)";

@@ -2,12 +2,15 @@ package ajax.projectMini;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
 
 /**
  * Servlet implementation class MiniControl
@@ -41,12 +44,16 @@ public class MiniControl extends HttpServlet {
 
 		if ("".equals(action) || action == null) {
 			out.println("<h1>No Action</h1>");
+
 		} else if (action.equals("insert")) {
-			out.println("insert");
+			System.out.println("insert call.");
 			dao.insertMember(mem);
 
 		} else if (action.equals("select")) {
-			out.println("select");
+			System.out.println("select call.");
+			List<Member> list = dao.getMemberList();
+			out.println(JSONArray.fromObject(list).toString());
+
 		} else {
 			out.println("<h1>Action Exception</h1>");
 		}
