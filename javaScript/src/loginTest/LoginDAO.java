@@ -3,11 +3,37 @@ package loginTest;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import common.DbCon;
 
 public class LoginDAO {
+
+	public String getName(String id) {
+		PreparedStatement pstmt = null;
+		Connection conn = DbCon.connect();
+		String sql = "select * from temp where id=?";
+		String retVal = "";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				retVal = rs.getString("name");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return retVal;
+	}
 
 	public void insertLogin(String id, String pw, String name) {
 		PreparedStatement pstmt = null;
