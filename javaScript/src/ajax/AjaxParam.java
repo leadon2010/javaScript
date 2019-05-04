@@ -25,7 +25,7 @@ public class AjaxParam extends HttpServlet {
 			throws ServletException, IOException {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		Map<String, String[]> map = request.getParameterMap();
-		map.forEach((k, v) -> System.out.println(k + ", " + map.get(k)));
+		map.forEach((k, v) -> System.out.println(k + ", " + map.get(k).toString()));
 		PrintWriter out = response.getWriter();
 		out.println("end");
 	}
