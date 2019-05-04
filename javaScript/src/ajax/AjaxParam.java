@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 /**
  * Servlet implementation class AjaxParam
  */
@@ -24,9 +27,16 @@ public class AjaxParam extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
+		JSONObject obj = new JSONObject();
+		JSONArray ary = new JSONArray();
 		Map<String, String[]> map = request.getParameterMap();
-		map.forEach((k, v) -> System.out.println(k + ", " + map.get(k).toString()));
+		map.forEach((k, v) -> {
+			System.out.println(k + ", " + map.get(k).toString());
+			obj.put(k, v);
+		});
+		ary.add(obj);
 		PrintWriter out = response.getWriter();
+		out.println(ary.toString());
 		out.println("end");
 	}
 

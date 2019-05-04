@@ -28,7 +28,7 @@
 <body>
 	<form id="frm1" action="<%=request.getContextPath()%>/AjaxParam">
 		<input type="text" name="firstName" value="myfirst"/><br>
-		<input type="text" name="salary" value=300/><br>
+		<input type="text" name="salary" value=300 /><br>
 		<select name="hobby">
 			<option value="book1" selected>Book1</option>
 			<option value="book2">Book2</option>
