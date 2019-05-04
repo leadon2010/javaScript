@@ -10,10 +10,11 @@
 	<script>
 		$(function () {
 			$("#frm1").on("submit", function (e) {
-				e.preventDefault();
+				//e.preventDefault();
 				console.log($("#frm1").serializeArray());
 				$.ajax({
 					url: $("#frm1").attr("action"),
+					type:"post",
 					data: $("#frm1").serializeArray(),
 					success: function () {
 						console.log("good");
@@ -25,7 +26,7 @@
 </head>
 
 <body>
-	<form id="frm1" action="ajaxSerializeGet.jsp">
+	<form id="frm1" action="<%=request.getContextPath()%>/AjaxParam">
 		<input type="text" name="firstName" value="myfirst"/><br>
 		<input type="text" name="salary" value=300/><br>
 		<select name="hobby">

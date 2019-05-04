@@ -46,6 +46,8 @@
     <label for="ch1">check1</label>
     <input type="checkbox" name="check" value="check2" checked="checked" id="ch2">
     <label for="ch2">check2</label>
+    <input type="checkbox" name="check" value="check3" checked="checked" id="ch3">
+    <label for="ch3">check3</label><br>
     <input type="radio" name="radio" value="radio1" checked="checked" id="r1">
     <label for="r1">radio1</label>
     <input type="radio" name="radio" value="radio2" id="r2">
@@ -55,6 +57,7 @@
   <script>
     function showValues() {
       var fields = $(":input").serializeArray();
+      console.log(fields);
       $("#results").empty();
       jQuery.each(fields, function (i, field) {
         $("#results").append(field.value + " ");
