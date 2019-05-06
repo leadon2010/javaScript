@@ -27,22 +27,34 @@ public class AjaxParam extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-		JSONObject obj = new JSONObject();
-		JSONArray ary = new JSONArray();
 		Map<String, String[]> map = request.getParameterMap();
-		map.forEach((k, v) -> {
-			System.out.println(k + ", " + map.get(k).toString());
-			obj.put(k, v);
-		});
-		ary.add(obj);
-		PrintWriter out = response.getWriter();
-		out.println(ary.toString());
-		out.println("end");
+		String res = getMap(map, request, response).toString();
+		response.getWriter().println(res);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+	@SuppressWarnings("unchecked")
+	public JSONArray getMap(Map<String, String[]> map, HttpServletRequest req, HttpServletResponse res) {
+		JSONObject obj = new JSONObject();
+		JSONArray ary = new JSONArray();
+
+		map.forEach((k, v) -> {
+			String[] args = req.getParameterValues(k);
+			JSONArray inner = new JSONArray();
+			for (int i = 0; i < args.length; i++) {
+				inner.add(args[i]);
+			}
+			obj.put(k, inner);
+		});
+		ary.add(obj);
+		System.out.println(ary);
+
+		return ary;
 	}
 
 }
