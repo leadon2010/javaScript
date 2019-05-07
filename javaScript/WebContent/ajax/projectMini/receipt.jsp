@@ -44,7 +44,7 @@
 		article {
 			float: left;
 			padding: 20px;
-			width: 60%;
+			width: 75%;
 			background-color: #f1f1f1;
 			height: 300px;
 			/* only for demonstration, should be removed */
@@ -87,7 +87,6 @@
 		$(function () {
 
 			$("#receipt_btn").on("click", function () {
-				// console.log($("#receipt_table [name=item_code]").val());
 				var $item_code = $("#receipt_table [name=item_code]").val();
 				var $receipt_qty = $("#receipt_table [name=receipt_qty]").val();
 				var $receipt_price = $("#receipt_table [name=receipt_price]").val();
@@ -115,10 +114,9 @@
 		function createReceiptInfo() {
 			$.ajax({
 				url: "<%=request.getContextPath()%>/MiniControl?action=receiptNo",
-				success: function (result) {
-					console.log(result);
+				success: function (receiptNo) {
 					$("#receipt_list .tr").each(function (i, o) {
-						insertRow(result
+						insertRow(receiptNo
 							, $(o).children().eq(0).text()
 							, $(o).children().eq(1).text()
 							, $(o).children().eq(2).text()
@@ -165,6 +163,7 @@
 
 		<article>
 			<h1>입고</h1>
+			<a href="receiptList.jsp">주문정보</a>
 			<table border='1' id="receipt_table">
 				<tr>
 					<th>상품코드</th>

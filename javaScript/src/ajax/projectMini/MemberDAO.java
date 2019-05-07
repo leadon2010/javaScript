@@ -14,6 +14,36 @@ public class MemberDAO {
 	Connection conn = DbCon.connect();
 	PreparedStatement pstmt;
 
+	public List<Receipt> getReceiptInfoList() {
+		String sql = "select * from receipt_info order by 1";
+		List<Receipt> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Receipt rct = new Receipt();
+				rct.setReceiptNo(rs.getString("receipt_no"));
+				rct.setReceiptVendor(rs.getString("receipt_vendor"));
+				rct.setReceiptItem(rs.getString("receipt_item"));
+				rct.setReceiptQty(rs.getInt("receipt_qty"));
+				rct.setReceiptPrice(rs.getInt("receipt_price"));
+				rct.setReceiptAmount(rs.getInt("receipt_amount"));
+				rct.setReceiptSub(rs.getString("receipt_sub"));
+				rct.setReceiptDate(rs.getString("receipt_date"));
+				list.add(rct);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+
 	public String getNewReceiptNo() {
 		String retVal = "";
 		try {
@@ -50,7 +80,7 @@ public class MemberDAO {
 			pstmt.setString(++r, receiptAmount);
 			pstmt.setString(++r, receiptSub);
 			pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
