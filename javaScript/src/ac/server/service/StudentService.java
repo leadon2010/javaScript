@@ -14,8 +14,9 @@ import ac.server.login.LoginDao;
 public class StudentService {
 
 	private static StudentService service = new StudentService();
-	public StudentDao dao =StudentDao.getInstance();
-	public LoginDao dao1 =LoginDao.getInstance();
+	public StudentDao dao = StudentDao.getInstance();
+	public LoginDao dao1 = LoginDao.getInstance();
+
 	private StudentService() {
 	}
 
@@ -24,18 +25,18 @@ public class StudentService {
 	}
 
 	// 회원등록
-	public void StudentInsert(StudentDto student,LoginDto login) throws Exception {
-		//트랜잭션처리
-		Connection conn= DbConnection.getConnection();
+	public void StudentInsert(StudentDto student, LoginDto login) throws Exception {
+		// 트랜잭션처리
+		Connection conn = DbConnection.getConnection();
 		try {
 			conn.setAutoCommit(false);
-			//login 등록			
+			// login 등록
 			dao1.LoginInsert(conn, login);
-			//member 등록
+			// member 등록
 			dao.StudentInsert(conn, student);
 
 			conn.commit();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			try {
 				conn.rollback();
@@ -49,10 +50,10 @@ public class StudentService {
 	}
 
 	public ArrayList<StudentDto> StudentSearch(String id) {
-		Connection conn=null;
-		ArrayList<StudentDto> student = null ;
+		Connection conn = null;
+		ArrayList<StudentDto> student = null;
 		try {
-			 conn = DbConnection.getConnection();
+			conn = DbConnection.getConnection();
 			conn.setAutoCommit(false);
 			student = dao.StudentSearch(conn, id);
 			conn.commit();
@@ -65,17 +66,17 @@ public class StudentService {
 			}
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DbConnection.close(conn);
 		}
 		return student;
 	}
-	
+
 	public StudentDto StudentSearch2(StudentDto st) {
-		Connection conn=null;
-		StudentDto student = null ;
+		Connection conn = null;
+		StudentDto student = null;
 		try {
-			 conn = DbConnection.getConnection();
+			conn = DbConnection.getConnection();
 			conn.setAutoCommit(false);
 			student = dao.StudentSearch2(conn, st);
 			conn.commit();
@@ -88,18 +89,18 @@ public class StudentService {
 			}
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DbConnection.close(conn);
 		}
 		return student;
 	}
 
 	public void StudentUpdate(StudentDto st) throws Exception {
-		//트랜잭션 처리
+		// 트랜잭션 처리
 		Connection conn = DbConnection.getConnection();
 		try {
 			conn.setAutoCommit(false);
-			dao.StudentUpdate(conn, st);	
+			dao.StudentUpdate(conn, st);
 			conn.commit();
 		} catch (Exception e) {
 			try {
@@ -115,8 +116,8 @@ public class StudentService {
 	}
 
 	public void StudentDelete(String id) throws Exception {
-		Connection conn=DbConnection.getConnection();
-		
+		Connection conn = DbConnection.getConnection();
+
 		try {
 			conn.setAutoCommit(false);
 			dao.StudentDelete(conn, id);
@@ -148,7 +149,7 @@ public class StudentService {
 		}
 		return list;
 	}
-	
+
 	public ArrayList<StudentDto> studentCourse(int num) throws Exception {
 		Connection conn = DbConnection.getConnection();
 		ArrayList<StudentDto> list = null;
@@ -162,10 +163,9 @@ public class StudentService {
 		}
 		return list;
 	}
-	
 
 	public StudentDto AllowUpdate(StudentDto st) throws Exception {
-		//트랜잭션 처리
+		// 트랜잭션 처리
 		Connection conn = DbConnection.getConnection();
 		try {
 			conn.setAutoCommit(false);
@@ -184,15 +184,15 @@ public class StudentService {
 		}
 		return st;
 	}
-	
+
 	public CourseDto StudentCourseSearch(String st) throws Exception {
-		//트랜잭션 처리
+		// 트랜잭션 처리
 		Connection conn = DbConnection.getConnection();
 		CourseDto coursedto = new CourseDto();
 		try {
 			coursedto = dao.CourseSearch(conn, st);
 		} catch (Exception e) {
-				e.printStackTrace();
+			e.printStackTrace();
 		} finally {
 			DbConnection.close(conn);
 		}

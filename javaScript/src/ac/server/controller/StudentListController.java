@@ -16,17 +16,16 @@ public class StudentListController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		StudentService service = StudentService.getInstance();
-		ArrayList<StudentDto> studentList=null;
+		ArrayList<StudentDto> studentList = null;
 		try {
 			studentList = service.studentList();
 			request.setAttribute("list", studentList);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		
-		//결과페이지 리턴
-		return "/member/student.jsp";
-	}	
-}
+		}
 
+		// 결과페이지 리턴
+		return "/member/student.jsp";
+	}
+}
