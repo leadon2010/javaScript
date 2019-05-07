@@ -116,13 +116,16 @@
 			$.ajax({
 				url: "<%=request.getContextPath()%>/MiniControl?action=receiptNo",
 				success: function (result) {
+					console.log(result);
 					$("#receipt_list .tr").each(function (i, o) {
 						insertRow(result
-							, $(o).children().eq(0).text(), $(o).children().eq(1).text()
+							, $(o).children().eq(0).text()
+							, $(o).children().eq(1).text()
 							, $(o).children().eq(2).text()
 							, $(o).children().eq(3).text()
 							, $(o).children().eq(4).text()
-							, $(o).children().eq(5).text());
+							, $(o).children().eq(5).text()
+							, $(o).children().eq(6).text());
 					})
 				}
 			});

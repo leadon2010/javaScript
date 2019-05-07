@@ -18,7 +18,7 @@ public class MemberDAO {
 		String retVal = "";
 		try {
 			CallableStatement cstmt = conn.prepareCall("{? = call create_receipt_no()}");
-			cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+			cstmt.registerOutParameter(1, java.sql.Types.VARCHAR);
 			cstmt.execute();
 			retVal = cstmt.getString(1);
 		} catch (SQLException e) {
@@ -30,6 +30,7 @@ public class MemberDAO {
 				e.printStackTrace();
 			}
 		}
+		System.out.println(retVal);
 		return retVal;
 	}
 
