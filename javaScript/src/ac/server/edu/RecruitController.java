@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ac.server.controller.Controller;
-import ac.server.dao.CourseDao;
 import ac.server.dto.CourseDto;
 import ac.server.service.courseService;
 
-public class RecruitController implements Controller{
+public class RecruitController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
+
 		List<CourseDto> list = courseService.getInstance().Country("r");
 		request.setAttribute("list", list);
 		List<CourseDto> list1 = courseService.getInstance().Incumbent("r");

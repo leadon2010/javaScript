@@ -13,11 +13,12 @@ import ac.server.dao.CourseDao;
 import ac.server.dto.CourseDto;
 import ac.server.service.courseService;
 
-public class EndProcessController implements Controller{
+public class EndProcessController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
+
 		List<CourseDto> list = courseService.getInstance().Country("e");
 		request.setAttribute("list", list);
 		List<CourseDto> list1 = courseService.getInstance().Incumbent("e");
@@ -26,5 +27,5 @@ public class EndProcessController implements Controller{
 		request.setAttribute("list2", list2);
 		return "/edu/endProcess.jsp";
 	}
-	
+
 }

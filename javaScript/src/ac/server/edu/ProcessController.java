@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ac.server.controller.Controller;
-import ac.server.dao.CourseDao;
 import ac.server.dto.CourseDto;
 import ac.server.service.courseService;
 
-public class ProcessController implements Controller{
+public class ProcessController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
+
 		List<CourseDto> list = courseService.getInstance().Country("p");
 		request.setAttribute("list", list);
 		List<CourseDto> list1 = courseService.getInstance().Incumbent("p");
@@ -26,5 +26,5 @@ public class ProcessController implements Controller{
 		request.setAttribute("list2", list2);
 		return "/edu/process.jsp";
 	}
-	
+
 }
