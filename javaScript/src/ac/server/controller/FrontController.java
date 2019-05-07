@@ -118,11 +118,13 @@ public class FrontController extends HttpServlet {
 
 		// 컨트롤러 찾기
 		Controller subController = list.get(path); // ex) MemberListController
+		System.out.println(subController);
 		// 컨트롤러 실행 ,다형성(실행결과가 다 다름), 참조하는 자식객체의 메서드를 호출
 		// subController.execute(request, response);
 		String view = null;
 		try {
 			view = subController.execute(request, response);
+			System.out.println(view);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

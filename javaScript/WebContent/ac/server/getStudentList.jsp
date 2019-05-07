@@ -13,6 +13,6 @@
 </head>
 <body>
 	<div id="show"></div>
-	<a href="/javaScript/StudentList.do">Student List</a>
+	<a href="http://localhost/javaScript/StudentList.do">Student List</a>
 </body>
 </html>
