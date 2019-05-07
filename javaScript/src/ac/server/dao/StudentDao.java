@@ -24,8 +24,7 @@ public class StudentDao {
 	public void StudentInsert(Connection conn, StudentDto student) throws SQLException {
 		System.out.println(student);
 		PreparedStatement pstmt = null;
-		pstmt = conn
-				.prepareStatement("insert into student(id,course_code,student_name,email) values(?,?,?,?)");
+		pstmt = conn.prepareStatement("insert into student(id,course_code,student_name,email) values(?,?,?,?)");
 		pstmt.setString(1, student.getId());
 		pstmt.setInt(2, student.getCourse_code());
 		pstmt.setString(3, student.getStudent_name());
@@ -33,7 +32,7 @@ public class StudentDao {
 		pstmt.executeUpdate();
 	}
 
-	public ArrayList<StudentDto> StudentSearch(Connection conn, String id) throws SQLException {//id로 단건조회
+	public ArrayList<StudentDto> StudentSearch(Connection conn, String id) throws SQLException {// id로 단건조회
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<StudentDto> list = new ArrayList<>();
@@ -53,14 +52,14 @@ public class StudentDao {
 		}
 		return list;
 	}
-	
+
 	public StudentDto StudentSearch2(Connection conn, StudentDto st) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		StudentDto student2 = null;
 
 		pstmt = conn.prepareStatement("select * from student where student_name=?");
-		pstmt.setString(1,st.getStudent_name());
+		pstmt.setString(1, st.getStudent_name());
 		rs = pstmt.executeQuery();
 		if (rs.next()) {
 			student2 = new StudentDto();
@@ -127,9 +126,8 @@ public class StudentDao {
 
 		StudentDto student = null;
 
-		pstmt = conn.prepareStatement("select s.id, s.course_code,s.Student_name,s.admission " + 
-		"from student s JOIN course c ON s.course_code=c.course_code\r\n " + 
-				"where c.course_list = ?");
+		pstmt = conn.prepareStatement("select s.id, s.course_code,s.Student_name,s.admission "
+				+ "from student s JOIN course c ON s.course_code=c.course_code\r\n " + "where c.course_list = ?");
 		pstmt.setInt(1, num);
 		rs = pstmt.executeQuery();
 		while (rs.next()) {
@@ -143,24 +141,22 @@ public class StudentDao {
 
 		return list;
 	}
-	
+
 	public void AllowUpdate(Connection conn, StudentDto st) throws SQLException {
 		PreparedStatement pstmt = null;
-		pstmt = conn
-				.prepareStatement("update student set admission=? where id=?");
+		pstmt = conn.prepareStatement("update student set admission=? where id=?");
 		pstmt.setString(1, st.getAdmission());
 		pstmt.setString(2, st.getId());
-				pstmt.executeUpdate();
+		pstmt.executeUpdate();
 	}
-	
+
 	public CourseDto CourseSearch(Connection conn, String id) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		CourseDto student = null;
 
-		pstmt = conn.prepareStatement("select c.course_list "+
-		"from course c JOIN student s on c.course_code=s.course_code "+
-				"where s.id = ?");
+		pstmt = conn.prepareStatement("select c.course_list "
+				+ "from course c JOIN student s on c.course_code=s.course_code " + "where s.id = ?");
 		pstmt.setString(1, id);
 		rs = pstmt.executeQuery();
 		if (rs.next()) {
