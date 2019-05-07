@@ -14,7 +14,7 @@ public class DbCon {
 	 * Oracle 연결정보
 	 */
 	static String jdbc_driver = "oracle.jdbc.driver.OracleDriver";
-	static String jdbc_url = "jdbc:oracle:thin:@localhost:1521:xe";
+	static String jdbc_url = "jdbc:oracle:thin:@localhost:1521:orcl";
 
 	/* MySQL 연결정보 */
 	// String jdbc_driver = "com.mysql.jdbc.Driver";
@@ -24,7 +24,8 @@ public class DbCon {
 	public static Connection connect() {
 		try {
 			Class.forName(jdbc_driver);
-			conn = DriverManager.getConnection(jdbc_url, "c##hr", "hr");
+			//conn = DriverManager.getConnection(jdbc_url, "c##hr", "hr");
+			conn = DriverManager.getConnection(jdbc_url, "hr", "hr");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
