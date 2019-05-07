@@ -63,7 +63,7 @@ public class MiniControl extends HttpServlet {
 		} else if (action.equals("receiptTxn")) {
 			String receiptNo = request.getParameter("receiptNo");
 			System.out.println(dao.receiptTxn(receiptNo));
-			out.println("<script>history.go(-1)</script>");
+			out.println("<script>location.href='http://localhost:8080/javaScript/ajax/projectMini/receiptList.jsp'</script>");
 			
 
 		} else if (action.equals("receiptNo")) {
