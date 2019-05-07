@@ -16,11 +16,11 @@ public class StudentSearchController implements Controller {
 		String id = request.getParameter("id");
 		String path = null;
 		path = "/member/student.jsp";
-		
+
 		// 유효성 체크
 		if (id.isEmpty()) {
 			request.setAttribute("error", "ID를 입력해주시기 바랍니다!");
-			//HttpUtil.forward(request, response, path);
+			// HttpUtil.forward(request, response, path);
 			return path;
 		}
 
@@ -29,16 +29,15 @@ public class StudentSearchController implements Controller {
 		ArrayList<StudentDto> student;
 		try {
 			student = service.StudentSearch(id);
-			if (student == null) request.setAttribute("result", "검색된 정보가 없습니다!");
+			if (student == null)
+				request.setAttribute("result", "검색된 정보가 없습니다!");
 			request.setAttribute("list", student);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-
 		// Output View 페이지로 이동
 		return path;
 	}
 }
-

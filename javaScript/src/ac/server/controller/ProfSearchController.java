@@ -1,9 +1,7 @@
 package ac.server.controller;
 
-import java.io.*;
 import java.util.ArrayList;
 
-import javax.servlet.*;
 import javax.servlet.http.*;
 
 import ac.server.dto.ProfDto;
@@ -16,11 +14,11 @@ public class ProfSearchController implements Controller {
 		String id = request.getParameter("id");
 		String path = null;
 		path = "/member/prof.jsp";
-		
+
 		// 유효성 체크
 		if (id.isEmpty()) {
 			request.setAttribute("error", "ID를 입력해주시기 바랍니다!");
-			//HttpUtil.forward(request, response, path);
+			// HttpUtil.forward(request, response, path);
 			return path;
 		}
 
@@ -29,16 +27,15 @@ public class ProfSearchController implements Controller {
 		ArrayList<ProfDto> prof;
 		try {
 			prof = service.ProfSearch(id);
-			if (prof == null) request.setAttribute("result", "검색된 정보가 없습니다!");
+			if (prof == null)
+				request.setAttribute("result", "검색된 정보가 없습니다!");
 			request.setAttribute("list", prof);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-
 		// Output View 페이지로 이동
 		return path;
 	}
 }
-
