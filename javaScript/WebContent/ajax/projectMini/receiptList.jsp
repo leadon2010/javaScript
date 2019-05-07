@@ -32,7 +32,7 @@
 		nav {
 			float: left;
 			width: 25%;
-			height: 300px;
+			height: 500px;
 			/* only for demonstration, should be removed */
 			background: #ccc;
 			padding: 20px;
@@ -49,7 +49,7 @@
 			padding: 20px;
 			width: 60%;
 			background-color: #f1f1f1;
-			height: 300px;
+			height: auto;
 			/* only for demonstration, should be removed */
 		}
 
@@ -85,6 +85,12 @@
 			width: 20%;
 		}
 	</style>
+	<script>
+	function receiptTxn(receiptNo){
+		window.location.href = "http://localhost:8080/javaScript/MiniControl?action=receiptTxn&receiptNo="+receiptNo;
+		console.log("txn");
+	}
+	</script>
 </head>
 
 <body>
@@ -109,7 +115,7 @@
 		List<Receipt> list = dao.getReceiptInfoList();
 		out.println("<table border=1>");
 		out.println(
-				"<tr><th>ReceiptNo</th><th>ReceiptItem</th><th>ReceiptQty</th><th>ReceiptPrice</th><th>ReceiptAmt</th><th>ReceiptSub</th><th>Vendor</th></tr>");
+				"<tr><th>ReceiptNo</th><th>ReceiptItem</th><th>ReceiptQty</th><th>ReceiptPrice</th><th>ReceiptAmt</th><th>ReceiptSub</th><th>Vendor</th><th width=150>ReceiptTxn</th></tr>");
 		for (Receipt rt : list) {
 			out.println("<tr><td>");
 			out.println(rt.getReceiptNo() + "</td><td>");
@@ -118,7 +124,8 @@
 			out.println(rt.getReceiptPrice() + "</td><td>");
 			out.println(rt.getReceiptAmount() + "</td><td>");
 			out.println(rt.getReceiptSub() + "</td><td>");
-			out.println(rt.getReceiptVendor() + "</td></tr>");
+			out.println(rt.getReceiptVendor() + "</td><td align='center'>");
+			out.println("<button onclick=\"receiptTxn(\'"+rt.getReceiptNo()+"\')\">입고</button>" + "</td></tr>");
 		}
 		out.println("</table>");
 	%>

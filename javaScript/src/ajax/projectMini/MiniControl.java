@@ -60,6 +60,12 @@ public class MiniControl extends HttpServlet {
 			System.out.println("delete call.");
 			out.println(dao.deleteRow(id));
 
+		} else if (action.equals("receiptTxn")) {
+			String receiptNo = request.getParameter("receiptNo");
+			System.out.println(dao.receiptTxn(receiptNo));
+			out.println("<script>history.go(-1)</script>");
+			
+
 		} else if (action.equals("receiptNo")) {
 			out.print(dao.getNewReceiptNo());
 

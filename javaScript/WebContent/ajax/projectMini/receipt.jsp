@@ -29,7 +29,7 @@
 		nav {
 			float: left;
 			width: 25%;
-			height: 300px;
+			height: 500px;
 			/* only for demonstration, should be removed */
 			background: #ccc;
 			padding: 20px;
@@ -46,7 +46,7 @@
 			padding: 20px;
 			width: 75%;
 			background-color: #f1f1f1;
-			height: 300px;
+			height: auto;
 			/* only for demonstration, should be removed */
 		}
 
@@ -206,10 +206,6 @@
 			</form>
 		</article>
 	</section>
-
-	<footer>
-		<p>Footer</p>
-	</footer>
 
 </body>
 

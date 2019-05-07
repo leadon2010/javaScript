@@ -14,8 +14,28 @@ public class MemberDAO {
 	Connection conn = DbCon.connect();
 	PreparedStatement pstmt;
 
+	public String receiptTxn(String receiptNo) {
+		String retVal = "";
+		try {
+			CallableStatement cstmt = conn.prepareCall("{call receipt_txn(?,?)}");
+			cstmt.setString(1, receiptNo);
+			cstmt.registerOutParameter(2, java.sql.Types.VARCHAR);
+			cstmt.execute();
+			retVal = cstmt.getString(2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return retVal;
+	}
+
 	public List<Receipt> getReceiptInfoList() {
-		String sql = "select * from receipt_info order by 1";
+		String sql = "select * from receipt_info where receipt_flag = 'N' order by 1";
 		List<Receipt> list = new ArrayList<>();
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -67,7 +87,7 @@ public class MemberDAO {
 	public void createReceiptInfo(String receiptNo, String itemCode, String receiptPrice, String receiptQty,
 			String salePrice, String receiptAmount, String receiptSub, String receiptVendor) {
 
-		String sql = "insert into receipt_info values(?,?,?,?,?,?,?,Sysdate)";
+		String sql = "insert into receipt_info values(?,?,?,?,?,?,?,Sysdate,'N')";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			int r = 0;
