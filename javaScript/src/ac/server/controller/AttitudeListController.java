@@ -12,22 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import ac.server.dto.AttitudeDto;
 import ac.server.service.AttitudeService;
 
-public class AttitudeListController implements Controller{
+public class AttitudeListController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		AttitudeService service = AttitudeService.getInstance();
-		List<Map<String,Object>> attitList=null;
+		List<Map<String, Object>> attitList = null;
 		try {
 			attitList = service.attitudeList();
 			request.setAttribute("list", attitList);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		
-		//결과페이지 리턴
+		}
+
+		// 결과페이지 리턴
 		return "/member/attit.jsp";
-	}	
+	}
 }

@@ -10,20 +10,21 @@ import ac.server.dto.LoginDto;
 import ac.server.dto.StudentDto;
 
 public class LoginDao {
-	
+
 	// 등록
 	Connection conn = null;
 	PreparedStatement psmt;
 	ResultSet rs = null;
-	
-	//싱글톤 : static 필드
+
+	// 싱글톤 : static 필드
 	static LoginDao instance;
+
 	public static LoginDao getInstance() {
-		if(instance==null)
-			instance=new LoginDao();
-			return instance;		
+		if (instance == null)
+			instance = new LoginDao();
+		return instance;
 	}
-	
+
 	public void LoginInsert(Connection conn, LoginDto student) throws SQLException {
 		PreparedStatement pstmt = null;
 		pstmt = conn.prepareStatement("insert into login values(?,?)");
@@ -32,27 +33,25 @@ public class LoginDao {
 		pstmt.executeUpdate();
 	}
 
-	
 	public boolean loginCheck(String id, String pw) {
-		boolean result= false;
+		boolean result = false;
 		try {
-			conn=DbConnection.getConnection();
-			String sql="select id from login where id=? "
-					+ "and pw=? ";
-			psmt=conn.prepareStatement(sql);
+			conn = DbConnection.getConnection();
+			String sql = "select id from login where id=? " + "and pw=? ";
+			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
 			psmt.setString(2, pw);
-			rs=psmt.executeQuery();
-			if(rs.next()) {
-				result=true;
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				result = true;
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DbConnection.close(conn);
 		}
-		
+
 		return result;
-	}	
+	}
 
 }

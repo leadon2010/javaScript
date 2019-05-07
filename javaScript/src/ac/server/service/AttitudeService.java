@@ -15,9 +15,9 @@ import ac.server.login.LoginDao;
 
 public class AttitudeService {
 	private static AttitudeService service = new AttitudeService();
-	public AttitudeDao dao =AttitudeDao.getInstance();
-	public LoginDao dao1 =LoginDao.getInstance();
-	
+	public AttitudeDao dao = AttitudeDao.getInstance();
+	public LoginDao dao1 = LoginDao.getInstance();
+
 	private AttitudeService() {
 	}
 
@@ -26,18 +26,18 @@ public class AttitudeService {
 	}
 
 	// 회원등록
-	public void AttitudeInsert(AttitudeDto attit,LoginDto login) throws Exception {
-		//트랜잭션처리
-		Connection conn= DbConnection.getConnection();
+	public void AttitudeInsert(AttitudeDto attit, LoginDto login) throws Exception {
+		// 트랜잭션처리
+		Connection conn = DbConnection.getConnection();
 		try {
 			conn.setAutoCommit(false);
-			//login 등록
+			// login 등록
 			dao1.LoginInsert(conn, login);
-			//member 등록
-			dao.AttitudeInsert(conn,attit);
-			
+			// member 등록
+			dao.AttitudeInsert(conn, attit);
+
 			conn.commit();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			try {
 				conn.rollback();
@@ -50,9 +50,9 @@ public class AttitudeService {
 		}
 	}
 
-	public AttitudeDto attitudeSearch(String id) throws Exception{
+	public AttitudeDto attitudeSearch(String id) throws Exception {
 		Connection conn = DbConnection.getConnection();
-		AttitudeDto attit = null ;
+		AttitudeDto attit = null;
 		try {
 			conn.setAutoCommit(false);
 			attit = dao.attitudeSearch(conn, id);
@@ -66,15 +66,15 @@ public class AttitudeService {
 			}
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DbConnection.close(conn);
 		}
 		return attit;
 	}
 
 	public void AttitudeDelete(String id) throws Exception {
-		Connection conn=DbConnection.getConnection();
-		
+		Connection conn = DbConnection.getConnection();
+
 		try {
 			conn.setAutoCommit(false);
 			dao.AttitudeDelete(conn, id);
@@ -93,8 +93,8 @@ public class AttitudeService {
 		}
 	}
 
-	public List<Map<String,Object>> attitudeList(){
-		Connection conn =null;
+	public List<Map<String, Object>> attitudeList() {
+		Connection conn = null;
 
 		List<Map<String, Object>> list = null;
 		try {
