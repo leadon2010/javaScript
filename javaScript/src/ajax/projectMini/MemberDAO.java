@@ -1,5 +1,6 @@
 package ajax.projectMini;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,54 @@ import common.DbCon;
 public class MemberDAO {
 	Connection conn = DbCon.connect();
 	PreparedStatement pstmt;
+
+	public String getNewReceiptNo() {
+		String retVal = "";
+		try {
+			CallableStatement cstmt = conn.prepareCall("{? = call create_receipt_no()}");
+			cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+			cstmt.execute();
+			retVal = cstmt.getString(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return retVal;
+	}
+
+	public void createReceiptInfo(String receiptNo, String itemCode, String receiptPrice, String receiptQty,
+			String salePrice, String receiptAmount, String receiptSub, String receiptVendor) {
+
+		String sql = "insert into receipt_info values(?,?,?,?,?,?,?,Sysdate)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int r = 0;
+			pstmt.setString(++r, receiptNo);
+			pstmt.setString(++r, receiptVendor);
+			pstmt.setString(++r, itemCode);
+			pstmt.setString(++r, receiptQty);
+			pstmt.setString(++r, receiptPrice);
+			// pstmt.setString(++r, salePrice);
+			pstmt.setString(++r, receiptAmount);
+			pstmt.setString(++r, receiptSub);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
 
 	public String deleteRow(String id) {
 		String sql = "delete from mini_member where id = ?";

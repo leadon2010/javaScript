@@ -60,6 +60,21 @@ public class MiniControl extends HttpServlet {
 			System.out.println("delete call.");
 			out.println(dao.deleteRow(id));
 
+		} else if (action.equals("receiptNo")) {
+			out.println(dao.getNewReceiptNo());
+
+		} else if (action.equals("receipt")) {
+			String itemCode = request.getParameter("itemCode");
+			String receiptPrice = request.getParameter("receiptPrice");
+			String receiptQty = request.getParameter("receiptQty");
+			String salePrice = request.getParameter("salePrice");
+			String receiptAmount = request.getParameter("receiptAmount");
+			String receiptSub = request.getParameter("receiptSub");
+			String receiptVendor = request.getParameter("receiptVendor");
+			String receiptNo = request.getParameter("receiptNo");
+			dao.createReceiptInfo(receiptNo, itemCode, receiptPrice, receiptQty, salePrice, receiptAmount, receiptSub,
+					receiptVendor);
+
 		} else {
 			out.println("<h1>Action Exception</h1>");
 		}
