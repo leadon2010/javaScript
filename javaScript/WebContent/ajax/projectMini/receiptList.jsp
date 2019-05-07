@@ -87,7 +87,7 @@
 	</style>
 	<script>
 	function receiptTxn(receiptNo){
-		window.location.href = "http://localhost:8080/javaScript/MiniControl?action=receiptTxn&receiptNo="+receiptNo;
+		window.location.href = "http://localhost:80/javaScript/MiniControl?action=receiptTxn&receiptNo="+receiptNo;
 		console.log("txn");
 	}
 	</script>
