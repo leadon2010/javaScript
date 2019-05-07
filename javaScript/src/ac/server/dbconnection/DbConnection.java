@@ -5,19 +5,19 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConnection {
-	 public static Connection getConnection() throws Exception{
-			Class.forName("oracle.jdbc.OracleDriver");
-			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.0.16:1521/xe","yedam","yedam");
-			//Connection con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/xe","yedam","yedam");
-			return con;
-	 }
-	 public static void close(Connection conn) {
-			try {
-				if( conn != null) conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+	public static Connection getConnection() throws Exception {
+		Class.forName("oracle.jdbc.OracleDriver");
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/orcl", "hr", "hr");
+		// Connection con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/xe","yedam","yedam");
+		return con;
+	}
+
+	public static void close(Connection conn) {
+		try {
+			if (conn != null)
+				conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+	}
 }
-
-

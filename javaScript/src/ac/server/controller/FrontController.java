@@ -114,6 +114,7 @@ public class FrontController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		// = > /memberList.do
 		String path = url.substring(contextPath.length());
+		System.out.println(path);
 
 		// 컨트롤러 찾기
 		Controller subController = list.get(path); // ex) MemberListController
