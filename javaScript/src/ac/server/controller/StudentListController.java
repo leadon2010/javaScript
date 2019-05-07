@@ -26,6 +26,6 @@ public class StudentListController implements Controller {
 		}
 
 		// 결과페이지 리턴
-		return "/member/student.jsp";
+		return "ac/member/student.jsp";
 	}
 }
