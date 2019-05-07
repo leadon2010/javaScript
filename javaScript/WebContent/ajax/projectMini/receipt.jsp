@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +42,7 @@ nav ul {
 article {
 	float: left;
 	padding: 20px;
-	width: 75%;
+	width: 60%;
 	background-color: #f1f1f1;
 	height: 300px; /* only for demonstration, should be removed */
 }
@@ -69,7 +69,23 @@ footer {
 		height: auto;
 	}
 }
+
+.center {
+	display: "block";
+	margin-left: auto;
+	margin-right: auto;
+	width: 20%;
+}
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+	$(function() {
+		$("#receipt_btn").on("click", function() {
+			console.log($("#receipt_table [name=item_code]").val())
+		})
+	})
+</script>
 </head>
 <body>
 
@@ -88,7 +104,45 @@ footer {
 
 		<article>
 			<h1>입고</h1>
-			
+			<table border='1' id="receipt_table">
+				<tr>
+					<th>상품코드</th>
+					<th>주문수량</th>
+					<th>구입단가</th>
+					<th>판매가</th>
+					<th>창고</th>
+					<th></th>
+				</tr>
+				<tr>
+					<td><input type="text" name="item_code" /></td>
+					<td><input type="text" name="receipt_qty" /></td>
+					<td><input type="text" name="receipt_price" /></td>
+					<td><input type="text" name="sale_price" /></td>
+					<td><input type="text" name="receipt_sub" /></td>
+					<td><input type="button" value="입고" id="receipt_btn" /></td>
+				</tr>
+			</table>
+			<p>
+			<p>
+			<div id="receipt_no">주문번호#</div>
+			<form id="receipt_frm" action="">
+				<table border='1' id="receipt_list">
+					<tr>
+						<td>품명코드</td>
+						<td>입고단가</td>
+						<td>입고수량</td>
+						<td>판매단가</td>
+						<td>입고금액</td>
+						<td>입고창고</td>
+						<td>구매업체</td>
+					</tr>
+				</table>
+				<p>
+				<p>
+				<div class="center">
+					<input type="submit" value="주문정보생성" />
+				</div>
+			</form>
 		</article>
 	</section>
 
