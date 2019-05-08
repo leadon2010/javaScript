@@ -10,6 +10,20 @@ public class Issue {
 	private String issueSub;
 	private String issueDate;
 
+	Issue() {
+	};
+
+	Issue(String issueNo, String issueVendor, String issueItem, int issueQty, int issuePrice, int issueAmount,
+			String issueSub) {
+		this.issueNo = issueNo;
+		this.issueVendor = issueVendor;
+		this.issueItem = issueItem;
+		this.issueQty = issueQty;
+		this.issuePrice = issuePrice;
+		this.issueAmount = issueAmount;
+		this.issueSub = issueSub;
+	}
+
 	public String getIssueNo() {
 		return issueNo;
 	}
