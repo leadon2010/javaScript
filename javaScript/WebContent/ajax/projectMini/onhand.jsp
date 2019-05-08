@@ -10,9 +10,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>7.1 [Pie Chart] basic</title>
 	<link rel="stylesheet" type="text/css" href="dist/tui-chart.css" />
-	<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.css' />
-	<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/addon/lint/lint.css' />
-	<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/theme/neo.css' />
+	<link rel='stylesheet' type='text/css'
+		href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.css' />
+	<link rel='stylesheet' type='text/css'
+		href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/addon/lint/lint.css' />
+	<link rel='stylesheet' type='text/css'
+		href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/theme/neo.css' />
 	<link rel='stylesheet' type='text/css' href='./css/example.css' />
 	<style>
 		* {
@@ -116,66 +119,75 @@
 			</div>
 			<!--Import chart.js and dependencies-->
 			<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js'></script>
-			<script type='text/javascript' src='https://uicdn.toast.com/tui.code-snippet/v1.5.0/tui-code-snippet.min.js'></script>
+			<script type='text/javascript'
+				src='https://uicdn.toast.com/tui.code-snippet/v1.5.0/tui-code-snippet.min.js'></script>
 			<script type='text/javascript' src='https://uicdn.toast.com/tui.chart/latest/raphael.js'></script>
 			<script src='dist/tui-chart.js'></script>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 			<script class='code-js' id='code-js'>
 				var container = document.getElementById('chart-area');
-				var data = {
-					categories: ['Browser'],
-					series: [
-						{
-							name: 'Chrome',
-							data: 46.02
-						},
-						{
-							name: 'IE',
-							data: 20.47
-						},
-						{
-							name: 'Firefox',
-							data: 17.71
-						},
-						{
-							name: 'Safari',
-							data: 5.45
-						},
-						{
-							name: 'Opera',
-							data: 3.10
-						},
-						{
-							name: 'Etc',
-							data: 7.25
-						}
-					]
-				};
-				var options = {
-					chart: {
-						width: 660,
-						height: 560,
-						title: '재고 순위'
-					},
-					tooltip: {
-						suffix: '%'
+				$.ajax({
+					url: "http://localhost:8080/javaScript/OnhandControl?action=onhandChart",
+					dataType: "json",
+					success: function (result) {
+console.log(result);
+						var seriesData = [
+							{
+								name: 'Chrome',
+								data: 66.02
+							},
+							{
+								name: 'IE',
+								data: 20.47
+							},
+							{
+								name: 'Firefox',
+								data: 17.71
+							},
+							{
+								name: 'Safari',
+								data: 5.45
+							},
+							{
+								name: 'Opera',
+								data: 3.10
+							},
+							{
+								name: 'Etc',
+								data: 7.25
+							}
+						];
+						var data = {
+							categories: ['품목순위'],
+							series: result
+						};
+						var options = {
+							chart: {
+								width: 660,
+								height: 560,
+								title: '재고 순위'
+							},
+							tooltip: {
+								suffix: '%'
+							}
+						};
+						var theme = {
+							series: {
+								colors: [
+									'#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
+									'#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd'
+								]
+							}
+						};
+
+						// For apply theme
+
+						// tui.chart.registerTheme('myTheme', theme);
+						// options.theme = 'myTheme';
+
+						tui.chart.pieChart(container, data, options);
 					}
-				};
-				var theme = {
-					series: {
-						colors: [
-							'#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
-							'#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd'
-						]
-					}
-				};
-
-				// For apply theme
-
-				// tui.chart.registerTheme('myTheme', theme);
-				// options.theme = 'myTheme';
-
-				tui.chart.pieChart(container, data, options);
+				})
 			</script>
 		</article>
 	</section>

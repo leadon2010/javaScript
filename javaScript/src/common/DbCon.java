@@ -24,8 +24,8 @@ public class DbCon {
 	public static Connection connect() {
 		try {
 			Class.forName(jdbc_driver);
-			//conn = DriverManager.getConnection(jdbc_url, "c##hr", "hr");
-			conn = DriverManager.getConnection(jdbc_url, "hr", "hr");
+			conn = DriverManager.getConnection(jdbc_url, "c##hr", "hr");
+			//conn = DriverManager.getConnection(jdbc_url, "hr", "hr");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
