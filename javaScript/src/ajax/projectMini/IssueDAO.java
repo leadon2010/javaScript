@@ -16,6 +16,57 @@ public class IssueDAO {
 	Connection conn = DbCon.connect();
 	PreparedStatement pstmt;
 
+	public String issueTxn(String issueNo) {
+		String retVal = "";
+		try {
+			CallableStatement cstmt = conn.prepareCall("{call issue_txn(?,?)}");
+			cstmt.setString(1, issueNo);
+			cstmt.registerOutParameter(2, java.sql.Types.VARCHAR);
+			cstmt.execute();
+			retVal = cstmt.getString(2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return retVal;
+	}
+
+	public List<Issue> getIssueInfoList() {
+		String sql = "select * from issue_info where issue_flag = 'N' order by 1";
+		List<Issue> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Issue rct = new Issue();
+				rct.setIssueNo(rs.getString("issue_no"));
+				rct.setIssueVendor(rs.getString("issue_vendor"));
+				rct.setIssueItem(rs.getString("issue_item"));
+				rct.setIssueQty(rs.getInt("issue_qty"));
+				rct.setIssuePrice(rs.getInt("issue_price"));
+				rct.setIssueAmount(rs.getInt("issue_amount"));
+				rct.setIssueSub(rs.getString("issue_sub"));
+				rct.setIssueDate(rs.getString("issue_date"));
+				list.add(rct);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+
+	}
+
 	public void insertRow(Issue isu) {
 		String sql = "insert into issue_info values(?,?,?,?,?,?,?,Sysdate,'N')";
 		try {

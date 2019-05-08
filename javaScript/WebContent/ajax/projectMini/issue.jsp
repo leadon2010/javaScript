@@ -164,7 +164,7 @@
 		</nav>
 
 		<article>
-			<h1>입고</h1>
+			<h1>출고</h1>
 			<a href="issueList.jsp">판매정보</a>
 			<br><br>
 			<div id="issue_no">판매번호#</div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="ajax.projectMini.Receipt"%>
-<%@page import="ajax.projectMini.MemberDAO"%>
+<%@page import="ajax.projectMini.Issue"%>
+<%@page import="ajax.projectMini.IssueDAO"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,8 +86,8 @@
 		}
 	</style>
 	<script>
-		function receiptTxn(receiptNo) {
-			window.location.href = "http://localhost:80/javaScript/MiniControl?action=receiptTxn&receiptNo=" + receiptNo;
+		function issueTxn(issueNo) {
+			window.location.href = "http://localhost:80/javaScript/IssueControl?action=issueTxn&issueNo=" + issueNo;
 			console.log("txn");
 		}
 	</script>
@@ -109,23 +109,23 @@
 		</nav>
 
 		<article>
-			<h1>Receipt List</h1>
-			<%
-		MemberDAO dao = new MemberDAO();
-		List<Receipt> list = dao.getReceiptInfoList();
+			<h1>Issue List</h1>
+	<%
+		IssueDAO dao = new IssueDAO();
+		List<Issue> list = dao.getIssueInfoList();
 		out.println("<table border=1>");
 		out.println(
 				"<tr><th>ReceiptNo</th><th>ReceiptItem</th><th>ReceiptQty</th><th>ReceiptPrice</th><th>ReceiptAmt</th><th>ReceiptSub</th><th>Vendor</th><th width=150>ReceiptTxn</th></tr>");
-		for (Receipt rt : list) {
+		for (Issue rt : list) {
 			out.println("<tr><td>");
-			out.println(rt.getReceiptNo() + "</td><td>");
-			out.println(rt.getReceiptItem() + "</td><td>");
-			out.println(rt.getReceiptQty() + "</td><td>");
-			out.println(rt.getReceiptPrice() + "</td><td>");
-			out.println(rt.getReceiptAmount() + "</td><td>");
-			out.println(rt.getReceiptSub() + "</td><td>");
-			out.println(rt.getReceiptVendor() + "</td><td align='center'>");
-			out.println("<button onclick=\"receiptTxn(\'"+rt.getReceiptNo()+"\')\">입고</button>" + "</td></tr>");
+			out.println(rt.getIssueNo() + "</td><td>");
+			out.println(rt.getIssueItem() + "</td><td>");
+			out.println(rt.getIssueQty() + "</td><td>");
+			out.println(rt.getIssuePrice() + "</td><td>");
+			out.println(rt.getIssueAmount() + "</td><td>");
+			out.println(rt.getIssueSub() + "</td><td>");
+			out.println(rt.getIssueVendor() + "</td><td align='center'>");
+			out.println("<button onclick=\"issueTxn(\'"+rt.getIssueNo()+"\')\">출고</button>" + "</td></tr>");
 		}
 		out.println("</table>");
 	%>

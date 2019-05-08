@@ -32,6 +32,14 @@ public class IssueControl extends HttpServlet {
 		if (action == null || action.equals("")) {
 			out.println("no action.");
 
+		} else if (action.equals("issueList")) {
+			System.out.println();
+		} else if (action.equals("issueTxn")) {
+			String issueNo = request.getParameter("issueNo");
+			dao.issueTxn(issueNo);
+			response.sendRedirect("http://localhost/javaScript/ajax/projectMini/issueList.jsp");
+			
+			System.out.println();
 		} else if (action.equals("insertRow")) {
 			String issueNo = request.getParameter("issueNo");
 			String issueVendor = request.getParameter("issueVendor");
