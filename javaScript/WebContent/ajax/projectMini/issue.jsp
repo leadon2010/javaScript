@@ -85,66 +85,66 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script>
 		$(function () {
-			
+
 			$.ajax({
-				url:"<%=request.getContextPath()%>/IssueControl?action=issueForm",
-			    dataType:"json",
-				success: function(result){
+				url: "<%=request.getContextPath()%>/IssueControl?action=issueForm",
+				dataType: "json",
+				success: function (result) {
 					console.log(result);
-					for(x in result){
-					var $tr = $("<tr>").attr("class","tr"); 
-						$tr.append($("<td>").html($("<input>").attr("type","checkbox")),
-								$("<td>").text(result[x].item_code),
-								$("<td>").text(result[x].onhand_qty),
-								$("<td>").html($("<input>").attr("type","text")),
-								$("<td>").text(1000),
-								$("<td>").text(1000*10),
-								$("<td>").text('AAA'),
-								$("<td>").text('CUSTOMER01')
-								)
+					for (x in result) {
+						var $tr = $("<tr>").attr("class", "tr");
+						$tr.append($("<td>").html($("<input>").attr("type", "checkbox")),
+							$("<td>").text(result[x].item_code),
+							$("<td>").text(result[x].onhand_qty),
+							$("<td>").html($("<input>").attr("type", "text")),
+							$("<td>").text(1000),
+							$("<td>").text(1000 * 10),
+							$("<td>").text('AAA'),
+							$("<td>").text('CUSTOMER01')
+						)
 						$("#issue_list").append($tr);
 					}
 				}
 			});
-			
+
 			// 판매정보 생성 버튼 클릭시..
-			$("#issue_frm").on("submit", function(e){
+			$("#issue_frm").on("submit", function (e) {
 				e.preventDefault();
-				$("#issue_list .tr").each(function(i,o){
-					 if ($(o).find("input").is(":checked")){
+				$("#issue_list .tr").each(function (i, o) {
+					if ($(o).find("input").is(":checked")) {
 						//console.log($(o).find("td").eq(1).text());
 						createIssueInfo(o);
-					 }
+					}
 				})
 			})
 		});
 
-	function createIssueInfo(obj){
-		$.ajax({
-			url:"<%=request.getContextPath()%>/IssueControl?action=getIssueNo",  // issue_no
-			success: function(issue_no){
-				//console.log($(obj).find("td").eq(3) );
-				var item_code = $(obj).find("td").eq(1).text();
-				var issue_qty = $(obj).find("td").eq(3).children().eq(0).val();
-				var issue_price = $(obj).find("td").eq(4).text();
-				var issue_amount = $(obj).find("td").eq(5).text();
-				var issue_sub = $(obj).find("td").eq(6).text();
-				var issue_vendor = $(obj).find("td").eq(7).text();
-				//console.log(issue_no, item_code, issue_qty, issue_price, issue_amount, issue_sub, issue_vendor)
-				insertIssueRow(issue_no, item_code, issue_qty, issue_price, issue_amount, issue_sub, issue_vendor);
-			}
-		})
-	}
-	
-	function insertIssueRow(issue_no, item_code, issue_qty, issue_price, issue_amount, issue_sub, issue_vendor){
-		$.ajax({
-			url:"<%=request.getContextPath()%>/IssueControl",
-			data: {"action":"insertRow", "issueNo":issue_no, "itemCode": item_code, "issueQty": issue_qty, "issuePrice": issue_price, "issueAmount": issue_amount, "issueSub":issue_sub, "issueVendor": issue_vendor},
-			success: function(result){
-				console.log(result);
-			}
-		})
-	}
+		function createIssueInfo(obj) {
+			$.ajax({
+				url: "<%=request.getContextPath()%>/IssueControl?action=getIssueNo",  // issue_no
+				success: function (issue_no) {
+					//console.log($(obj).find("td").eq(3) );
+					var item_code = $(obj).find("td").eq(1).text();
+					var issue_qty = $(obj).find("td").eq(3).children().eq(0).val();
+					var issue_price = $(obj).find("td").eq(4).text();
+					var issue_amount = $(obj).find("td").eq(5).text();
+					var issue_sub = $(obj).find("td").eq(6).text();
+					var issue_vendor = $(obj).find("td").eq(7).text();
+					//console.log(issue_no, item_code, issue_qty, issue_price, issue_amount, issue_sub, issue_vendor)
+					insertIssueRow(issue_no, item_code, issue_qty, issue_price, issue_amount, issue_sub, issue_vendor);
+				}
+			})
+		}
+
+		function insertIssueRow(issue_no, item_code, issue_qty, issue_price, issue_amount, issue_sub, issue_vendor) {
+			$.ajax({
+				url: "<%=request.getContextPath()%>/IssueControl",
+				data: { "action": "insertRow", "issueNo": issue_no, "itemCode": item_code, "issueQty": issue_qty, "issuePrice": issue_price, "issueAmount": issue_amount, "issueSub": issue_sub, "issueVendor": issue_vendor },
+				success: function (result) {
+					console.log(result);
+				}
+			})
+		}
 	</script>
 </head>
 

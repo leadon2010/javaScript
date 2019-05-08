@@ -86,10 +86,10 @@
 		}
 	</style>
 	<script>
-	function receiptTxn(receiptNo){
-		window.location.href = "http://localhost:80/javaScript/MiniControl?action=receiptTxn&receiptNo="+receiptNo;
-		console.log("txn");
-	}
+		function receiptTxn(receiptNo) {
+			window.location.href = "http://localhost:80/javaScript/MiniControl?action=receiptTxn&receiptNo=" + receiptNo;
+			console.log("txn");
+		}
 	</script>
 </head>
 
@@ -110,7 +110,7 @@
 
 		<article>
 			<h1>Receipt List</h1>
-	<%
+			<%
 		MemberDAO dao = new MemberDAO();
 		List<Receipt> list = dao.getReceiptInfoList();
 		out.println("<table border=1>");
