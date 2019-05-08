@@ -2,75 +2,88 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>CSS Template</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-	box-sizing: border-box;
-}
+	<title>CSS Template</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>7.1 [Pie Chart] basic</title>
+	<link rel="stylesheet" type="text/css" href="dist/tui-chart.css" />
+	<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.css' />
+	<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/addon/lint/lint.css' />
+	<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/theme/neo.css' />
+	<link rel='stylesheet' type='text/css' href='./css/example.css' />
+	<style>
+		* {
+			box-sizing: border-box;
+		}
 
-body {
-	font-family: Arial, Helvetica, sans-serif;
-}
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
 
-/* Style the header */
-header {
-	background-color: #666;
-	padding: 30px;
-	text-align: center;
-	font-size: 35px;
-	color: white;
-}
+		/* Style the header */
+		header {
+			background-color: #666;
+			padding: 30px;
+			text-align: center;
+			font-size: 35px;
+			color: white;
+		}
 
-/* Create two columns/boxes that floats next to each other */
-nav {
-	float: left;
-	width: 25%;
-	height: 500px; /* only for demonstration, should be removed */
-	background: #ccc;
-	padding: 20px;
-}
+		/* Create two columns/boxes that floats next to each other */
+		nav {
+			float: left;
+			width: 25%;
+			height: 500px;
+			/* only for demonstration, should be removed */
+			background: #ccc;
+			padding: 20px;
+		}
 
-/* Style the list inside the menu */
-nav ul {
-	list-style-type: none;
-	padding: 0;
-}
+		/* Style the list inside the menu */
+		nav ul {
+			list-style-type: none;
+			padding: 0;
+		}
 
-article {
-	float: left;
-	padding: 20px;
-	width: 75%;
-	background-color: #f1f1f1;
-	height: auto; /* only for demonstration, should be removed */
-}
+		article {
+			float: left;
+			padding: 20px;
+			width: 75%;
+			background-color: #f1f1f1;
+			height: auto;
+			/* only for demonstration, should be removed */
+		}
 
-/* Clear floats after the columns */
-section:after {
-	content: "";
-	display: table;
-	clear: both;
-}
+		/* Clear floats after the columns */
+		section:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
 
-/* Style the footer */
-footer {
-	background-color: #777;
-	padding: 10px;
-	text-align: center;
-	color: white;
-}
+		/* Style the footer */
+		footer {
+			background-color: #777;
+			padding: 10px;
+			text-align: center;
+			color: white;
+		}
 
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media ( max-width : 600px) {
-	nav, article {
-		width: 100%;
-		height: auto;
-	}
-}
-</style>
+		/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+		@media (max-width : 600px) {
+
+			nav,
+			article {
+				width: 100%;
+				height: auto;
+			}
+		}
+	</style>
 </head>
+
 <body>
 
 	<header>
@@ -87,13 +100,83 @@ footer {
 		</nav>
 
 		<article>
-			<h1>London</h1>
-			<p>London is the capital city of England. It is the most populous
-				city in the United Kingdom, with a metropolitan area of over 13
-				million inhabitants.</p>
-			<p>Standing on the River Thames, London has been a major
-				settlement for two millennia, its history going back to its founding
-				by the Romans, who named it Londinium.</p>
+			<h1>재고순위</h1>
+			<div class='wrap'>
+				<div class='code-html' id='code-html'>
+					<div id='chart-area'></div>
+				</div>
+				<div class='custom-area'>
+					<div id='error-dim'>
+						<span id='error-text'></span>
+						<div id='error-stack'></div>
+						<span id='go-to-dev-tool'>For more detail, open browser's developer tool and check it
+							out.</span>
+					</div>
+				</div>
+			</div>
+			<!--Import chart.js and dependencies-->
+			<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js'></script>
+			<script type='text/javascript' src='https://uicdn.toast.com/tui.code-snippet/v1.5.0/tui-code-snippet.min.js'></script>
+			<script type='text/javascript' src='https://uicdn.toast.com/tui.chart/latest/raphael.js'></script>
+			<script src='dist/tui-chart.js'></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+			<script class='code-js' id='code-js'>
+				var container = document.getElementById('chart-area');
+				var data = {
+					categories: ['Browser'],
+					series: [
+						{
+							name: 'Chrome',
+							data: 46.02
+						},
+						{
+							name: 'IE',
+							data: 20.47
+						},
+						{
+							name: 'Firefox',
+							data: 17.71
+						},
+						{
+							name: 'Safari',
+							data: 5.45
+						},
+						{
+							name: 'Opera',
+							data: 3.10
+						},
+						{
+							name: 'Etc',
+							data: 7.25
+						}
+					]
+				};
+				var options = {
+					chart: {
+						width: 660,
+						height: 560,
+						title: '재고 순위'
+					},
+					tooltip: {
+						suffix: '%'
+					}
+				};
+				var theme = {
+					series: {
+						colors: [
+							'#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
+							'#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd'
+						]
+					}
+				};
+
+				// For apply theme
+
+				// tui.chart.registerTheme('myTheme', theme);
+				// options.theme = 'myTheme';
+
+				tui.chart.pieChart(container, data, options);
+			</script>
 		</article>
 	</section>
 
@@ -102,4 +185,5 @@ footer {
 	</footer>
 
 </body>
+
 </html>
