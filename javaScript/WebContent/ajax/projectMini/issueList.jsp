@@ -87,7 +87,7 @@
 	</style>
 	<script>
 		function issueTxn(issueNo) {
-			window.location.href = "http://localhost:80/javaScript/IssueControl?action=issueTxn&issueNo=" + issueNo;
+			window.location.href = "http://localhost:8080/javaScript/IssueControl?action=issueTxn&issueNo=" + issueNo;
 			console.log("txn");
 		}
 	</script>

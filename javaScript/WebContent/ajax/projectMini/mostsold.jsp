@@ -103,8 +103,8 @@
 		</nav>
 
 		<article>
-			<h1>재고순위</h1>
-			<a href="mostsold.jsp">판매순위</a>
+			<h1>판매순위</h1>
+			<a href="onhand.jsp">재고순위</a>
 			<div class='wrap'>
 				<div class='code-html' id='code-html'>
 					<div id='chart-area'></div>
@@ -128,7 +128,7 @@
 			<script class='code-js' id='code-js'>
 				var container = document.getElementById('chart-area');
 				$.ajax({
-					url: "http://localhost:8080/javaScript/OnhandControl?action=onhandChart",
+					url: "http://localhost:8080/javaScript/OnhandControl?action=mostChart",
 					dataType: "json",
 					success: function (result) {
 						var data = {
@@ -139,7 +139,7 @@
 							chart: {
 								width: 660,
 								height: 560,
-								title: '재고 순위'
+								title: '판매 순위'
 							},
 							tooltip: {
 								suffix: 'EA'

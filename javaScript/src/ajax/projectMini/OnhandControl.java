@@ -43,6 +43,17 @@ public class OnhandControl extends HttpServlet {
 			}
 			out.println(ary.toString());
 
+		} else if (action.equals("mostChart")) {
+			List<Map<String, Object>> list = dao.getMostSoldChart();
+			JSONArray ary = new JSONArray();
+			for (Map<String, Object> map : list) {
+				JSONObject obj = new JSONObject();
+				obj.put("name", map.get("item"));
+				obj.put("data", map.get("qty"));
+				ary.add(obj);
+			}
+			out.println(ary.toString());
+
 		} else {
 			out.println("invalid action.");
 		}
