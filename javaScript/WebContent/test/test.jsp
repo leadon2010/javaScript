@@ -5,19 +5,35 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-	$(document).ready(function() {
-		$("#btn").on("click", function() {
-			$("#result").append("<br>", $("input").val());
-			$("input").val("").focus();
-		});
-
-		$("input").on("keydown", function(e) {
-			if (e.which == 13) {
-				$("#result").append("<br>", $("input").val());
-				$("input").val("").focus();
+	$(function() {
+		var t = evenSum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+		console.log(t);
+		var od = oddSum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13);
+		console.log(od);
+	})
+	function oddSum() {
+		//var ary = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
+		var ary = [];
+		for (x in arguments) {
+			ary[x] = arguments[x];
+		}
+		var total = 0;
+		ary.forEach(function(index, argument) {
+			if (argument % 2 == 1) {
+				total += argument;
 			}
 		})
-	});
+		return total;
+	}
+	function evenSum() {
+		var total = 0;
+		$.each(arguments, function(i, o) {
+			if (o % 2 == 0) {
+				total += o;
+			}
+		})
+		return total;
+	}
 </script>
 </head>
 
