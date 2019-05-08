@@ -17,7 +17,7 @@ public class OnhandDAO {
 
 	public List<Map<String, Object>> getMostSoldChart() {
 		List<Map<String, Object>> list = new ArrayList<>();
-		String sql = "SELECT item_code ,qty FROM  "
+		String sql = "SELECT item_code ,(qty*-1) qty FROM  "
 				+ " (SELECT item_code,SUM(txn_quantity) qty FROM receipt_issue_txn WHERE txn_quantity < 0 GROUP  BY item_code ORDER  BY 2 DESC)"
 				+ " WHERE  ROWNUM <= 5 ";
 		try {
