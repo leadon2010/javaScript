@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 public class Butil {
 	public static void dispatcher(HttpServletRequest request, HttpServletResponse response, String path) {
 		try {
-			RequestDispatcher dis=request.getRequestDispatcher(path);
+			RequestDispatcher dis = request.getRequestDispatcher(path);
 			dis.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }

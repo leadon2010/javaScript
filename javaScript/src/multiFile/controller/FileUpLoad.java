@@ -17,62 +17,50 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-/**
- * Servlet implementation class FileUpLoad
- */
 @WebServlet("/fileprocess")
 public class FileUpLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FileUpLoad() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public FileUpLoad() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		  
+
 		boolean isMultypart = ServletFileUpload.isMultipartContent(request);
 		DiskFileItemFactory factory = new DiskFileItemFactory();
-	  
+
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		upload.setHeaderEncoding("UTF-8");
-	  
+
 		try {
 			List<FileItem> items = upload.parseRequest(request);
 			Iterator<FileItem> iter = items.iterator();
-	   
-			while(iter.hasNext()){
+
+			while (iter.hasNext()) {
 				FileItem item = iter.next();
 				String fileName = null;
-				if(!item.isFormField()) {
+				if (!item.isFormField()) {
 					fileName = item.getName();
 					out.println(fileName);
 				}
-		    
+
 				ServletContext cxt = getServletContext();
 				String dir = cxt.getRealPath("/");
 				File uploadedFile = new File(dir + "/uploadfile/" + fileName);
 				item.write(uploadedFile);
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace(out);
 		}
 		out.println("<a href=\"fileio.jsp\">파일 업로드 폼으로</a>");
-	 }
+	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
