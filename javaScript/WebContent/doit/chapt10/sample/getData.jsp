@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="employee.SEmpDAO" %>
+<%@page import="employee.EmpDAO" %>
 <%@page import="java.util.*" %>
 <%@page import="org.json.simple.JSONArray" %>
 <%@page import="org.json.simple.JSONObject" %>
 <%
-	SEmpDAO dao = new SEmpDAO();
+	EmpDAO dao = new EmpDAO();
 	List<Map<String, Object>> list = dao.getData();
 	JSONArray arr1 = new JSONArray();
 	JSONArray arr2 = new JSONArray();
