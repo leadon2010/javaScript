@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="employee.SEmpDAO"%>
+<%@page import="employee.EmpDAO"%>
 <%
 	String userId = request.getParameter("user_id");
 	String userPw = request.getParameter("user_pw");
-	SEmpDAO dao = new SEmpDAO();
+	EmpDAO dao = new EmpDAO();
 	String retInfo = dao.getUserInfo(userId, userPw);
 	out.println("{\"username\":\"" + retInfo + "\"}");
 %>
