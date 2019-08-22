@@ -3,8 +3,8 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="org.json.simple.JSONObject"%>
-<%@page import="employee.EmpDAO"%>
-<%@page import="employee.Employee"%>
+<%@page import="employee.SEmpDAO"%>
+<%@page import="employee.SEmployee"%>
 <%@page import="java.util.List"%>
 <%
 	String name = request.getParameter("name");
@@ -12,10 +12,10 @@
 
 	JSONObject jsonObj = new JSONObject();
 	JSONArray jsonAry = new JSONArray();
-	EmpDAO dao = new EmpDAO();
-	List<Employee> list = dao.getEmplsList();
+	SEmpDAO dao = new SEmpDAO();
+	List<SEmployee> list = dao.getEmplsList();
 
-	for (Employee emp : list) {
+	for (SEmployee emp : list) {
 		jsonObj = new JSONObject();
 		jsonObj.put("firstName", emp.getFirstName());
 		jsonObj.put("lastName", emp.getLastName());
