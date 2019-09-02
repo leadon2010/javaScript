@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.io.PrintWriter" %>
-<%@page import="employee.SEmpDAO" %>
+<%@page import="employee.EmpDAO" %>
 <%@page import="java.util.List" %>
-<%@page import="employee.SEmployee" %>
+<%@page import="employee.Employee" %>
 <%@page import="org.json.simple.JSONObject" %>
 <%@page import="org.json.simple.JSONArray" %>
 <%
-	SEmpDAO dao = new SEmpDAO();
-	List<SEmployee> list = dao.getEmplsList();
+	EmpDAO dao = new EmpDAO();
+	List<Employee> list = dao.getEmplsList();
 	JSONObject jsonObj = new JSONObject();
 	JSONArray jsonAry = new JSONArray();
-	for(SEmployee emp : list){
+	for(Employee emp : list){
 		jsonObj = new JSONObject();
 		jsonObj.put("firstName", emp.getFirstName());
 		jsonObj.put("lastName", emp.getLastName());
