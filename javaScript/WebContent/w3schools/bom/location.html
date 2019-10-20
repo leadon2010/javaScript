@@ -8,13 +8,14 @@
     <button onclick="newDoc()">assign</button>
     <script>
     	var locInfo = "The full URL of this page is: " + window.location.href 
-    	+ "<br>, Page hostname is: " + window.location.hostname 
-    	+ "<br>, Page path is: "  + window.location.pathname 
+    	+ "<br>Page hostname is: " + window.location.hostname 
+    	+ "<br>Page path is: "  + window.location.pathname 
     	+ "<br>The page protocol is: " + window.location.protocol;
     document.getElementById("demo").innerHTML = locInfo;
 
     function newDoc(){
-    	window.location.assign("http://www.w3schools.com");
+    	// window.location.assign("http://www.w3schools.com");
+        window.location.href = "https://www.daum.net";
     }
     </script>
 </body>
