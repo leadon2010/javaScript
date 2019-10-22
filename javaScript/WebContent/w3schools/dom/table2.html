@@ -3,10 +3,10 @@
 
 <head>
     <style>
-    table,
-    td {
-        border: 1px solid black;
-    }
+        table,
+        td {
+            border: 1px solid black;
+        }
     </style>
 </head>
 
@@ -32,10 +32,12 @@
         </tr>
     </table>
     <script>
-    function deleteRow(r) {
-        var i = r.parentNode.parentNode.rowIndex;
-        document.getElementById("myTable").deleteRow(i);
-    }
+        console.log(this)
+        function deleteRow(r) {
+            console.log(r.parentNode.parentNode.rowIndex)
+            var i = r.parentNode.parentNode.rowIndex;
+            document.getElementById("myTable").deleteRow(i);
+        }
     </script>
 </body>
 
