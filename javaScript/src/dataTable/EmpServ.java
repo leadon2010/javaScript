@@ -18,11 +18,11 @@ import employee.SEmployee;
 /**
  * Servlet implementation class EmpServlet
  */
-@WebServlet("/EmpServlet")
-public class EmpServlet extends HttpServlet {
+@WebServlet("/EmpServ")
+public class EmpServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public EmpServlet() {
+	public EmpServ() {
 		super();
 	}
 
