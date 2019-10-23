@@ -51,11 +51,11 @@ public class EmpServlet extends HttpServlet {
 			list = dao.getEmplsList();
 			for (Employee emp : list) {
 				jsonObj = new JSONObject();
-				jsonObj.put("employeeid", emp.getEmployeeId());
-				jsonObj.put("firstName", emp.getFirstName());
+				jsonObj.put("employeeId", emp.getEmployeeId());
+				jsonObj.put("hireDate", emp.getHireDate());
 				jsonObj.put("lastName", emp.getLastName());
 				jsonObj.put("salary", emp.getSalary());
-				jsonObj.put("hireDate", emp.getHireDate());
+				jsonObj.put("firstName", emp.getFirstName());
 				jsonAry.add(jsonObj);
 			}
 			JSONObject json = new JSONObject();

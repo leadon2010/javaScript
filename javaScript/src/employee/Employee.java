@@ -1,7 +1,7 @@
 package employee;
 
 public class Employee {
-	private int employeeId;
+	private String employeeId;
 	private String firstName;
 	private String lastName;
 	private int salary;
@@ -20,11 +20,11 @@ public class Employee {
 		this.jobId = jobId;
 	}
 
-	public int getEmployeeId() {
+	public String getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
 
