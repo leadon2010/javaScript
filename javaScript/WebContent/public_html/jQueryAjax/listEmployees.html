@@ -9,6 +9,7 @@
 
 <body>
     <p id="show"></p>
+
     <script>
         $.ajax({
             url: "../../EmpServlet",
@@ -39,6 +40,7 @@
                 $("#show").html(table);
             }
         });
+
         function delFunc() {
             var trId = $(this).parent().parent().attr("id");
             $.ajax({
@@ -55,6 +57,7 @@
                 }
             });
         }
+
         function changeFunc() {
             console.log(this);
             var lastName = $(this).children().eq(0).text();
@@ -68,6 +71,7 @@
             tr.append($("<td>").html($("<button>").text("change").click(updateFunc)));
             $(this).after(tr);
         }
+
         function updateFunc() {
             var empId = $(this).parent().prev().prev().text();
             var salary = $(this).parent().prev().children().eq(0).val();
@@ -78,11 +82,12 @@
                 data: { "action": "update", "empId": empId, "salary": salary },
                 success: function () {
                     console.log("updated.")
-                    $("#"+empId).children().eq(4).text(salary);
+                    $("#" + empId).children().eq(4).text(salary);
                     elem.remove();
                 }
             });
         }
+
     </script>
 </body>
 
