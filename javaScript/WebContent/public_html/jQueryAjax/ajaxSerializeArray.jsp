@@ -59,7 +59,7 @@
       var fields = $(":input").serializeArray();
       console.log(fields);
       $("#results").empty();
-      jQuery.each(fields, function (i, field) {
+      $.each(fields, function (i, field) {
         $("#results").append(field.value + " ");
       });
     }
