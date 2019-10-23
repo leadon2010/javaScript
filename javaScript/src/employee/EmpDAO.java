@@ -15,6 +15,27 @@ public class EmpDAO {
 	PreparedStatement pstmt = null;
 	Connection conn = null;
 
+	public void updateEmployee(Employee emp) {
+		conn = DbCon.connect();
+		String sql = "update employee_temp set salary = ? where employee_id = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, emp.getSalary());
+			pstmt.setString(2, emp.getEmployeeId());
+			int r = pstmt.executeUpdate();
+			System.out.println(r + " 건이 변경되었습니다.");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public void insertEmployee(Employee emp) {
 		conn = DbCon.connect();
 		String sql = "insert into employee_temp(employee_id, last_name, email, hire_date, job_id)"
@@ -218,7 +239,7 @@ public class EmpDAO {
 		if (r > 0)
 			return "success";
 		else
-			return "error";
+			return null;
 	}
 
 	public List<Employee> getEmplsList() {

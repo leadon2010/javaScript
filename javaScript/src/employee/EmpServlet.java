@@ -36,7 +36,7 @@ public class EmpServlet extends HttpServlet {
 		if (action == null) {
 
 		} else if (action.equals("del")) {
-			String empid = request.getParameter("employeeid");
+			String empid = request.getParameter("empId");
 			System.out.println(empid);
 
 			String returnStr = dao.delEmployee(empid);
@@ -72,6 +72,14 @@ public class EmpServlet extends HttpServlet {
 			Employee emp = new Employee(lastName, hireDate, email, jobId);
 
 			dao.insertEmployee(emp);
+
+		} else if (action.equals("update")) {
+			String empId = request.getParameter("empId");
+			String salary = request.getParameter("salary");
+			Employee emp = new Employee();
+			emp.setEmployeeId(empId);
+			emp.setSalary(Integer.parseInt(salary));
+			dao.updateEmployee(emp);
 
 		}
 
