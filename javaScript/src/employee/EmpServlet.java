@@ -31,13 +31,14 @@ public class EmpServlet extends HttpServlet {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		String action = request.getParameter("action");
+		EmpDAO dao = new EmpDAO();
 
 		if (action == null) {
 
 		} else if (action.equals("del")) {
 			String empid = request.getParameter("employeeid");
 			System.out.println(empid);
-			EmpDAO dao = new EmpDAO();
+
 			String returnStr = dao.delEmployee(empid);
 			System.out.println(returnStr);
 			response.getWriter().println(returnStr);
@@ -47,19 +48,31 @@ public class EmpServlet extends HttpServlet {
 			JSONObject jsonObj = null;
 			JSONArray jsonAry = new JSONArray();
 
-			EmpDAO dao = new EmpDAO();
 			list = dao.getEmplsList();
 			for (Employee emp : list) {
 				jsonObj = new JSONObject();
 				jsonObj.put("employeeid", emp.getEmployeeId());
 				jsonObj.put("firstName", emp.getFirstName());
+				jsonObj.put("lastName", emp.getLastName());
 				jsonObj.put("salary", emp.getSalary());
+				jsonObj.put("hireDate", emp.getHireDate());
 				jsonAry.add(jsonObj);
 			}
 			JSONObject json = new JSONObject();
 			json.put("datas", jsonAry);
 			PrintWriter pw = response.getWriter();
 			pw.println(json.toString());
+
+		} else if (action.equals("insert")) {
+			String lastName = request.getParameter("lastName");
+			String email = request.getParameter("email");
+			String hireDate = request.getParameter("hireDate");
+			String jobId = request.getParameter("jobId");
+
+			Employee emp = new Employee(lastName, hireDate, email, jobId);
+
+			dao.insertEmployee(emp);
+
 		}
 
 	}

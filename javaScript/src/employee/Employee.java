@@ -6,6 +6,19 @@ public class Employee {
 	private String lastName;
 	private int salary;
 	private String hireDate;
+	private String email;
+	private String jobId;
+
+	public Employee() {
+	}
+
+	public Employee(String lastName, String hireDate, String email, String jobId) {
+		super();
+		this.lastName = lastName;
+		this.hireDate = hireDate;
+		this.email = email;
+		this.jobId = jobId;
+	}
 
 	public int getEmployeeId() {
 		return employeeId;
@@ -47,10 +60,26 @@ public class Employee {
 		this.hireDate = hireDate;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getJobId() {
+		return jobId;
+	}
+
+	public void setJobId(String jobId) {
+		this.jobId = jobId;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", salary=" + salary + ", hireDate=" + hireDate + "]";
+				+ ", salary=" + salary + ", hireDate=" + hireDate + ", email=" + email + ", jobId=" + jobId + "]";
 	}
 
 }

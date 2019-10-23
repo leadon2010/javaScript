@@ -13,16 +13,41 @@ import common.DbCon;
 
 public class EmpDAO {
 	PreparedStatement pstmt = null;
-	
-	public List<Map<String, Object>> getData(){
-		Connection conn = DbCon.connect();
+	Connection conn = null;
+
+	public void insertEmployee(Employee emp) {
+		conn = DbCon.connect();
+		String sql = "insert into employee_temp(employee_id, last_name, email, hire_date, job_id)"
+				+ " values(employees_seq.nextval, ?,?,?,?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, emp.getLastName());
+			pstmt.setString(2, emp.getEmail());
+			pstmt.setString(3, emp.getHireDate());
+			pstmt.setString(4, emp.getJobId());
+			int r = pstmt.executeUpdate();
+			System.out.println(r + " 건이 입력되었습니다.");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public List<Map<String, Object>> getData() {
+		conn = DbCon.connect();
 		String str = "select * from ajaxsample";
 		Map<String, Object> map;
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		try {
 			pstmt = conn.prepareStatement(str);
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				map = new HashMap<String, Object>();
 				map.put("fullName", rs.getString("full_name"));
 				map.put("position", rs.getString("position"));
@@ -45,7 +70,7 @@ public class EmpDAO {
 	}
 
 	public List<Map<String, Object>> getSampleData() {
-		Connection conn = DbCon.connect();
+		conn = DbCon.connect();
 		Map<String, Object> map = new HashMap<>();
 		List<Map<String, Object>> list = new ArrayList<>();
 		String str = "select * from ajaxsample";
@@ -76,7 +101,7 @@ public class EmpDAO {
 	}
 
 	public void insertSample(String a, String b, String c, String d, String e, String f) {
-		Connection conn = DbCon.connect();
+		conn = DbCon.connect();
 		String str = "insert into ajaxsample values(?,?,?,?,?,?)";
 		try {
 			int r = 0;
@@ -102,7 +127,7 @@ public class EmpDAO {
 	}
 
 	public List<String> getEmailList() {
-		Connection conn = DbCon.connect();
+		conn = DbCon.connect();
 		String str = "select email from employees";
 		List<String> list = new ArrayList<>();
 		try {
@@ -124,7 +149,7 @@ public class EmpDAO {
 	}
 
 	public List<String> getNamesList() {
-		Connection conn = DbCon.connect();
+		conn = DbCon.connect();
 		List<String> nameList = new ArrayList<>();
 		String sql = "select first_name from employees where rownum < 20";
 		try {
@@ -146,7 +171,7 @@ public class EmpDAO {
 	}
 
 	public String getUserInfo(String id, String pw) {
-		Connection conn = DbCon.connect();
+		conn = DbCon.connect();
 		String sql = "select * from member where userid = ? and userpw = ?";
 		String returnInfo = "";
 		try {
@@ -174,7 +199,7 @@ public class EmpDAO {
 	}
 
 	public String delEmployee(String id) {
-		Connection conn = DbCon.connect();
+		conn = DbCon.connect();
 		int r = 0;
 		try {
 			pstmt = conn.prepareStatement("delete from employee_temp where employee_id = " + id);
@@ -197,7 +222,7 @@ public class EmpDAO {
 	}
 
 	public List<Employee> getEmplsList() {
-		Connection conn = DbCon.connect();
+		conn = DbCon.connect();
 		List<Employee> list = new ArrayList<>();
 		Employee emp;
 		String sql = "select * from employee_temp order by employee_id desc";
@@ -226,7 +251,7 @@ public class EmpDAO {
 	}
 
 	public List<Employee> getEmpList(String name) {
-		Connection conn = DbCon.connect();
+		conn = DbCon.connect();
 		Employee emp;
 		List<Employee> list = new ArrayList<>();
 
@@ -256,7 +281,7 @@ public class EmpDAO {
 	}
 
 	public List<Map<String, Object>> getEmpPerDept() {
-		Connection conn = DbCon.connect();
+		conn = DbCon.connect();
 		Map<String, Object> map;
 		List<Map<String, Object>> list = new ArrayList<>();
 		String sql = "SELECT d.department_name ,COUNT(*) cnt FROM employees e JOIN departments d ON e.department_id = d.department_id "
