@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title> 선택자 </title>  
-<script src="js/jquery.js"></script>
-<script>
-	$(function(){
-		$("#menu1 li").slice(1,3)
-		.css({"background-color":"#ff0"});
 
-		$("li:only-child")
-		.css({"background-color":"#0ff"});
-	});
-</script>
+<head>
+	<meta charset="UTF-8">
+	<title> 선택자 </title>
+	<script src="js/jquery.js"></script>
+	<script>
+		$(function () {
+			$("#menu1 li").slice(1, 3)
+				.css({ "background-color": "#ff0" });
+
+			$("li:only-child")
+				.css({ "background-color": "#0ff" });
+		});
+	</script>
 </head>
+
 <body>
 	<h1>탐색 선택자</h1>
 	<ul id="menu1">
@@ -26,4 +28,5 @@
 		<li>내용2-1</li>
 	</ul>
 </body>
+
 </html>

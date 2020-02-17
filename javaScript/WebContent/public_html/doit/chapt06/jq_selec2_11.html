@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<title> 탐색 선택자 </title>  
-<script src="js/jquery.js"></script>
-<script>
-	$(function(){
-		$("#wrap a[target]")
-		.css({"color":"#f00"});
+	<meta charset="UTF-8">
+	<title> 탐색 선택자 </title>
+	<script src="js/jquery.js"></script>
+	<script>
+		$(function () {
+			$("#wrap a[target]")
+				.css({ "color": "#f00" });
 
-		$("#wrap a[href^=https]")
-		.css({"color":"#0f0"});
+			$("#wrap a[href^=https]")
+				.css({ "color": "#0f0" });
 
-		$("#wrap a[href$=net]")
-		.css({"color":"#00f"});
+			$("#wrap a[href$=net]")
+				.css({ "color": "#00f" });
 
-		$("#wrap a[href*=google]")
-		.css({"color":"#000"});
+			$("#wrap a[href*=google]")
+				.css({ "color": "#000" });
 
-		$("#member_f :text")
-		.css({"background-color":"#ff0"});
+			$("#member_f :text")
+				.css({ "background-color": "#ff0" });
 
-		$("#member_f :password")
-		.css({"background-color":"#0ff"});
-	});
-</script>
+			$("#member_f :password")
+				.css({ "background-color": "#0ff" });
+		});
+	</script>
 </head>
+
 <body>
 	<div id="wrap">
 		<p><a href="http://easyspub.co.kr" target="_blank">EasysPub</a></p>
@@ -44,4 +46,5 @@
 		</p>
 	</form>
 </body>
+
 </html>

@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title> 선택자 </title>  
 
-<script src="js/jquery.js"></script>
-<script>
-	$(function(){
-		$(".txt1").closest("div")
-		.css({
-			"border":"2px solid #f00"
+<head>
+	<meta charset="UTF-8">
+	<title> 선택자 </title>
+
+	<script src="js/jquery.js"></script>
+	<script>
+		$(function () {
+			$(".txt1").closest("div")
+				.css({
+					"border": "2px solid #f00"
+				});
 		});
-	});
-</script>
+	</script>
 </head>
+
 <body>
 	<h1 class="title">선택자</h1>
 	<div>
@@ -22,4 +24,5 @@
 		</div>
 	</div>
 </body>
+
 </html>

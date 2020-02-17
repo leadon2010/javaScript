@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<title> 탐색 선택자 </title>  
-<script src="js/jquery.js"></script>
-<script>
-	$(function(){
-		$("#menu li").eq(2)
-		.css({"background-color":"#ff0"});
+	<meta charset="UTF-8">
+	<title> 탐색 선택자 </title>
+	<script src="js/jquery.js"></script>
+	<script>
+		$(function () {
+			$("#menu li").eq(2)
+				.css({ "background-color": "#ff0" });
 
-		$("#menu li:lt(2)")
-		.css({"background-color":"#0ff"});
+			$("#menu li:lt(2)")
+				.css({ "background-color": "#0ff" });
 
-		$("#menu li:gt(2)")
-		.css({"background-color":"#f0f"});
-	});
-</script>
+			$("#menu li:gt(2)")
+				.css({ "background-color": "#f0f" });
+		});
+	</script>
 </head>
+
 <body>
 	<h1>탐색 선택자</h1>
 	<ul id="menu">
@@ -27,4 +29,5 @@
 		<li>내용5</li>
 	</ul>
 </body>
+
 </html>
