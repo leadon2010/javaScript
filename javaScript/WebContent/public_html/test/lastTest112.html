@@ -7,36 +7,38 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function () {
-			$("#plus").on("click", function () {
-				$("#rejects").append($("#subjects :selected"));
+			$("#subjects option").on("mouseover", function () {
+				$(this).css("backgroundColor", "yellow");
 			})
-			$("#minus").on("click", function () {
-				$("#subjects").append($("#rejects :selected"));
+			$("#subjects option").on("mouseout", function () {
+				$(this).css("backgroundColor", "");
 			})
+			// $(document).on("mouseover", "option", function () {
+			// 	$(this).css("backgroundColor", "yellow");
+			// })
+			// $(document).on("mouseout", "option", function () {
+			// 	$(this).css("backgroundColor", "");
+			// })
 		});
+		function addOption() {
+			var maxIndex = 0;
+			$.each($("#subjects option"), function (i, o) {
+				maxIndex = i;
+			})
+			var opts = $("<option />").text("element" + (maxIndex + 1));
+			$("#subjects").append(opts);
+		}
 	</script>
 </head>
 
 <body>
-	<h3>선택한 option을 상대편으로 옮기기</h3>
-	<form>
-		<select name="subjects" id="subjects" size="10">
-			<option>취미1-1</option>
-			<option>취미1-2</option>
-			<option>취미1-3</option>
-			<option>취미1-4</option>
-			<option>취미1-5</option>
-		</select>
-		<button type="button" id="plus">+</button>
-		<button type="button" id="minus">-</button>
-		<select name="rejects" id="rejects" size="10">
-			<option>취미2-1</option>
-			<option>취미2-2</option>
-			<option>취미2-3</option>
-			<option>취미2-4</option>
-			<option>취미2-5</option>
-		</select>
-	</form>
+	<h3>라이브 이벤트 처리</h3>
+	<button type="button" id="btn" onclick="addOption()">Click</button>
+	<select name="subjects" id="subjects" size="10">
+		<option>element0</option>
+		<option>element1</option>
+		<option>element2</option>
+	</select>
 </body>
 
 </html>
