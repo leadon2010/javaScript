@@ -43,8 +43,8 @@ public class SelectService extends HttpServlet {
 				System.out.println("비었습니다");
 			}
 
-			RequestDispatcher dis = request.getRequestDispatcher("./fileupload/board.jsp");
-			dis.forward(request, response);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("./fileupload/board.jsp");
+			dispatcher.forward(request, response);
 
 		} catch (Exception e) {
 			e.printStackTrace();
