@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class SelectService
- */
 @WebServlet("/SelectService")
 public class SelectService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +20,6 @@ public class SelectService extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		service(request, response);
 	}
 

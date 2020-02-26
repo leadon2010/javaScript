@@ -14,10 +14,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-
-/**
- * Servlet implementation class UploadService
- */
 @WebServlet("/UploadService")
 public class UploadService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,14 +24,12 @@ public class UploadService extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		service(request, response);
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// doGet(request, response);
 		service(request, response);
 	}
 
