@@ -12,33 +12,45 @@
 <body>
 	<h1>File List</h1>
 	<%
-		String path = "/home/ubie/Dev/git/javaScript/javaScript/WebContent";
+		String path = "/home/leadon/Dev/git/javaScript/javaScript/WebContent";
 		File temp = new File(path);
 		File[] fileList = temp.listFiles();
-		if (fileList.length > 0) {
-			for (File file : fileList) {
-				System.out.println(file.getName());
-				if (file.isDirectory()) {
-					out.println("<h3>" + file.getName() + "</h3>");
-					String addPath = path + "/" + file.getName();
-					File addTemp = new File(addPath);
-					File[] addList = addTemp.listFiles();
-					for (File addFile : addList) {
-						String fullPath = file.getName() + "/" + addFile.getName();
-						if (addFile.getName().indexOf("html") != -1) {
-							System.out.println("  " + addFile.getName());
-							out.println("<a href=\"" + fullPath + "\">" + addFile.getName() + "</a><br>");
-						} else if (addFile.getName().indexOf("jsp") != -1) {
-							System.out.println("  " + addFile.getName());
-							out.println("<a href=\"" + fullPath + "\">" + addFile.getName() + "</a><br>");
+
+		for (File file : fileList) {
+
+			if (file.isDirectory()) {
+				out.println("<p>" + file.getName() + "</p>");
+				String addPath = path + "/" + file.getName();
+				File addTemp = new File(addPath);
+				File[] addList = addTemp.listFiles();
+				
+				for (File addFile : addList) {
+					
+					String fullPath = file.getName() + "/" + addFile.getName();
+					if (addFile.isDirectory()) {
+						out.println("<p>" + fullPath + "</p>");
+						String dupPath = addPath + "/" + addFile.getName();
+						File dupTemp = new File(dupPath);
+						File[] dupList = dupTemp.listFiles();
+						
+						for (File dupFile : dupList) {
+							fullPath = file.getName() + "/" + addFile.getName() + "/" + dupFile.getName();
+							if (dupFile.isDirectory()) {
+								out.println("<p>" + fullPath + "</p>");
+							} else if (dupFile.getName().indexOf("html") != -1 || dupFile.getName().indexOf("jsp") != -1) {
+								out.println("====> <a href=\"" + fullPath + "\">" + dupFile.getName() + "</a><br>");
+							}
 						}
+						
+					} else if (addFile.getName().indexOf("html") != -1 || addFile.getName().indexOf("jsp") != -1) {
+						out.println("==> <a href=\"" + fullPath + "\">" + addFile.getName() + "</a><br>");
 					}
+
 				}
-	
-			}
-		} else {
-			System.out.println("no list");
-		}
+
+			} // end of if directory
+
+		} // end of for 
 	%>
 </body>
 
