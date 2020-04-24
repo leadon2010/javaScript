@@ -4,16 +4,19 @@ import java.io.File;
 
 public class FileExample {
 	public static void main(String[] args) {
+		String osName = System.getProperty("user.name");
+		System.out.println(osName);
 
-		String path = "/home/leadon/Dev/git/javaScript/javaScript/WebContent";
+		String path = "/home/" + osName + "/Dev/git/javaScript/javaScript/WebContent";
 		File temp = new File(path);
 		File[] fileList = temp.listFiles();
+		
 
 		if (fileList.length > 0) {
 
 			for (File file : fileList) {
 
-				System.out.println(file.getName());
+				System.out.println("/" + file.getName());
 
 				if (file.isDirectory()) {
 					String addPath = path + "/" + file.getName();
@@ -21,10 +24,11 @@ public class FileExample {
 					File[] addList = addTemp.listFiles();
 
 					for (File addFile : addList) {
-						if (addFile.getName().indexOf("html") > 0)
+						if (addFile.getName().indexOf("html") != -1 || addFile.getName().indexOf("jsp") != -1)
 							System.out.println("  " + addFile.getName());
-						else if (addFile.getName().indexOf("jsp") > 0)
-							System.out.println("  " + addFile.getName());
+
+						else if (addFile.isDirectory())
+							System.out.println("  /" + addFile.getName());
 					}
 
 				}
