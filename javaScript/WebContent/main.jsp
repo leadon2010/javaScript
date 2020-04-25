@@ -13,7 +13,8 @@
 <body>
 	<h1>File List</h1>
 	<%
-		String path = "/home/leadon/Dev/git/javaScript/javaScript/WebContent";
+		String osName = System.getProperty("user.name");
+		String path = "/home/" + osName + "/Dev/git/javaScript/javaScript/WebContent";
 		File temp = new File(path);
 		File[] fileList = temp.listFiles();
 

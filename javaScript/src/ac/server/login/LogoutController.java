@@ -10,17 +10,16 @@ import javax.servlet.http.HttpSession;
 
 import ac.server.controller.Controller;
 
-
-
 public class LogoutController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-		
-		HttpSession session = request.getSession(); session.invalidate();
-		
-		  return "redirect:Login.jsp";
+
+		HttpSession session = request.getSession();
+		session.invalidate();
+
+		return "redirect:Login.jsp";
 
 	}
 }

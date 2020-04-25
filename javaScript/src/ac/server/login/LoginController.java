@@ -25,7 +25,7 @@ public class LoginController implements Controller {
 			throws ServletException, IOException, SQLException {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		//String name = request.getParameter("name");
+		// String name = request.getParameter("name");
 
 		PrintWriter out = response.getWriter();
 
@@ -33,13 +33,13 @@ public class LoginController implements Controller {
 		if (result == true) {// 로그인이 된 경우
 
 			HttpSession session = request.getSession();
-			
+
 			session.setAttribute("id", id);
-			//session.setAttribute("name", name);
+			// session.setAttribute("name", name);
 			System.out.println(id);
-			//System.out.println(name);
+			// System.out.println(name);
 			return "redirect:./index.jsp";
-		} else { 
+		} else {
 			out.print("<script>");
 			out.print("alert('login id error');");
 			out.print("location='./Login.jsp';");
@@ -47,7 +47,6 @@ public class LoginController implements Controller {
 		}
 		return null;
 	}
-	
 
 	// 로그인
 

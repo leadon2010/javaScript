@@ -15,6 +15,7 @@ public class StudentListController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		StudentService service = StudentService.getInstance();
 		ArrayList<StudentDto> studentList = null;
 		try {
@@ -27,5 +28,6 @@ public class StudentListController implements Controller {
 
 		// 결과페이지 리턴
 		return "ac/member/student.jsp";
+
 	}
 }
