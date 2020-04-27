@@ -27,7 +27,7 @@ public class FileExample {
 		String osName = System.getProperty("user.name");
 		System.out.println(osName);
 
-		String path = "/home/" + osName + "/Dev/git/javaScript/javaScript/WebContent";
+		String path = "/home/" + osName + "/git/javaScript/javaScript/WebContent";
 		File temp = new File(path);
 		File[] fileList = temp.listFiles();
 
