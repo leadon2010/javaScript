@@ -17,7 +17,7 @@ public class EmpDAO {
 
 	public void updateEmployee(Employee emp) {
 		conn = DbCon.connect();
-		String sql = "update employee_temp set salary = ? where employee_id = ?";
+		String sql = "update emp set salary = ? where employee_id = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, emp.getSalary());
@@ -38,7 +38,7 @@ public class EmpDAO {
 
 	public void insertEmployee(Employee emp) {
 		conn = DbCon.connect();
-		String sql = "insert into employee_temp(employee_id, last_name, email, hire_date, job_id)"
+		String sql = "insert into emp(employee_id, last_name, email, hire_date, job_id)"
 				+ " values(employees_seq.nextval, ?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -223,7 +223,7 @@ public class EmpDAO {
 		conn = DbCon.connect();
 		int r = 0;
 		try {
-			pstmt = conn.prepareStatement("delete from employee_temp where employee_id = " + id);
+			pstmt = conn.prepareStatement("delete from emp where employee_id = " + id);
 			r = pstmt.executeUpdate();
 			System.out.println(r + " 건이 삭제되었습니다.");
 
@@ -246,7 +246,7 @@ public class EmpDAO {
 		conn = DbCon.connect();
 		List<Employee> list = new ArrayList<>();
 		Employee emp;
-		String sql = "select * from employee_temp order by employee_id desc";
+		String sql = "select * from emp order by employee_id desc";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();

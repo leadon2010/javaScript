@@ -35,8 +35,8 @@
 					console.log(data);
 					var $tag = "<table border=1><caption>:::: Employee Lists ::::</caption>";
 					$tag += "<tr><th>index</th><th>Name</th><th>Salary</th></tr>";
-					for (var i = 0; i < data.result.length; i++) {
-						$tag += "<tr><td>" + (i + 1) + "</td><td>" + data.result[i].firstName + "</td><td>" + data.result[i].salary + "</td></tr>";
+					for (var i = 0; i < data.datas.length; i++) {
+						$tag += "<tr><td>" + (i + 1) + "</td><td>" + data.datas[i].firstName + "</td><td>" + data.datas[i].salary + "</td></tr>";
 					}
 					$tag += "</table>";
 					$("#show").html($tag);
