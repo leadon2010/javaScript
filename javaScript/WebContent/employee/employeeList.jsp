@@ -19,7 +19,7 @@
 			padding: 8px;
 		}
 
-		tr:nth-child(even) {   
+		tr:nth-child(even) {
 			background-color: #dddddd;
 		}
 	</style>
@@ -29,9 +29,12 @@
 	<script>
 		$(document).ready(function () {
 			$.ajax({
-				url: "<%=uri%>/EmpServlet?action=list",
+				url: "<%=uri%>/EmpServlet",
+				data: "action=lists",
+				dataType: "json",
 				success: function (result) {
-					var data = JSON.parse(result);
+					//var data = JSON.parse(result);
+					var data = result;
 					console.log(data);
 					var $tag = "<table border=1><caption>:::: Employee Lists ::::</caption>";
 					$tag += "<tr><th>index</th><th>Name</th><th>Salary</th></tr>";
@@ -40,6 +43,9 @@
 					}
 					$tag += "</table>";
 					$("#show").html($tag);
+				},
+				error: function (xhr, status, error) {
+					console.log(error);
 				}
 			})
 		});
