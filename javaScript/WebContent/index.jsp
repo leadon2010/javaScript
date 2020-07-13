@@ -12,7 +12,12 @@
 <body>
 	<h1>File List</h1>
 	<%
-		String path = "/home/leadon/Dev/git/javaScript/javaScript/WebContent";
+		String path = "D:/git/javaScript/javaScript/WebContent";
+		//String path = request.getContextPath() + "/";
+		//String path = "/";
+		//out.println("<h1>"+path+"</h1>");
+		System.out.println(path);
+		
 		File temp = new File(path);
 		File[] fileList = temp.listFiles();
 
@@ -51,6 +56,7 @@
 			} // end of if directory
 
 		} // end of for 
+		
 	%>
 </body>
 
