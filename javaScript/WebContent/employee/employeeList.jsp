@@ -19,7 +19,7 @@
 			padding: 8px;
 		}
 
-		tr:nth-child(even) {   
+		tr:nth-child(even) {
 			background-color: #dddddd;
 		}
 	</style>
@@ -29,17 +29,23 @@
 	<script>
 		$(document).ready(function () {
 			$.ajax({
-				url: "<%=uri%>/EmpServlet?action=list",
+				url: "<%=uri%>/EmpServlet",
+				data: "action=lists",
+				dataType: "json",
 				success: function (result) {
-					var data = JSON.parse(result);
+					//var data = JSON.parse(result);
+					var data = result;
 					console.log(data);
 					var $tag = "<table border=1><caption>:::: Employee Lists ::::</caption>";
 					$tag += "<tr><th>index</th><th>Name</th><th>Salary</th></tr>";
-					for (var i = 0; i < data.result.length; i++) {
-						$tag += "<tr><td>" + (i + 1) + "</td><td>" + data.result[i].firstName + "</td><td>" + data.result[i].salary + "</td></tr>";
+					for (var i = 0; i < data.datas.length; i++) {
+						$tag += "<tr><td>" + (i + 1) + "</td><td>" + data.datas[i].firstName + "</td><td>" + data.datas[i].salary + "</td></tr>";
 					}
 					$tag += "</table>";
 					$("#show").html($tag);
+				},
+				error: function (xhr, status, error) {
+					console.log(error);
 				}
 			})
 		});

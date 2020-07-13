@@ -14,9 +14,9 @@ public class DbCon {
 	 * Oracle 연결정보
 	 */
 	static String jdbc_driver = "oracle.jdbc.driver.OracleDriver";
-	static String jdbc_url = "jdbc:oracle:thin:@localhost:1521:orcl";
-	static String user = "lch";
-	static String passwd = "lch";
+	static String jdbc_url = "jdbc:oracle:thin:@localhost:1521:xe";
+	static String user = "hr";
+	static String passwd = "hr";
 
 	/* MySQL 연결정보 */
 	// String jdbc_driver = "com.mysql.jdbc.Driver";
