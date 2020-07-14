@@ -246,7 +246,7 @@ public class EmpDAO {
 		conn = DbCon.connect();
 		List<Employee> list = new ArrayList<>();
 		Employee emp;
-		String sql = "select * from emp order by employee_id desc";
+		String sql = "select * from employees order by employee_id desc";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();

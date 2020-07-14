@@ -30,7 +30,7 @@
 		$(document).ready(function () {
 			$.ajax({
 				url: "<%=uri%>/EmpServlet",
-				data: "action=lists",
+				data: "action=list",
 				dataType: "json",
 				success: function (result) {
 					//var data = JSON.parse(result);
