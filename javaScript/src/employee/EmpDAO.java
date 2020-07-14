@@ -15,6 +15,51 @@ public class EmpDAO {
 	PreparedStatement pstmt = null;
 	Connection conn = null;
 
+	public Map<String, String> getJobCode() {
+		conn = DbCon.connect();
+		Map<String, String> map = new HashMap<>();
+		String sql = "select * from jobs";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				map.put(rs.getString("job_id"), rs.getString("job_title"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return map;
+	}
+
+	public void addEmployee(Employee emp) {
+		conn = DbCon.connect();
+		String sql = "insert into emp (employee_id, first_name, salary, email) values (employees_seq.nextval,?,?,?) ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, emp.getFirstName());
+			pstmt.setInt(2, emp.getSalary());
+			pstmt.setString(3, emp.getEmail());
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "건 입력됨.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public void updateEmployee(Employee emp) {
 		conn = DbCon.connect();
 		String sql = "update emp set salary = ? where employee_id = ?";

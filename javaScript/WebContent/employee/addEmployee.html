@@ -79,10 +79,21 @@
       }
     }
   </style>
-  
+
   <script>
     $(document).ready(function () {
-
+      var selectTag = $("#jobId");
+      $.ajax({
+        url: "../GetJobServlet",
+        dataType: "json",
+        success: function (result) {
+          console.log(result);
+          for (var i = 0; i < result.length; i++) {
+            var $option = $("<option />").attr("value", result[i].job_id).text(result[i].job_title);
+            selectTag.append($option);
+          }
+        }
+      });
     });
   </script>
 </head>
@@ -95,14 +106,21 @@
       <p>Please fill in this form to create an account.</p>
       <hr>
 
-      <label for="firstName"><b>Email</b></label>
+      <label for="firstName"><b>first_name</b></label>
       <input type="text" placeholder="Enter firstname" name="firstName" required>
 
-      <label for="email"><b>Password</b></label>
+      <label for="lastName"><b>first_name</b></label>
+      <input type="text" placeholder="Enter firstname" name="lastName" required>
+
+      <label for="email"><b>email</b></label>
       <input type="text" placeholder="Enter email" name="email" required>
 
-      <label for="salary"><b>Repeat Password</b></label>
-      <input type="text" placeholder="Repeat Password" name="salary" required>
+      <label for="hireDate"><b>salary</b></label>
+      <input type="text" placeholder="Repeat Password" name="hireDate" required>
+
+      <label for="jobId"><b>job</b></label>
+      <select name="jobId" id="jobId">
+      </select>
 
       <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me

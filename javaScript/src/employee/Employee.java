@@ -12,6 +12,13 @@ public class Employee {
 	public Employee() {
 	}
 
+	public Employee(String firstName, int salary, String email) {
+		super();
+		this.firstName = firstName;
+		this.salary = salary;
+		this.email = email;
+	}
+
 	public Employee(String lastName, String hireDate, String email, String jobId) {
 		super();
 		this.lastName = lastName;
