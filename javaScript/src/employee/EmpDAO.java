@@ -83,14 +83,16 @@ public class EmpDAO {
 
 	public void insertEmployee(Employee emp) {
 		conn = DbCon.connect();
-		String sql = "insert into emp(employee_id, last_name, email, hire_date, job_id)"
-				+ " values(employees_seq.nextval, ?,?,?,?)";
+		String sql = "insert into employees(employee_id, last_name, email, hire_date, job_id, first_name)"
+				+ " values(employees_seq.nextval, ?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, emp.getLastName());
 			pstmt.setString(2, emp.getEmail());
 			pstmt.setString(3, emp.getHireDate());
 			pstmt.setString(4, emp.getJobId());
+			pstmt.setString(5, emp.getFirstName());
+
 			int r = pstmt.executeUpdate();
 			System.out.println(r + " 건이 입력되었습니다.");
 
@@ -291,7 +293,7 @@ public class EmpDAO {
 		conn = DbCon.connect();
 		List<Employee> list = new ArrayList<>();
 		Employee emp;
-		String sql = "select * from employees order by employee_id desc";
+		String sql = "select * from emp order by employee_id desc";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();

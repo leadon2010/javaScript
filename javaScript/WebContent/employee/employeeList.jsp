@@ -19,7 +19,11 @@
 			padding: 8px;
 		}
 
-		tr:nth-child(even) {
+		th {
+			background-color: rgb(173, 235, 173);
+		}
+
+		tr:nth-child(odd) {
 			background-color: #dddddd;
 		}
 	</style>
@@ -37,9 +41,13 @@
 					var data = result;
 					console.log(data);
 					var $tag = "<table border=1><caption>:::: Employee Lists ::::</caption>";
-					$tag += "<tr><th>index</th><th>Name</th><th>Salary</th></tr>";
+					$tag += "<tr><th>index</th><th>Name</th><th>Salary</th><th>삭제</th></tr>";
 					for (var i = 0; i < data.datas.length; i++) {
-						$tag += "<tr><td>" + (i + 1) + "</td><td>" + data.datas[i].firstName + "</td><td>" + data.datas[i].salary + "</td></tr>";
+						$tag += "<tr><td>" + data.datas[i].employeeId
+							+ "</td><td>" + data.datas[i].firstName
+							+ "</td><td><input type='text' value='" + data.datas[i].salary + "' onchange='changeFunc(this)'>"
+							+ "</td><td>" + "<button onclick='delFunc(this)'>삭제</button>"
+							+ "</td></tr>";
 					}
 					$tag += "</table>";
 					$("#show").html($tag);
@@ -49,6 +57,27 @@
 				}
 			})
 		});
+
+		function delFunc(obj) {
+			$(obj).parent().parent().remove();
+		}
+
+		function changeFunc(obj) {
+			//console.log(obj.parentNode.parentNode.childNodes[0].childNodes[0].nodeValue);
+			//console.log(obj.value)
+			//$(obj).val();
+			var $id = obj.parentNode.parentNode.childNodes[0].childNodes[0].nodeValue;
+			var $val = obj.value;
+
+			$.ajax({
+				url: "UpdateEmpServlet",
+				data: { empId: $id, salary: $val },
+				success: function (result, status) {
+					console.log(status);
+				}
+			});
+
+		}
 	</script>
 </head>
 

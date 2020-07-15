@@ -7,47 +7,41 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class AddEmpServlet
- */
 @WebServlet("/AddEmpServlet")
 public class AddEmpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public AddEmpServlet() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath()).append("Get");
-	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		doGet(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath()).append("Post");
-
-		String firstName = request.getParameter("first_name");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
-		int salary = Integer.parseInt(request.getParameter("salary"));
+		String jobId = request.getParameter("jobId");
+		String hireDate = request.getParameter("hireDate");
 
 		EmpDAO dao = new EmpDAO();
-		dao.addEmployee(new Employee(firstName, salary, email));
+		Employee emp = new Employee();
+		emp.setFirstName(firstName);
+		emp.setLastName(lastName);
+		emp.setEmail(email);
+		emp.setJobId(jobId);
+		emp.setHireDate(hireDate);
+
+		dao.insertEmployee(emp);
+
+		request.getRequestDispatcher("employee/employeeList.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+
 	}
 
 }
