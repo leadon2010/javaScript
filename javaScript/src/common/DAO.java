@@ -23,7 +23,7 @@ public class DAO {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			// 2. DB 연결
-			String url = "jdbc:oracle:thin:@192.168.0.100:1521:orcl";
+			String url = "jdbc:oracle:thin:@192.168.0.16:1521:xe";
 			conn = DriverManager.getConnection(url, "hr", "hr");
 
 			// connection pool에서 connection을 할당
