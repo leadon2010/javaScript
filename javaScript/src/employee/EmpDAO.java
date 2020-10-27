@@ -15,6 +15,29 @@ public class EmpDAO {
 	PreparedStatement pstmt = null;
 	Connection conn = null;
 
+	public Map<String, Integer> getEmployeePerDept() {
+		conn = DbCon.connect();
+		String sql = "SELECT d.department_name,COUNT(*) AS cnt FROM   employees   e,departments d "
+				+ "WHERE  e.department_id = d.department_id GROUP  BY d.department_name";
+		Map<String, Integer> map = new HashMap<>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				map.put(rs.getString("department_name"), rs.getInt("cnt"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return map;
+	}
+
 	public Map<String, String> getJobCode() {
 		conn = DbCon.connect();
 		Map<String, String> map = new HashMap<>();
