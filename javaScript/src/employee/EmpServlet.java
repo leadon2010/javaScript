@@ -11,12 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
-/**
- * Servlet implementation class EmpServlet
- */
 @WebServlet("/EmpServlet")
 public class EmpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,15 +22,18 @@ public class EmpServlet extends HttpServlet {
 		super();
 	}
 
-	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		String action = request.getParameter("action");
 		EmpDAO dao = new EmpDAO();
 
+		PrintWriter out = response.getWriter();
+
 		if (action == null) {
+			out.print("<script>");
+			out.print("alert(\"no action\")");
+			out.print("</script>");
 
 		} else if (action.equals("del")) {
 			String empid = request.getParameter("empId");
@@ -60,8 +60,8 @@ public class EmpServlet extends HttpServlet {
 			}
 			JSONObject json = new JSONObject();
 			json.put("datas", jsonAry);
-			PrintWriter pw = response.getWriter();
-			pw.println(json.toString());
+
+			out.println(json.toString());
 
 		} else if (action.equals("insert")) {
 			String lastName = request.getParameter("lastName");
