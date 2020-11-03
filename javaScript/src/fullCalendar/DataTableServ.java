@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @WebServlet("/DataTableServ")
 public class DataTableServ extends HttpServlet {
@@ -54,10 +54,9 @@ public class DataTableServ extends HttpServlet {
 			List<DataTable> list = dao.getEventList();
 //			out.print(JSONArray.fromObject(list).toString());
 			JSONArray ary = new JSONArray();
-			JSONObject obj = null;
 
 			for (DataTable data : list) {
-				obj = new JSONObject();
+				JSONObject obj = new JSONObject();
 				obj.put("groupId", data.getGroupId());
 				obj.put("title", data.getTitle());
 				obj.put("start", data.getStartDate());

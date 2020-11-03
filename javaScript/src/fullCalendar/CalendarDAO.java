@@ -14,6 +14,35 @@ public class CalendarDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
+	public List<DataTable> getSchedules() {
+		conn = DbCon.connect();
+		String sql = "select * from data_table";
+		List<DataTable> list = new ArrayList<>();
+		DataTable dat = null;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				dat = new DataTable();
+				dat.setTitle(rs.getString("title"));
+				dat.setStartDate(rs.getString("start_date"));
+				dat.setEndDate(rs.getString("end_date"));
+				list.add(dat);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+
 	public void insertEvent(DataTable dat) {
 		conn = DbCon.connect();
 		String sql = "insert into data_table values(?,?,?,?,sysdate)";
