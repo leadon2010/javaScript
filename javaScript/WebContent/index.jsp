@@ -12,7 +12,7 @@
 <body>
 	<h1>File List</h1>
 	<%
-		String path = "D:/git/leadon2010/javaScript/javaScript/WebContent";
+		String path = "/home/leadon/git/javaScript/javaScript/WebContent";
 		//String path = request.getContextPath() + "/";
 		//String path = "/";
 		//out.println("<h1>"+path+"</h1>");
