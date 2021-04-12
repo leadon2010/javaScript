@@ -71,10 +71,6 @@ public class Paging {
 	}
 
 	public int getEndPage() {
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/leadon2010/javaScript.git
 		return endPage;
 	}
 
