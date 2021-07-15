@@ -12,7 +12,7 @@
 	</style>
 	<script>
 		window.onload = function () {
-			loadCommentList();  // 목록조회 ajax 요청
+			loadCommentList(); // 목록조회 ajax 요청
 		}
 		var xhr;
 		//목록요청
@@ -25,8 +25,8 @@
 		}
 		//목록요청 콜백함수
 		function loadCommentResult() {
-			if (xhr.readyState == 4) {    //응답이 완료
-				if (xhr.status == 200) {  //정상실행
+			if (xhr.readyState == 4) { //응답이 완료
+				if (xhr.status == 200) { //정상실행
 					var xmlDoc = xhr.responseXML;
 					var code = xmlDoc.getElementsByTagName('code').item(0).firstChild.nodeValue;
 					if (code == 'success') {
@@ -113,17 +113,17 @@
 			var id = document.updateForm.id.value;
 			var name = document.updateForm.name.value;
 			var content = document.updateForm.content.value;
-			var param = "cmd=update"
-				+ "&id=" + id
-				+ "&name=" + encodeURIComponent(name)
-				+ "&content=" + encodeURIComponent(content);
+			var param = "cmd=update" +
+				"&id=" + id +
+				"&name=" + encodeURIComponent(name) +
+				"&content=" + encodeURIComponent(content);
 			xhr.open("get", "../CommentsServ?" + param);
 			xhr.send();
 		}
 		//수정 콜백
 		function updateResult() {
-			if (xhr.readyState == 4) {    //응답이 완료
-				if (xhr.status == 200) {  //정상실행
+			if (xhr.readyState == 4) { //응답이 완료
+				if (xhr.status == 200) { //정상실행
 					var xmlDoc = xhr.responseXML;
 					var code = xmlDoc.getElementsByTagName('code').item(0).firstChild.nodeValue;
 					if (code == 'success') {
@@ -154,7 +154,7 @@
 			if (confirm("삭제할까요?")) {
 				xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = deleteResult
-				var id = e.target.parentNode.comment.id;  //e.target  == this
+				var id = e.target.parentNode.comment.id; //e.target  == this
 				var param = "id=" + id + "&cmd=delete";
 				xhr.open("get", "../CommentsServ?" + param);
 				xhr.send();
@@ -164,8 +164,8 @@
 
 		//삭제요청 콜백
 		function deleteResult() {
-			if (xhr.readyState == 4) {    //응답이 완료
-				if (xhr.status == 200) {  //정상실행
+			if (xhr.readyState == 4) { //응답이 완료
+				if (xhr.status == 200) { //정상실행
 					var xmlDoc = xhr.responseXML;
 					var code = xmlDoc.getElementsByTagName('code').item(0).firstChild.nodeValue;
 					if (code == 'success') {
@@ -191,16 +191,16 @@
 			var name = document.addForm.name.value;
 			var content = document.addForm.content.value;
 
-			var param = "cmd=insert&name="
-				+ encodeURIComponent(name)
-				+ "&content=" + encodeURIComponent(content);
+			var param = "cmd=insert&name=" +
+				encodeURIComponent(name) +
+				"&content=" + encodeURIComponent(content);
 			xhr.open("get", "../CommentsServ?" + param);
 			xhr.send();
 		}
 		//댓글등록콜백
 		function addResult() {
-			if (xhr.readyState == 4) {    //응답이 완료
-				if (xhr.status == 200) {  //정상실행
+			if (xhr.readyState == 4) { //응답이 완료
+				if (xhr.status == 200) { //정상실행
 					var xmlDoc = xhr.responseXML;
 					var code = xmlDoc.getElementsByTagName('code').item(0).firstChild.nodeValue;
 					if (code == 'success') {
@@ -220,7 +220,6 @@
 				}
 			}
 		}
-
 	</script>
 
 </head>

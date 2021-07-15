@@ -18,7 +18,9 @@ ajax.xhr.Request.prototype = {
 			} catch (e) {
 				try {
 					return new ActiveXObject("Microsoft.XMLHTTP");
-				} catch (e1) { return null; }
+				} catch (e1) {
+					return null;
+				}
 			}
 		} else if (window.XMLHttpRequest) {
 			return new XMLHttpRequest();
@@ -93,7 +95,10 @@ ajax.Event.getMouseXY = function (event) {
 		mouseX += db.scrollLeft;
 		mouseY += db.scrollTop;
 	}
-	return { x: mouseX, y: mouseY };
+	return {
+		x: mouseX,
+		y: mouseY
+	};
 }
 ajax.Event.isLeftButton = function (event) {
 	return (event.which) ?
@@ -139,11 +144,11 @@ ajax.GUI.getStyle = function (el, property) {
 	var value = null;
 	var dv = document.defaultView;
 
-	if (property == 'opacity' && el.filters) {// IE opacity
+	if (property == 'opacity' && el.filters) { // IE opacity
 		value = 1;
 		try {
 			value = el.filters.item('alpha').opacity / 100;
-		} catch (e) { }
+		} catch (e) {}
 	} else if (el.style[property]) {
 		value = el.style[property];
 	} else if (el.currentStyle && el.currentStyle[property]) {
@@ -192,15 +197,18 @@ ajax.GUI.getXY = function (el) {
 		// body�� offsetTop�� �߸� ����ϹǷ� �����ؾ� �Ѵ�.
 		var ua = navigator.userAgent.toLowerCase();
 		if (
-			ua.indexOf('opera') != -1
-			|| (ua.indexOf('safari') != -1 && this.getStyle(el, 'position') == 'absolute')
+			ua.indexOf('opera') != -1 ||
+			(ua.indexOf('safari') != -1 && this.getStyle(el, 'position') == 'absolute')
 		) {
 			pos[1] -= document.body.offsetTop;
 		}
 	}
 
-	if (el.parentNode) { parent = el.parentNode; }
-	else { parent = null; }
+	if (el.parentNode) {
+		parent = el.parentNode;
+	} else {
+		parent = null;
+	}
 
 	// body �Ǵ� html �̿��� �θ� ��� �߿� ��ũ�ѵǾ� �ִ�
 	// ������ �ִٸ� �˸°� ó���Ѵ�.
@@ -208,10 +216,16 @@ ajax.GUI.getXY = function (el) {
 		pos[0] -= parent.scrollLeft;
 		pos[1] -= parent.scrollTop;
 
-		if (parent.parentNode) { parent = parent.parentNode; }
-		else { parent = null; }
+		if (parent.parentNode) {
+			parent = parent.parentNode;
+		} else {
+			parent = null;
+		}
 	}
-	return { x: pos[0], y: pos[1] };
+	return {
+		x: pos[0],
+		y: pos[1]
+	};
 }
 ajax.GUI.getX = function (el) {
 	return ajax.GUI.getXY(el).x;
@@ -230,7 +244,9 @@ ajax.GUI.getBounds = function (el) {
 }
 ajax.GUI.setXY = function (el, x, y) {
 	var pageXY = ajax.GUI.getXY(el);
-	if (pageXY === false) { return false; }
+	if (pageXY === false) {
+		return false;
+	}
 	var position = ajax.GUI.getStyle(el, 'position');
 	if (!position || position == 'static') {
 		el.style.position = 'relative';
@@ -239,8 +255,12 @@ ajax.GUI.setXY = function (el, x, y) {
 		x: parseInt(ajax.GUI.getStyle(el, 'left'), 10),
 		y: parseInt(ajax.GUI.getStyle(el, 'top'), 10)
 	};
-	if (isNaN(delta.x)) { delta.x = 0; }
-	if (isNaN(delta.y)) { delta.y = 0; }
+	if (isNaN(delta.x)) {
+		delta.x = 0;
+	}
+	if (isNaN(delta.y)) {
+		delta.y = 0;
+	}
 
 	if (x != null) {
 		el.style.left = (x - pageXY.x + delta.x) + 'px';

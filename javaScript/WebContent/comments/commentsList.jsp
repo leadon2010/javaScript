@@ -31,7 +31,7 @@
 						var commentList = eval("(" + xmlDoc.getElementsByTagName('data').item(0).firstChild.nodeValue + ")");
 						var listDiv = document.getElementById('commentList');
 						for (var i = 0; i < commentList.length; i++) {
-							var commentDiv = makeCommentView(commentList[i]);//댓글div 태그생성
+							var commentDiv = makeCommentView(commentList[i]); //댓글div 태그생성
 							listDiv.appendChild(commentDiv); // div목록에 댓글div 추가
 						}
 					} else if (code == 'error') {
@@ -50,10 +50,10 @@
 			div.className = 'comment';
 			div.comment = comment; ////{ id:2, name:'김유미', content:'첫번째 글'},
 
-			var str = "<strong>" + comment.name + "</strong> "
-				+ comment.content
-				+ "<input type=\"button\" value=\"수정\" onclick=\"viewUpdateForm('" + comment.id + "')\"/>"
-				+ "<input type=\"button\" value=\"삭제\" onclick=\"confirmDeletion('" + comment.id + "')\"/>"
+			var str = "<strong>" + comment.name + "</strong> " +
+				comment.content +
+				"<input type=\"button\" value=\"수정\" onclick=\"viewUpdateForm('" + comment.id + "')\"/>" +
+				"<input type=\"button\" value=\"삭제\" onclick=\"confirmDeletion('" + comment.id + "')\"/>"
 			div.innerHTML = str;
 			return div;
 		}
@@ -120,7 +120,8 @@
 			var id = document.updateForm.id.value;
 			var name = document.updateForm.name.value;
 			var content = document.updateForm.content.value;
-			var params = "id=" + id + "&" + "name=" + encodeURIComponent(name) + "&" + "content=" + encodeURIComponent(content) + "&cmd=update";
+			var params = "id=" + id + "&" + "name=" + encodeURIComponent(name) + "&" + "content=" + encodeURIComponent(
+				content) + "&cmd=update";
 			new ajax.xhr.Request('../CommentsServ', params, updateResult, 'POST');
 		}
 		////댓글 수정 콜백함수
